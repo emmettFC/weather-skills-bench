@@ -1,0 +1,71 @@
+{
+  "id": "rolling-nonoverlap",
+  "title": "Export two independent totals from rolling rainfall windows",
+  "brief": "From daily rain.zarr, construct left-labeled 7-day rolling mean rates. Export only windows starting 2024-01-01 and 2024-01-08 as precipitation totals; these windows do not overlap. Require seven samples for a valid window. Return dates, totals_mm, and units='mm'.",
+  "challenge": "Rolling windows overlap by default; select disjoint windows before converting mean rates to totals.",
+  "inputs": [
+    "rain.zarr"
+  ],
+  "input_metadata": {
+    "rain.zarr": {
+      "dimensions": {
+        "time": 14
+      },
+      "variables": {
+        "precip": {
+          "dims": [
+            "time"
+          ],
+          "attrs": {
+            "units": "mm day-1",
+            "long_name": "precip",
+            "data_interval": "1 day",
+            "standard_name": "lwe_precipitation_rate"
+          }
+        }
+      },
+      "coordinates": {
+        "time": [
+          "2024-01-01T00:00:00.000000000",
+          "2024-01-02T00:00:00.000000000",
+          "2024-01-03T00:00:00.000000000",
+          "2024-01-04T00:00:00.000000000",
+          "2024-01-05T00:00:00.000000000",
+          "2024-01-06T00:00:00.000000000",
+          "2024-01-07T00:00:00.000000000",
+          "2024-01-08T00:00:00.000000000",
+          "2024-01-09T00:00:00.000000000",
+          "2024-01-10T00:00:00.000000000",
+          "2024-01-11T00:00:00.000000000",
+          "2024-01-12T00:00:00.000000000",
+          "2024-01-13T00:00:00.000000000",
+          "2024-01-14T00:00:00.000000000"
+        ]
+      }
+    }
+  },
+  "answer_schema": {
+    "dates": {
+      "type": "array",
+      "length": 2,
+      "items": {
+        "type": "string"
+      }
+    },
+    "totals_mm": {
+      "type": "array",
+      "length": 2,
+      "items": {
+        "type": "number"
+      }
+    },
+    "units": {
+      "type": "string"
+    }
+  },
+  "fixture_kind": "synthetic diagnostic",
+  "tolerance": {
+    "atol": 1e-06,
+    "rtol": 1e-06
+  }
+}

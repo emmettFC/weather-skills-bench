@@ -1,0 +1,373 @@
+{
+  "study_id": "20260929T191336Z-7d322b",
+  "state": "Complete",
+  "recorded_attempts": 120,
+  "planned_attempts": 120,
+  "condition_statistics": [
+    {
+      "model": "anthropic/claude-fable-5.1",
+      "arm": "python",
+      "recorded": 10,
+      "scored": 10,
+      "passed": 10,
+      "success_rate": 1.0,
+      "wilson_95": [
+        0.7224672001371107,
+        0.9999999999999999
+      ],
+      "median_seconds": 14.035624374984764,
+      "mean_tokens": 3724.4,
+      "known_cost_usd": 0.519552,
+      "cost_complete": true,
+      "cost_per_attempt_usd": 0.0519552,
+      "cost_per_success_usd": 0.0519552,
+      "provider_errors": 1,
+      "protocol_rejections": 0,
+      "runs_using_skills": 0,
+      "runs_reading_guides": 0
+    },
+    {
+      "model": "anthropic/claude-fable-5.1",
+      "arm": "skills_only",
+      "recorded": 10,
+      "scored": 10,
+      "passed": 10,
+      "success_rate": 1.0,
+      "wilson_95": [
+        0.7224672001371107,
+        0.9999999999999999
+      ],
+      "median_seconds": 33.240493582969066,
+      "mean_tokens": 55465.4,
+      "known_cost_usd": 5.8420494,
+      "cost_complete": true,
+      "cost_per_attempt_usd": 0.58420494,
+      "cost_per_success_usd": 0.58420494,
+      "provider_errors": 0,
+      "protocol_rejections": 17,
+      "runs_using_skills": 10,
+      "runs_reading_guides": 10
+    },
+    {
+      "model": "anthropic/claude-sonnet-5.5",
+      "arm": "python",
+      "recorded": 10,
+      "scored": 10,
+      "passed": 10,
+      "success_rate": 1.0,
+      "wilson_95": [
+        0.7224672001371107,
+        0.9999999999999999
+      ],
+      "median_seconds": 7.572087271488272,
+      "mean_tokens": 6213.4,
+      "known_cost_usd": 0.16892964,
+      "cost_complete": true,
+      "cost_per_attempt_usd": 0.016892964,
+      "cost_per_success_usd": 0.016892964,
+      "provider_errors": 0,
+      "protocol_rejections": 12,
+      "runs_using_skills": 0,
+      "runs_reading_guides": 0
+    },
+    {
+      "model": "anthropic/claude-sonnet-5.5",
+      "arm": "skills_only",
+      "recorded": 10,
+      "scored": 10,
+      "passed": 10,
+      "success_rate": 1.0,
+      "wilson_95": [
+        0.7224672001371107,
+        0.9999999999999999
+      ],
+      "median_seconds": 17.170398728980217,
+      "mean_tokens": 96515.6,
+      "known_cost_usd": 1.98594792,
+      "cost_complete": true,
+      "cost_per_attempt_usd": 0.19859479200000002,
+      "cost_per_success_usd": 0.19859479200000002,
+      "provider_errors": 0,
+      "protocol_rejections": 38,
+      "runs_using_skills": 10,
+      "runs_reading_guides": 10
+    },
+    {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "arm": "python",
+      "recorded": 10,
+      "scored": 10,
+      "passed": 10,
+      "success_rate": 1.0,
+      "wilson_95": [
+        0.7224672001371107,
+        0.9999999999999999
+      ],
+      "median_seconds": 37.592144478985574,
+      "mean_tokens": 17327.6,
+      "known_cost_usd": 0.0462817872,
+      "cost_complete": true,
+      "cost_per_attempt_usd": 0.00462817872,
+      "cost_per_success_usd": 0.00462817872,
+      "provider_errors": 0,
+      "protocol_rejections": 19,
+      "runs_using_skills": 0,
+      "runs_reading_guides": 0
+    },
+    {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "arm": "skills_only",
+      "recorded": 10,
+      "scored": 10,
+      "passed": 8,
+      "success_rate": 0.8,
+      "wilson_95": [
+        0.49016247153664183,
+        0.9433178485456247
+      ],
+      "median_seconds": 27.056797833472956,
+      "mean_tokens": 64221.4,
+      "known_cost_usd": 0.04839402744,
+      "cost_complete": true,
+      "cost_per_attempt_usd": 0.004839402744,
+      "cost_per_success_usd": 0.00604925343,
+      "provider_errors": 2,
+      "protocol_rejections": 12,
+      "runs_using_skills": 9,
+      "runs_reading_guides": 9
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite",
+      "arm": "python",
+      "recorded": 10,
+      "scored": 10,
+      "passed": 6,
+      "success_rate": 0.6,
+      "wilson_95": [
+        0.31267376973365824,
+        0.8318196702937638
+      ],
+      "median_seconds": 4.766844853991643,
+      "mean_tokens": 4738.9,
+      "known_cost_usd": 0.0265738275,
+      "cost_complete": true,
+      "cost_per_attempt_usd": 0.0026573827500000003,
+      "cost_per_success_usd": 0.00442897125,
+      "provider_errors": 2,
+      "protocol_rejections": 2,
+      "runs_using_skills": 0,
+      "runs_reading_guides": 0
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite",
+      "arm": "skills_only",
+      "recorded": 10,
+      "scored": 10,
+      "passed": 4,
+      "success_rate": 0.4,
+      "wilson_95": [
+        0.16818032970623614,
+        0.6873262302663417
+      ],
+      "median_seconds": 27.42473460448673,
+      "mean_tokens": 88400.6,
+      "known_cost_usd": 0.2822492475,
+      "cost_complete": true,
+      "cost_per_attempt_usd": 0.02822492475,
+      "cost_per_success_usd": 0.070562311875,
+      "provider_errors": 4,
+      "protocol_rejections": 54,
+      "runs_using_skills": 9,
+      "runs_reading_guides": 10
+    },
+    {
+      "model": "openai/gpt-6-astra",
+      "arm": "python",
+      "recorded": 10,
+      "scored": 10,
+      "passed": 9,
+      "success_rate": 0.9,
+      "wilson_95": [
+        0.5958499732047615,
+        0.9821237869049271
+      ],
+      "median_seconds": 11.730914334009867,
+      "mean_tokens": 3953.7,
+      "known_cost_usd": 0.5388149250000001,
+      "cost_complete": true,
+      "cost_per_attempt_usd": 0.0538814925,
+      "cost_per_success_usd": 0.05986832500000001,
+      "provider_errors": 0,
+      "protocol_rejections": 11,
+      "runs_using_skills": 0,
+      "runs_reading_guides": 0
+    },
+    {
+      "model": "openai/gpt-6-astra",
+      "arm": "skills_only",
+      "recorded": 10,
+      "scored": 10,
+      "passed": 10,
+      "success_rate": 1.0,
+      "wilson_95": [
+        0.7224672001371107,
+        0.9999999999999999
+      ],
+      "median_seconds": 16.878344186989125,
+      "mean_tokens": 26662.4,
+      "known_cost_usd": 1.365647085,
+      "cost_complete": true,
+      "cost_per_attempt_usd": 0.1365647085,
+      "cost_per_success_usd": 0.1365647085,
+      "provider_errors": 0,
+      "protocol_rejections": 0,
+      "runs_using_skills": 10,
+      "runs_reading_guides": 10
+    },
+    {
+      "model": "qwen/qwen3.5-9b",
+      "arm": "python",
+      "recorded": 10,
+      "scored": 10,
+      "passed": 3,
+      "success_rate": 0.3,
+      "wilson_95": [
+        0.10779126740630099,
+        0.6032218525388546
+      ],
+      "median_seconds": 89.1183992914739,
+      "mean_tokens": 16441.1,
+      "known_cost_usd": 0.017543839500000002,
+      "cost_complete": false,
+      "cost_per_attempt_usd": null,
+      "cost_per_success_usd": null,
+      "provider_errors": 4,
+      "protocol_rejections": 27,
+      "runs_using_skills": 0,
+      "runs_reading_guides": 0
+    },
+    {
+      "model": "qwen/qwen3.5-9b",
+      "arm": "skills_only",
+      "recorded": 10,
+      "scored": 9,
+      "passed": 1,
+      "success_rate": 0.1111111111111111,
+      "wilson_95": [
+        0.019890887638544907,
+        0.434999705576656
+      ],
+      "median_seconds": 191.27448308409657,
+      "mean_tokens": 40791.22222222222,
+      "known_cost_usd": 0.0372435525,
+      "cost_complete": false,
+      "cost_per_attempt_usd": null,
+      "cost_per_success_usd": null,
+      "provider_errors": 7,
+      "protocol_rejections": 27,
+      "runs_using_skills": 7,
+      "runs_reading_guides": 8
+    }
+  ],
+  "paired_statistics": [
+    {
+      "model": "anthropic/claude-fable-5.1",
+      "pairs": 9,
+      "tasks": 9,
+      "excluded_provider_pairs": 1,
+      "skills_only_wins": 0,
+      "python_only_wins": 0,
+      "both_pass": 9,
+      "both_fail": 0,
+      "success_difference": 0.0,
+      "task_bootstrap_95": null,
+      "mcnemar_exact_p": 1.0,
+      "inference_note": "Exploratory; tasks are a fixed diagnostic set. Bootstrap resamples whole task effects and is omitted at degenerate boundaries. McNemar is omitted when fixtures repeat.",
+      "mcnemar_holm_p": 1
+    },
+    {
+      "model": "anthropic/claude-sonnet-5.5",
+      "pairs": 10,
+      "tasks": 10,
+      "excluded_provider_pairs": 0,
+      "skills_only_wins": 0,
+      "python_only_wins": 0,
+      "both_pass": 10,
+      "both_fail": 0,
+      "success_difference": 0.0,
+      "task_bootstrap_95": null,
+      "mcnemar_exact_p": 1.0,
+      "inference_note": "Exploratory; tasks are a fixed diagnostic set. Bootstrap resamples whole task effects and is omitted at degenerate boundaries. McNemar is omitted when fixtures repeat.",
+      "mcnemar_holm_p": 1
+    },
+    {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "pairs": 8,
+      "tasks": 8,
+      "excluded_provider_pairs": 2,
+      "skills_only_wins": 0,
+      "python_only_wins": 0,
+      "both_pass": 8,
+      "both_fail": 0,
+      "success_difference": 0.0,
+      "task_bootstrap_95": null,
+      "mcnemar_exact_p": 1.0,
+      "inference_note": "Exploratory; tasks are a fixed diagnostic set. Bootstrap resamples whole task effects and is omitted at degenerate boundaries. McNemar is omitted when fixtures repeat.",
+      "mcnemar_holm_p": 1
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite",
+      "pairs": 6,
+      "tasks": 6,
+      "excluded_provider_pairs": 4,
+      "skills_only_wins": 2,
+      "python_only_wins": 2,
+      "both_pass": 2,
+      "both_fail": 0,
+      "success_difference": 0.0,
+      "task_bootstrap_95": [
+        -0.6666666666666666,
+        0.6666666666666666
+      ],
+      "mcnemar_exact_p": 1.0,
+      "inference_note": "Exploratory; tasks are a fixed diagnostic set. Bootstrap resamples whole task effects and is omitted at degenerate boundaries. McNemar is omitted when fixtures repeat.",
+      "mcnemar_holm_p": 1
+    },
+    {
+      "model": "openai/gpt-6-astra",
+      "pairs": 10,
+      "tasks": 10,
+      "excluded_provider_pairs": 0,
+      "skills_only_wins": 1,
+      "python_only_wins": 0,
+      "both_pass": 9,
+      "both_fail": 0,
+      "success_difference": 0.1,
+      "task_bootstrap_95": [
+        0.0,
+        0.3
+      ],
+      "mcnemar_exact_p": 1.0,
+      "inference_note": "Exploratory; tasks are a fixed diagnostic set. Bootstrap resamples whole task effects and is omitted at degenerate boundaries. McNemar is omitted when fixtures repeat.",
+      "mcnemar_holm_p": 1
+    },
+    {
+      "model": "qwen/qwen3.5-9b",
+      "pairs": 2,
+      "tasks": 2,
+      "excluded_provider_pairs": 8,
+      "skills_only_wins": 1,
+      "python_only_wins": 0,
+      "both_pass": 0,
+      "both_fail": 1,
+      "success_difference": 0.5,
+      "task_bootstrap_95": [
+        0.0,
+        1.0
+      ],
+      "mcnemar_exact_p": 1.0,
+      "inference_note": "Exploratory; tasks are a fixed diagnostic set. Bootstrap resamples whole task effects and is omitted at degenerate boundaries. McNemar is omitted when fixtures repeat.",
+      "mcnemar_holm_p": 1
+    }
+  ]
+}

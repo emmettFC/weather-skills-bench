@@ -1,0 +1,25 @@
+{
+  "study_id": "20260929T165435Z-114f8d",
+  "model": "deepseek/deepseek-v3.2",
+  "case_id": "legacy-accumulation",
+  "arm": "python_one_shot",
+  "reason": "Stop further requests to a second repeatedly failing provider; preserve partial study and complete the three working models.",
+  "known_cost_usd": 0,
+  "total_known_cost_usd": 0.009082062,
+  "cost_complete": false,
+  "unknown_requests": 2,
+  "unbilled_request_reserve_usd": 0.2,
+  "previous_interruption": {
+    "study_id": "20260929T164117Z-893f2f",
+    "run_id": "c5bef9df370f4f4a85020e5b3f8e6f3b",
+    "model": "google/gemini-2.5-flash",
+    "case_id": "forecast-observation-bias",
+    "arm": "python",
+    "reason": "Operator interrupt to repair nested provider-error handling; no final model result was accepted.",
+    "known_cost_usd": 0.009082062,
+    "cost_complete": false,
+    "unbilled_request_reserve_usd": 0.1,
+    "note": "One HTTP request was interrupted before its generation ID was received. The reserve is a spending allowance, not measured cost."
+  },
+  "note": "Two interrupted HTTP requests lacked a generation ID. Reserve is not measured spend."
+}

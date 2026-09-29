@@ -1,0 +1,114 @@
+{
+  "id": "grid-alignment",
+  "title": "Align two temperature grids before measuring their difference",
+  "brief": "fine.zarr contains a temperature field on integer-degree coordinates 0 through 4. Interpolate it bilinearly onto ref.zarr's grid (latitude and longitude 0.5,2.5; spacing 2 degrees; offset 0.5). Compute interpolated fine minus reference. Return latitude, longitude, errors_c as [latitude][longitude], unweighted spatial mean_bias_c, and units='degree_Celsius'.",
+  "challenge": "Grid alignment requires interpolation at target points, not block averaging or accidental empty-coordinate subtraction.",
+  "inputs": [
+    "fine.zarr",
+    "ref.zarr"
+  ],
+  "input_metadata": {
+    "fine.zarr": {
+      "dimensions": {
+        "latitude": 5,
+        "longitude": 5
+      },
+      "variables": {
+        "temperature": {
+          "dims": [
+            "latitude",
+            "longitude"
+          ],
+          "attrs": {
+            "units": "degree_Celsius",
+            "long_name": "temperature",
+            "standard_name": "air_temperature"
+          }
+        }
+      },
+      "coordinates": {
+        "latitude": [
+          "0.0",
+          "1.0",
+          "2.0",
+          "3.0",
+          "4.0"
+        ],
+        "longitude": [
+          "0.0",
+          "1.0",
+          "2.0",
+          "3.0",
+          "4.0"
+        ]
+      }
+    },
+    "ref.zarr": {
+      "dimensions": {
+        "latitude": 2,
+        "longitude": 2
+      },
+      "variables": {
+        "temperature": {
+          "dims": [
+            "latitude",
+            "longitude"
+          ],
+          "attrs": {
+            "units": "degree_Celsius",
+            "long_name": "temperature",
+            "standard_name": "air_temperature"
+          }
+        }
+      },
+      "coordinates": {
+        "latitude": [
+          "0.5",
+          "2.5"
+        ],
+        "longitude": [
+          "0.5",
+          "2.5"
+        ]
+      }
+    }
+  },
+  "answer_schema": {
+    "latitude": {
+      "type": "array",
+      "length": 2,
+      "items": {
+        "type": "number"
+      }
+    },
+    "longitude": {
+      "type": "array",
+      "length": 2,
+      "items": {
+        "type": "number"
+      }
+    },
+    "errors_c": {
+      "type": "array",
+      "length": 2,
+      "items": {
+        "type": "array",
+        "length": 2,
+        "items": {
+          "type": "number"
+        }
+      }
+    },
+    "mean_bias_c": {
+      "type": "number"
+    },
+    "units": {
+      "type": "string"
+    }
+  },
+  "fixture_kind": "synthetic diagnostic",
+  "tolerance": {
+    "atol": 1e-06,
+    "rtol": 1e-06
+  }
+}

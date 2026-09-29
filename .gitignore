@@ -1,0 +1,15 @@
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+.pytest_cache/
+.build/
+results/raw/
+results/studies/
+*.egg-info/
+
+results/checkpoints/
+results/health/
+.DS_Store
+results/*-queue.json

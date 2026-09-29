@@ -1,0 +1,89 @@
+{
+  "models": [
+    "meta-llama/llama-3.2-1b-instruct",
+    "meta-llama/llama-3.2-3b-instruct"
+  ],
+  "arms": [
+    "skills_only",
+    "python"
+  ],
+  "providers": {
+    "meta-llama/llama-3.2-1b-instruct": [
+      "cloudflare"
+    ],
+    "meta-llama/llama-3.2-3b-instruct": [
+      "cloudflare"
+    ]
+  },
+  "cases": [
+    "rainfall-completeness",
+    "ensemble-flux-spread",
+    "legacy-accumulation",
+    "forecast-observation-bias",
+    "iod-anomaly",
+    "multimodel-disagreement",
+    "rolling-nonoverlap",
+    "calendar-alignment",
+    "grid-alignment",
+    "duration-weighted-rainfall"
+  ],
+  "repetitions": 1,
+  "seed": 20260929,
+  "temperature": 0,
+  "reasoning_effort": "low",
+  "max_cost_usd": 2,
+  "max_calls": 24,
+  "max_executions": 24,
+  "max_total_tokens": 250000,
+  "max_output_tokens": 8192,
+  "max_context_bytes": 160000,
+  "task_timeout_seconds": 600,
+  "execution_timeout_seconds": 45,
+  "request_timeout_seconds": 120,
+  "allow_batch": true,
+  "protocol_version": "skills-only-v2",
+  "study_label": "Small models \u00b7 Llama 1B / 3B",
+  "hard_request_deadline": true,
+  "unknown_cost_policy": "reserve",
+  "billing_prices": {
+    "meta-llama/llama-3.2-1b-instruct": {
+      "prompt": 2.7e-08,
+      "completion": 2.01e-07
+    },
+    "meta-llama/llama-3.2-3b-instruct": {
+      "prompt": 5.09e-08,
+      "completion": 3.35e-07
+    }
+  },
+  "endpoint_parameters": {
+    "meta-llama/llama-3.2-1b-instruct": [
+      "max_tokens",
+      "temperature",
+      "top_p",
+      "top_k",
+      "seed",
+      "repetition_penalty",
+      "frequency_penalty",
+      "presence_penalty",
+      "min_p",
+      "stop",
+      "logit_bias"
+    ],
+    "meta-llama/llama-3.2-3b-instruct": [
+      "max_tokens",
+      "temperature",
+      "top_p",
+      "top_k",
+      "seed",
+      "repetition_penalty",
+      "frequency_penalty",
+      "presence_penalty",
+      "min_p",
+      "stop",
+      "logit_bias",
+      "logprobs",
+      "top_logprobs"
+    ]
+  },
+  "study_role": "small-model-extension"
+}

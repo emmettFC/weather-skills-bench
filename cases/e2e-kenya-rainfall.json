@@ -1,0 +1,79 @@
+{
+  "id": "e2e-kenya-rainfall",
+  "title": "Kenya rainfall outlook: fetch, quantify uncertainty, and brief",
+  "brief": "Prepare the six-week rainfall outlook from the ECMWF S2S issue of 2026-09-27. For each fully covered seven-day period from initialization, provide the ensemble-mean rainfall map and the median and sample spread (ddof=1) of regional rainfall totals across members. Return period_end_lead_days, ensemble_mean_mm [period][latitude][longitude], regional_median_mm, regional_spread_mm, latitude, longitude, units='mm', source_url, and figure. The figure should show the six forecast maps with period labels and rainfall units. Start from the public Kenya forecast archive; no weather data is preloaded. Use the service rectangle 5N/34E/5S/42E, including boundary grid centres (this is a rectangular service area, not a country-polygon average). Regional means use cosine-latitude weights and equal longitude weights. Include the control and every perturbed member with equal member weight. Write a labelled briefing figure to /work/outlook.png and return figure='/work/outlook.png'. Cite the exact raw source store URL(s) in the requested answer fields. Output fields follow source latitude/longitude order.",
+  "inputs": [],
+  "answer_schema": {
+    "latitude": {
+      "type": "array",
+      "length": 7,
+      "items": {
+        "type": "number"
+      }
+    },
+    "longitude": {
+      "type": "array",
+      "length": 6,
+      "items": {
+        "type": "number"
+      }
+    },
+    "figure": {
+      "type": "string"
+    },
+    "period_end_lead_days": {
+      "type": "array",
+      "length": 6,
+      "items": {
+        "type": "number"
+      }
+    },
+    "ensemble_mean_mm": {
+      "type": "array",
+      "length": 6,
+      "items": {
+        "type": "array",
+        "length": 7,
+        "items": {
+          "type": "array",
+          "length": 6,
+          "items": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "regional_median_mm": {
+      "type": "array",
+      "length": 6,
+      "items": {
+        "type": "number"
+      }
+    },
+    "regional_spread_mm": {
+      "type": "array",
+      "length": 6,
+      "items": {
+        "type": "number"
+      }
+    },
+    "units": {
+      "type": "string"
+    },
+    "source_url": {
+      "type": "string"
+    }
+  },
+  "fixture_kind": "real archived forecasts; live source retrieval",
+  "tolerance": {
+    "atol": 0.0001,
+    "rtol": 1e-06
+  },
+  "suite": "end-to-end-v1",
+  "source_notes": [
+    "Archive browser: https://kenya-forecasts.sheerwater.rhizaresearch.org/files/",
+    "Public object listing: https://storage.googleapis.com/storage/v1/b/kenya-forecasting-data/o?prefix=2026-09-27/data/&delimiter=/",
+    "Raw stores: https://storage.googleapis.com/kenya-forecasting-data/YYYY-MM-DD/data/ECMWF_s2s_precip_YYYY-MM-DD.zarr and ECMWF_s2s_daily_vars_YYYY-MM-DD.zarr. These are provider exports, not normalized skill outputs; inspect their metadata.",
+    "The archive is an operationally published product. Pin the requested issue dates, not the latest available. Output describes the model outlook; it is not a warning or verification against eventual observations."
+  ]
+}

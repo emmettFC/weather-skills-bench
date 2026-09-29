@@ -1,0 +1,7 @@
+{
+  "protocol_version": "end-to-end-v1",
+  "status": "provisional",
+  "title": "Pilot results · rainfall scoring needs clarification",
+  "note": "Two rainfall briefs omit the negative-increment clipping rule used by the reference. A separate sensitivity audit checks direct cumulative differences without changing registered scores. Provider failures and this ambiguity prevent a defensible model ranking.",
+  "affected_cases": ["e2e-kenya-rainfall", "e2e-kenya-revision"]
+}

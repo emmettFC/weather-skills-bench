@@ -1,0 +1,105 @@
+{
+  "id": "e2e-kenya-revision",
+  "title": "Kenya forecast revision: compare the same future weeks",
+  "brief": "Brief how the ECMWF S2S rainfall outlook changed between the 2026-09-20 and 2026-09-27 issues for the two civil periods 2026-09-27 00:00\u20132026-10-04 00:00 and 2026-10-04 00:00\u20132026-10-11 00:00. Return valid_period_end_dates (YYYY-MM-DD), current_mean_mm, previous_mean_mm, change_mm (current minus previous), each [period][latitude][longitude], regional_change_mm, latitude, longitude, units='mm', current_source_url, previous_source_url, and figure. Compare ensemble means; do not pair individual members across issues. The figure should show both change maps with signed differences and dates. Start from the public Kenya forecast archive; no weather data is preloaded. Use the service rectangle 5N/34E/5S/42E, including boundary grid centres (this is a rectangular service area, not a country-polygon average). Regional means use cosine-latitude weights and equal longitude weights. Include the control and every perturbed member with equal member weight. Write a labelled briefing figure to /work/outlook.png and return figure='/work/outlook.png'. Cite the exact raw source store URL(s) in the requested answer fields. Output fields follow source latitude/longitude order.",
+  "inputs": [],
+  "answer_schema": {
+    "latitude": {
+      "type": "array",
+      "length": 7,
+      "items": {
+        "type": "number"
+      }
+    },
+    "longitude": {
+      "type": "array",
+      "length": 6,
+      "items": {
+        "type": "number"
+      }
+    },
+    "figure": {
+      "type": "string"
+    },
+    "valid_period_end_dates": {
+      "type": "array",
+      "length": 2,
+      "items": {
+        "type": "string"
+      }
+    },
+    "current_mean_mm": {
+      "type": "array",
+      "length": 2,
+      "items": {
+        "type": "array",
+        "length": 7,
+        "items": {
+          "type": "array",
+          "length": 6,
+          "items": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "previous_mean_mm": {
+      "type": "array",
+      "length": 2,
+      "items": {
+        "type": "array",
+        "length": 7,
+        "items": {
+          "type": "array",
+          "length": 6,
+          "items": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "change_mm": {
+      "type": "array",
+      "length": 2,
+      "items": {
+        "type": "array",
+        "length": 7,
+        "items": {
+          "type": "array",
+          "length": 6,
+          "items": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "regional_change_mm": {
+      "type": "array",
+      "length": 2,
+      "items": {
+        "type": "number"
+      }
+    },
+    "units": {
+      "type": "string"
+    },
+    "current_source_url": {
+      "type": "string"
+    },
+    "previous_source_url": {
+      "type": "string"
+    }
+  },
+  "fixture_kind": "real archived forecasts; live source retrieval",
+  "tolerance": {
+    "atol": 0.0001,
+    "rtol": 1e-06
+  },
+  "suite": "end-to-end-v1",
+  "source_notes": [
+    "Archive browser: https://kenya-forecasts.sheerwater.rhizaresearch.org/files/",
+    "Public object listing: https://storage.googleapis.com/storage/v1/b/kenya-forecasting-data/o?prefix=2026-09-27/data/&delimiter=/",
+    "Raw stores: https://storage.googleapis.com/kenya-forecasting-data/YYYY-MM-DD/data/ECMWF_s2s_precip_YYYY-MM-DD.zarr and ECMWF_s2s_daily_vars_YYYY-MM-DD.zarr. These are provider exports, not normalized skill outputs; inspect their metadata.",
+    "The archive is an operationally published product. Pin the requested issue dates, not the latest available. Output describes the model outlook; it is not a warning or verification against eventual observations."
+  ]
+}

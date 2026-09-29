@@ -1,0 +1,82 @@
+{
+  "id": "ensemble-flux-spread",
+  "title": "Ensemble uncertainty in weekly rainfall amounts",
+  "brief": "flux.zarr contains four forecast members of precipitation flux in kg m-2 s-1 at daily end-of-interval leads 1\u201314. For liquid water, 1 kg m-2 equals 1 mm. Compute the sample standard deviation (ddof=1) across members of each member's total precipitation for leads (0,7] and (7,14] days. Return lead_days=[7,14], spread_mm, and units='mm'.",
+  "challenge": "Convert mass flux, total each member before calculating spread, and use sample rather than population standard deviation.",
+  "inputs": [
+    "flux.zarr"
+  ],
+  "input_metadata": {
+    "flux.zarr": {
+      "dimensions": {
+        "number": 4,
+        "step": 14
+      },
+      "variables": {
+        "precip": {
+          "dims": [
+            "number",
+            "step"
+          ],
+          "attrs": {
+            "units": "kg m-2 s-1",
+            "long_name": "precip",
+            "data_interval": "1 day",
+            "standard_name": "precipitation_flux"
+          }
+        }
+      },
+      "coordinates": {
+        "number": [
+          "0",
+          "1",
+          "2",
+          "3"
+        ],
+        "step": [
+          "86400 seconds",
+          "172800 seconds",
+          "259200 seconds",
+          "345600 seconds",
+          "432000 seconds",
+          "518400 seconds",
+          "604800 seconds",
+          "691200 seconds",
+          "777600 seconds",
+          "864000 seconds",
+          "950400 seconds",
+          "1036800 seconds",
+          "1123200 seconds",
+          "1209600 seconds"
+        ],
+        "time": [
+          "2024-01-01T00:00:00.000000000"
+        ]
+      }
+    }
+  },
+  "answer_schema": {
+    "lead_days": {
+      "type": "array",
+      "length": 2,
+      "items": {
+        "type": "number"
+      }
+    },
+    "spread_mm": {
+      "type": "array",
+      "length": 2,
+      "items": {
+        "type": "number"
+      }
+    },
+    "units": {
+      "type": "string"
+    }
+  },
+  "fixture_kind": "synthetic diagnostic",
+  "tolerance": {
+    "atol": 1e-06,
+    "rtol": 1e-06
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "id": "iod-anomaly",
+  "title": "Build an SST baseline and calculate the Indian Ocean Dipole",
+  "brief": "Build the arithmetic time-mean SST climatology from baseline.zarr. Subtract it from each target.zarr SST field (both degree_Celsius). Calculate cosine-latitude-weighted anomaly means over west 50\u201370E, 10S\u201310N and east 90\u2013110E, 10S\u20130, including boundaries and equally weighting longitudes. Return dates, west_c, east_c, dmi_c=west-east, and units='degree_Celsius'.",
+  "challenge": "Compute anomalies before the index, broadcast a spatial baseline, and use different latitude extents for the dipole boxes.",
+  "inputs": [
+    "baseline.zarr",
+    "target.zarr"
+  ],
+  "input_metadata": {
+    "baseline.zarr": {
+      "dimensions": {
+        "time": 3,
+        "latitude": 3,
+        "longitude": 6
+      },
+      "variables": {
+        "sst": {
+          "dims": [
+            "time",
+            "latitude",
+            "longitude"
+          ],
+          "attrs": {
+            "units": "degree_Celsius",
+            "long_name": "sst",
+            "data_interval": "1 day",
+            "standard_name": "sea_surface_temperature"
+          }
+        }
+      },
+      "coordinates": {
+        "time": [
+          "2001-01-01T00:00:00.000000000",
+          "2001-01-02T00:00:00.000000000",
+          "2001-01-03T00:00:00.000000000"
+        ],
+        "latitude": [
+          "-10.0",
+          "0.0",
+          "10.0"
+        ],
+        "longitude": [
+          "50.0",
+          "60.0",
+          "70.0",
+          "90.0",
+          "100.0",
+          "110.0"
+        ]
+      }
+    },
+    "target.zarr": {
+      "dimensions": {
+        "time": 2,
+        "latitude": 3,
+        "longitude": 6
+      },
+      "variables": {
+        "sst": {
+          "dims": [
+            "time",
+            "latitude",
+            "longitude"
+          ],
+          "attrs": {
+            "units": "degree_Celsius",
+            "long_name": "sst",
+            "data_interval": "1 day",
+            "standard_name": "sea_surface_temperature"
+          }
+        }
+      },
+      "coordinates": {
+        "time": [
+          "2024-01-01T00:00:00.000000000",
+          "2024-01-02T00:00:00.000000000"
+        ],
+        "latitude": [
+          "-10.0",
+          "0.0",
+          "10.0"
+        ],
+        "longitude": [
+          "50.0",
+          "60.0",
+          "70.0",
+          "90.0",
+          "100.0",
+          "110.0"
+        ]
+      }
+    }
+  },
+  "answer_schema": {
+    "dates": {
+      "type": "array",
+      "length": 2,
+      "items": {
+        "type": "string"
+      }
+    },
+    "west_c": {
+      "type": "array",
+      "length": 2,
+      "items": {
+        "type": "number"
+      }
+    },
+    "east_c": {
+      "type": "array",
+      "length": 2,
+      "items": {
+        "type": "number"
+      }
+    },
+    "dmi_c": {
+      "type": "array",
+      "length": 2,
+      "items": {
+        "type": "number"
+      }
+    },
+    "units": {
+      "type": "string"
+    }
+  },
+  "fixture_kind": "synthetic diagnostic",
+  "tolerance": {
+    "atol": 1e-06,
+    "rtol": 1e-06
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "id": "legacy-accumulation",
+  "title": "Recover rainfall totals from a legacy cumulative archive",
+  "brief": "legacy.zarr holds cumulative-since-initialization precipitation amounts in mm for three members, including the zero baseline at lead 0. Derive nonnegative daily increments, then compute each member's totals for leads (0,7] and (7,14]. Return lead_days=[7,14], the member-median totals as median_mm, and units='mm'.",
+  "challenge": "Distinguish cumulative amounts from modern fetcher rates and preserve the forecast bucket boundaries.",
+  "inputs": [
+    "legacy.zarr"
+  ],
+  "input_metadata": {
+    "legacy.zarr": {
+      "dimensions": {
+        "latitude": 1,
+        "longitude": 1,
+        "number": 3,
+        "step": 15
+      },
+      "variables": {
+        "tp": {
+          "dims": [
+            "latitude",
+            "longitude",
+            "number",
+            "step"
+          ],
+          "attrs": {
+            "units": "mm",
+            "long_name": "tp",
+            "data_interval": "1 day",
+            "standard_name": "lwe_thickness_of_precipitation_amount"
+          }
+        }
+      },
+      "coordinates": {
+        "latitude": [
+          "0.0"
+        ],
+        "longitude": [
+          "30.0"
+        ],
+        "number": [
+          "0",
+          "1",
+          "2"
+        ],
+        "step": [
+          "0 seconds",
+          "86400 seconds",
+          "172800 seconds",
+          "259200 seconds",
+          "345600 seconds",
+          "432000 seconds",
+          "518400 seconds",
+          "604800 seconds",
+          "691200 seconds",
+          "777600 seconds",
+          "864000 seconds",
+          "950400 seconds",
+          "1036800 seconds",
+          "1123200 seconds",
+          "1209600 seconds"
+        ],
+        "time": [
+          "2024-01-01T00:00:00.000000000"
+        ]
+      }
+    }
+  },
+  "answer_schema": {
+    "lead_days": {
+      "type": "array",
+      "length": 2,
+      "items": {
+        "type": "number"
+      }
+    },
+    "median_mm": {
+      "type": "array",
+      "length": 2,
+      "items": {
+        "type": "number"
+      }
+    },
+    "units": {
+      "type": "string"
+    }
+  },
+  "fixture_kind": "synthetic diagnostic",
+  "tolerance": {
+    "atol": 1e-06,
+    "rtol": 1e-06
+  }
+}

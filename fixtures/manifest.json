@@ -1,0 +1,97 @@
+{
+  "version": 1,
+  "kind": "synthetic diagnostic inputs",
+  "cases": {
+    "rainfall-completeness": {
+      "archive": "rainfall-completeness.zip",
+      "sha256": "750044b540ff47a3b834770ca2d4fbcf27d0b9513302d17f94a339f2c6a32d38",
+      "stores": {
+        "rain": "0213dadc0be6c6022d4032780b874aff96a675b432f5320f429d55e72eca32bb"
+      }
+    },
+    "ensemble-flux-spread": {
+      "archive": "ensemble-flux-spread.zip",
+      "sha256": "1520086513ac61dd134d79ab99553163650f5b89b38d9eda75d0ea2a115817a6",
+      "stores": {
+        "flux": "60d42a60c2508ef8de8400ddf9e709b697dc85371b5f72c75571371bc78f0c5d"
+      }
+    },
+    "legacy-accumulation": {
+      "archive": "legacy-accumulation.zip",
+      "sha256": "4bfa7f741aef55f6f7147b92802a559cf542d5e7044b2427fe486f3cd27300a0",
+      "stores": {
+        "legacy": "49ac4b5972051c261287a58d85afb1fef3ea3581d2d34b5b36bdb1fe6d3b5c63"
+      }
+    },
+    "forecast-observation-bias": {
+      "archive": "forecast-observation-bias.zip",
+      "sha256": "151942a67d3abf06ebb6ad94392ff61c6e27b296eae2be16350bd1f2be89f351",
+      "stores": {
+        "forecast": "2bb3dd57e23980f1216b3729ba8838a28d02114447b9533fd9b5d16501583dc0",
+        "obs": "867e7801af448fb9576932739d787508fdcd5b27f75a121b48d5bcdafdd2234a"
+      }
+    },
+    "iod-anomaly": {
+      "archive": "iod-anomaly.zip",
+      "sha256": "e5b0bce83df322dfb031b712fd8a0265438dcc365e73e4212d00823d9b03e774",
+      "stores": {
+        "baseline": "31d8635ee7f49f594b3117b8637ab7d31dec7ed9a16f29d7d7276bee4dd13c07",
+        "target": "9d4d469e769b62fc70e354f9be9b4ee9512936f8681e4c497cb480fe67bee2ed"
+      }
+    },
+    "multimodel-disagreement": {
+      "archive": "multimodel-disagreement.zip",
+      "sha256": "c504d4bf842aa3a65a7bbe5206f74df1d83df024d5be88eca547f730369f46d2",
+      "stores": {
+        "a": "6211d38b72b299d449f6a36461da4903ab3eee34a6315b3f86aadb1c53620901",
+        "b": "11bcdb01fdd1788f64814db89646d32422f2167e96d6c05c6caa9028d9bf7fca",
+        "c": "f3f17feeff3f8f80a00d50742140c79cc5def7b082dc1f6e2efaa681d38c4aa7"
+      }
+    },
+    "rolling-nonoverlap": {
+      "archive": "rolling-nonoverlap.zip",
+      "sha256": "da08e78ad8cbaf2b3aaee915f1ad730a1fb7f6fe209e0971ead7c897f40c3b33",
+      "stores": {
+        "rain": "a9e8a7b1d4c4750ec095a914828177244795c1107c831b3426f5ecb3bf9760bc"
+      }
+    },
+    "calendar-alignment": {
+      "archive": "calendar-alignment.zip",
+      "sha256": "7dd25bd06c2e641253349152ef849416536f4348f90ad17f2ce36b929ca16748",
+      "stores": {
+        "model": "5c25ae0de0a36c57ce3b3f77bec5f5048d122208081c234b2d21d9e6853d839d",
+        "obs": "2919037aca801569122dd01a3c0abf6cbfba2879a7ab7a97c0c682abed990a97"
+      }
+    },
+    "grid-alignment": {
+      "archive": "grid-alignment.zip",
+      "sha256": "20e2a3ba0a9ccf4b576680bfecaf99f456d1baa1cebcfc82c18bea69cf94db19",
+      "stores": {
+        "fine": "21b0fca790bc7c9b3b09efdf7eed18a7c3ed658f088211daf0abfe57e399ff44",
+        "ref": "b67bc2b0a3d57ded0acf7ee1e2170e55a2395eaa5875e2496ce99f7ca77f625b"
+      }
+    },
+    "duration-weighted-rainfall": {
+      "archive": "duration-weighted-rainfall.zip",
+      "sha256": "d42a3686b22040472334c7d1fd9fa947833ffe80ab487844f94027fdb0443a65",
+      "stores": {
+        "irregular": "f10a36c44e0581b951650fcc9da1e25dd7b50d9d1aff40e51fd2dd9fd06590bc"
+      }
+    },
+    "e2e-kenya-rainfall": {
+      "archive": "e2e-kenya-rainfall.zip",
+      "sha256": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85",
+      "stores": {}
+    },
+    "e2e-kenya-revision": {
+      "archive": "e2e-kenya-revision.zip",
+      "sha256": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85",
+      "stores": {}
+    },
+    "e2e-kenya-heat": {
+      "archive": "e2e-kenya-heat.zip",
+      "sha256": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85",
+      "stores": {}
+    }
+  }
+}

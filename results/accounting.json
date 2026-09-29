@@ -1,0 +1,9 @@
+{
+  "known_total_cost_usd": 0.4633908246,
+  "scored_pilot_cost_usd": 0.4127602644,
+  "known_diagnostic_cost_usd": 0.05063056019999995,
+  "unknown_interrupted_requests": 2,
+  "accounting_complete": false,
+  "reserved_not_billed_usd": 0.2,
+  "note": "Returned usage across unique generations plus provider preflight. Two interrupted requests had no generation ID; their final charges are unconfirmed."
+}

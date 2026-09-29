@@ -1,0 +1,372 @@
+[
+  {
+    "case_id": "rainfall-completeness",
+    "correctness": {
+      "passed": true,
+      "failures": []
+    },
+    "workflow": {
+      "passed": true,
+      "matched_nodes": {
+        "clip": true,
+        "weekly": true,
+        "totals": true,
+        "area": true
+      },
+      "dependency_edges": [
+        [
+          "weekly",
+          "totals"
+        ],
+        [
+          "clip",
+          "area"
+        ],
+        [
+          "totals",
+          "area"
+        ]
+      ],
+      "forbidden_calls": [],
+      "successful_skill_calls": 4,
+      "scope": "reference recipe conformance; alternative correct algorithms may differ"
+    },
+    "python_disabled": true,
+    "submission_returncode": 0,
+    "image_ids": {
+      "skills": "sha256:e8951c32b0ea9a917ad78f7c9cc271aec830ba41768ae9d594ac3c05045f15b9"
+    }
+  },
+  {
+    "case_id": "ensemble-flux-spread",
+    "correctness": {
+      "passed": true,
+      "failures": []
+    },
+    "workflow": {
+      "passed": true,
+      "matched_nodes": {
+        "units": true,
+        "weekly": true,
+        "totals": true,
+        "spread": true
+      },
+      "dependency_edges": [
+        [
+          "units",
+          "totals"
+        ],
+        [
+          "weekly",
+          "totals"
+        ],
+        [
+          "totals",
+          "spread"
+        ]
+      ],
+      "forbidden_calls": [],
+      "successful_skill_calls": 4,
+      "scope": "reference recipe conformance; alternative correct algorithms may differ"
+    },
+    "python_disabled": true,
+    "submission_returncode": 0,
+    "image_ids": {
+      "skills": "sha256:e8951c32b0ea9a917ad78f7c9cc271aec830ba41768ae9d594ac3c05045f15b9"
+    }
+  },
+  {
+    "case_id": "legacy-accumulation",
+    "correctness": {
+      "passed": true,
+      "failures": []
+    },
+    "workflow": {
+      "passed": true,
+      "matched_nodes": {
+        "rates": true,
+        "weekly": true,
+        "totals": true,
+        "median": true
+      },
+      "dependency_edges": [
+        [
+          "rates",
+          "weekly"
+        ],
+        [
+          "weekly",
+          "totals"
+        ],
+        [
+          "totals",
+          "median"
+        ]
+      ],
+      "forbidden_calls": [],
+      "successful_skill_calls": 4,
+      "scope": "reference recipe conformance; alternative correct algorithms may differ"
+    },
+    "python_disabled": true,
+    "submission_returncode": 0,
+    "image_ids": {
+      "skills": "sha256:e8951c32b0ea9a917ad78f7c9cc271aec830ba41768ae9d594ac3c05045f15b9"
+    }
+  },
+  {
+    "case_id": "forecast-observation-bias",
+    "correctness": {
+      "passed": true,
+      "failures": []
+    },
+    "workflow": {
+      "passed": true,
+      "matched_nodes": {
+        "clock": true,
+        "units": true,
+        "names": true,
+        "errors": true,
+        "mean": true
+      },
+      "dependency_edges": [
+        [
+          "clock",
+          "errors"
+        ],
+        [
+          "units",
+          "errors"
+        ],
+        [
+          "names",
+          "errors"
+        ],
+        [
+          "errors",
+          "mean"
+        ]
+      ],
+      "forbidden_calls": [],
+      "successful_skill_calls": 5,
+      "scope": "reference recipe conformance; alternative correct algorithms may differ"
+    },
+    "python_disabled": true,
+    "submission_returncode": 0,
+    "image_ids": {
+      "skills": "sha256:e8951c32b0ea9a917ad78f7c9cc271aec830ba41768ae9d594ac3c05045f15b9"
+    }
+  },
+  {
+    "case_id": "iod-anomaly",
+    "correctness": {
+      "passed": true,
+      "failures": []
+    },
+    "workflow": {
+      "passed": true,
+      "matched_nodes": {
+        "baseline": true,
+        "anomaly": true,
+        "index": true
+      },
+      "dependency_edges": [
+        [
+          "baseline",
+          "anomaly"
+        ],
+        [
+          "anomaly",
+          "index"
+        ]
+      ],
+      "forbidden_calls": [],
+      "successful_skill_calls": 3,
+      "scope": "reference recipe conformance; alternative correct algorithms may differ"
+    },
+    "python_disabled": true,
+    "submission_returncode": 0,
+    "image_ids": {
+      "skills": "sha256:e8951c32b0ea9a917ad78f7c9cc271aec830ba41768ae9d594ac3c05045f15b9"
+    }
+  },
+  {
+    "case_id": "multimodel-disagreement",
+    "correctness": {
+      "passed": true,
+      "failures": []
+    },
+    "workflow": {
+      "passed": true,
+      "matched_nodes": {
+        "a": true,
+        "b": true,
+        "c": true,
+        "units": true,
+        "combine": true,
+        "spread": true
+      },
+      "dependency_edges": [
+        [
+          "a",
+          "combine"
+        ],
+        [
+          "b",
+          "combine"
+        ],
+        [
+          "c",
+          "combine"
+        ],
+        [
+          "units",
+          "combine"
+        ],
+        [
+          "combine",
+          "spread"
+        ]
+      ],
+      "forbidden_calls": [],
+      "successful_skill_calls": 6,
+      "scope": "reference recipe conformance; alternative correct algorithms may differ"
+    },
+    "python_disabled": true,
+    "submission_returncode": 0,
+    "image_ids": {
+      "skills": "sha256:e8951c32b0ea9a917ad78f7c9cc271aec830ba41768ae9d594ac3c05045f15b9"
+    }
+  },
+  {
+    "case_id": "rolling-nonoverlap",
+    "correctness": {
+      "passed": true,
+      "failures": []
+    },
+    "workflow": {
+      "passed": true,
+      "matched_nodes": {
+        "rolling": true,
+        "select": true,
+        "totals": true
+      },
+      "dependency_edges": [
+        [
+          "rolling",
+          "select"
+        ],
+        [
+          "select",
+          "totals"
+        ]
+      ],
+      "forbidden_calls": [],
+      "successful_skill_calls": 3,
+      "scope": "reference recipe conformance; alternative correct algorithms may differ"
+    },
+    "python_disabled": true,
+    "submission_returncode": 0,
+    "image_ids": {
+      "skills": "sha256:e8951c32b0ea9a917ad78f7c9cc271aec830ba41768ae9d594ac3c05045f15b9"
+    }
+  },
+  {
+    "case_id": "calendar-alignment",
+    "correctness": {
+      "passed": true,
+      "failures": []
+    },
+    "workflow": {
+      "passed": true,
+      "matched_nodes": {
+        "calendar": true,
+        "units": true,
+        "errors": true,
+        "mean": true
+      },
+      "dependency_edges": [
+        [
+          "calendar",
+          "errors"
+        ],
+        [
+          "units",
+          "errors"
+        ],
+        [
+          "errors",
+          "mean"
+        ]
+      ],
+      "forbidden_calls": [],
+      "successful_skill_calls": 4,
+      "scope": "reference recipe conformance; alternative correct algorithms may differ"
+    },
+    "python_disabled": true,
+    "submission_returncode": 0,
+    "image_ids": {
+      "skills": "sha256:e8951c32b0ea9a917ad78f7c9cc271aec830ba41768ae9d594ac3c05045f15b9"
+    }
+  },
+  {
+    "case_id": "grid-alignment",
+    "correctness": {
+      "passed": true,
+      "failures": []
+    },
+    "workflow": {
+      "passed": true,
+      "matched_nodes": {
+        "grid": true,
+        "errors": true,
+        "mean": true
+      },
+      "dependency_edges": [
+        [
+          "grid",
+          "errors"
+        ],
+        [
+          "errors",
+          "mean"
+        ]
+      ],
+      "forbidden_calls": [],
+      "successful_skill_calls": 3,
+      "scope": "reference recipe conformance; alternative correct algorithms may differ"
+    },
+    "python_disabled": true,
+    "submission_returncode": 0,
+    "image_ids": {
+      "skills": "sha256:e8951c32b0ea9a917ad78f7c9cc271aec830ba41768ae9d594ac3c05045f15b9"
+    }
+  },
+  {
+    "case_id": "duration-weighted-rainfall",
+    "correctness": {
+      "passed": true,
+      "failures": []
+    },
+    "workflow": {
+      "passed": true,
+      "matched_nodes": {
+        "weighted": true,
+        "totals": true
+      },
+      "dependency_edges": [
+        [
+          "weighted",
+          "totals"
+        ]
+      ],
+      "forbidden_calls": [],
+      "successful_skill_calls": 2,
+      "scope": "reference recipe conformance; alternative correct algorithms may differ"
+    },
+    "python_disabled": true,
+    "submission_returncode": 0,
+    "image_ids": {
+      "skills": "sha256:e8951c32b0ea9a917ad78f7c9cc271aec830ba41768ae9d594ac3c05045f15b9"
+    }
+  }
+]

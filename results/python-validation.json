@@ -1,0 +1,122 @@
+[
+  {
+    "case_id": "rainfall-completeness",
+    "correctness": {
+      "passed": true,
+      "failures": []
+    },
+    "returncode": 0,
+    "seconds": 0.5904880840098485,
+    "image_ids": {
+      "python": "sha256:fbbf5ced34f1cde42f832267039079e3e3331a2618a005af7142a45820cc6742"
+    }
+  },
+  {
+    "case_id": "ensemble-flux-spread",
+    "correctness": {
+      "passed": true,
+      "failures": []
+    },
+    "returncode": 0,
+    "seconds": 0.6147747919894755,
+    "image_ids": {
+      "python": "sha256:fbbf5ced34f1cde42f832267039079e3e3331a2618a005af7142a45820cc6742"
+    }
+  },
+  {
+    "case_id": "legacy-accumulation",
+    "correctness": {
+      "passed": true,
+      "failures": []
+    },
+    "returncode": 0,
+    "seconds": 0.6444525410188362,
+    "image_ids": {
+      "python": "sha256:fbbf5ced34f1cde42f832267039079e3e3331a2618a005af7142a45820cc6742"
+    }
+  },
+  {
+    "case_id": "forecast-observation-bias",
+    "correctness": {
+      "passed": true,
+      "failures": []
+    },
+    "returncode": 0,
+    "seconds": 0.7006691249553114,
+    "image_ids": {
+      "python": "sha256:fbbf5ced34f1cde42f832267039079e3e3331a2618a005af7142a45820cc6742"
+    }
+  },
+  {
+    "case_id": "iod-anomaly",
+    "correctness": {
+      "passed": true,
+      "failures": []
+    },
+    "returncode": 0,
+    "seconds": 0.6268031669314951,
+    "image_ids": {
+      "python": "sha256:fbbf5ced34f1cde42f832267039079e3e3331a2618a005af7142a45820cc6742"
+    }
+  },
+  {
+    "case_id": "multimodel-disagreement",
+    "correctness": {
+      "passed": true,
+      "failures": []
+    },
+    "returncode": 0,
+    "seconds": 0.5698287499835715,
+    "image_ids": {
+      "python": "sha256:fbbf5ced34f1cde42f832267039079e3e3331a2618a005af7142a45820cc6742"
+    }
+  },
+  {
+    "case_id": "rolling-nonoverlap",
+    "correctness": {
+      "passed": true,
+      "failures": []
+    },
+    "returncode": 0,
+    "seconds": 0.6353897909866646,
+    "image_ids": {
+      "python": "sha256:fbbf5ced34f1cde42f832267039079e3e3331a2618a005af7142a45820cc6742"
+    }
+  },
+  {
+    "case_id": "calendar-alignment",
+    "correctness": {
+      "passed": true,
+      "failures": []
+    },
+    "returncode": 0,
+    "seconds": 0.5964040829567239,
+    "image_ids": {
+      "python": "sha256:fbbf5ced34f1cde42f832267039079e3e3331a2618a005af7142a45820cc6742"
+    }
+  },
+  {
+    "case_id": "grid-alignment",
+    "correctness": {
+      "passed": true,
+      "failures": []
+    },
+    "returncode": 0,
+    "seconds": 0.8515594580676407,
+    "image_ids": {
+      "python": "sha256:fbbf5ced34f1cde42f832267039079e3e3331a2618a005af7142a45820cc6742"
+    }
+  },
+  {
+    "case_id": "duration-weighted-rainfall",
+    "correctness": {
+      "passed": true,
+      "failures": []
+    },
+    "returncode": 0,
+    "seconds": 0.5804064170224592,
+    "image_ids": {
+      "python": "sha256:fbbf5ced34f1cde42f832267039079e3e3331a2618a005af7142a45820cc6742"
+    }
+  }
+]

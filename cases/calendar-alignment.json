@@ -1,0 +1,92 @@
+{
+  "id": "calendar-alignment",
+  "title": "Verify a no-leap model across February 29",
+  "brief": "model.zarr is a noleap-calendar temperature series in K; obs.zarr uses Gregorian dates and Celsius, including February 29, 2000. Preserve month/day when converting the model to the standard calendar. Compare only shared dates (do not fill or interpolate Feb 29). Return dates, model-minus-observation errors_c, mean_bias_c, and units='degree_Celsius'.",
+  "challenge": "Align calendars and units without shifting March values or including the unpaired leap day.",
+  "inputs": [
+    "model.zarr",
+    "obs.zarr"
+  ],
+  "input_metadata": {
+    "model.zarr": {
+      "dimensions": {
+        "time": 4
+      },
+      "variables": {
+        "temperature": {
+          "dims": [
+            "time"
+          ],
+          "attrs": {
+            "units": "K",
+            "long_name": "temperature",
+            "data_interval": "1 day",
+            "standard_name": "air_temperature"
+          }
+        }
+      },
+      "coordinates": {
+        "time": [
+          "2000-02-27 00:00:00",
+          "2000-02-28 00:00:00",
+          "2000-03-01 00:00:00",
+          "2000-03-02 00:00:00"
+        ]
+      }
+    },
+    "obs.zarr": {
+      "dimensions": {
+        "time": 5
+      },
+      "variables": {
+        "temperature": {
+          "dims": [
+            "time"
+          ],
+          "attrs": {
+            "units": "degree_Celsius",
+            "long_name": "temperature",
+            "data_interval": "1 day",
+            "standard_name": "air_temperature"
+          }
+        }
+      },
+      "coordinates": {
+        "time": [
+          "2000-02-27T00:00:00.000000000",
+          "2000-02-28T00:00:00.000000000",
+          "2000-02-29T00:00:00.000000000",
+          "2000-03-01T00:00:00.000000000",
+          "2000-03-02T00:00:00.000000000"
+        ]
+      }
+    }
+  },
+  "answer_schema": {
+    "dates": {
+      "type": "array",
+      "length": 4,
+      "items": {
+        "type": "string"
+      }
+    },
+    "errors_c": {
+      "type": "array",
+      "length": 4,
+      "items": {
+        "type": "number"
+      }
+    },
+    "mean_bias_c": {
+      "type": "number"
+    },
+    "units": {
+      "type": "string"
+    }
+  },
+  "fixture_kind": "synthetic diagnostic",
+  "tolerance": {
+    "atol": 1e-06,
+    "rtol": 1e-06
+  }
+}

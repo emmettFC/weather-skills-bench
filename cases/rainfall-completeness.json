@@ -1,0 +1,87 @@
+{
+  "id": "rainfall-completeness",
+  "title": "A regional rainfall brief with an incomplete final week",
+  "brief": "Using rain.zarr, report complete 7-day precipitation totals for the inclusive box north=60, west=30, south=0, east=31. Weeks begin 2024-01-01 and advance every 7 days. Exclude periods with fewer than seven daily timestamps. Average each weekly total spatially with cosine(latitude) weights and equal longitude weights. Return dates (YYYY-MM-DD), totals_mm, and units='mm'.",
+  "challenge": "Clip the correct cells, retain rate semantics during aggregation, drop the two-day tail, and apply area weights.",
+  "inputs": [
+    "rain.zarr"
+  ],
+  "input_metadata": {
+    "rain.zarr": {
+      "dimensions": {
+        "time": 16,
+        "latitude": 3,
+        "longitude": 3
+      },
+      "variables": {
+        "precip": {
+          "dims": [
+            "time",
+            "latitude",
+            "longitude"
+          ],
+          "attrs": {
+            "units": "mm day-1",
+            "long_name": "precip",
+            "data_interval": "1 day",
+            "standard_name": "lwe_precipitation_rate"
+          }
+        }
+      },
+      "coordinates": {
+        "time": [
+          "2024-01-01T00:00:00.000000000",
+          "2024-01-02T00:00:00.000000000",
+          "2024-01-03T00:00:00.000000000",
+          "2024-01-04T00:00:00.000000000",
+          "2024-01-05T00:00:00.000000000",
+          "2024-01-06T00:00:00.000000000",
+          "2024-01-07T00:00:00.000000000",
+          "2024-01-08T00:00:00.000000000",
+          "2024-01-09T00:00:00.000000000",
+          "2024-01-10T00:00:00.000000000",
+          "2024-01-11T00:00:00.000000000",
+          "2024-01-12T00:00:00.000000000",
+          "2024-01-13T00:00:00.000000000",
+          "2024-01-14T00:00:00.000000000",
+          "2024-01-15T00:00:00.000000000",
+          "2024-01-16T00:00:00.000000000"
+        ],
+        "latitude": [
+          "0.0",
+          "30.0",
+          "60.0"
+        ],
+        "longitude": [
+          "30.0",
+          "31.0",
+          "32.0"
+        ]
+      }
+    }
+  },
+  "answer_schema": {
+    "dates": {
+      "type": "array",
+      "length": 2,
+      "items": {
+        "type": "string"
+      }
+    },
+    "totals_mm": {
+      "type": "array",
+      "length": 2,
+      "items": {
+        "type": "number"
+      }
+    },
+    "units": {
+      "type": "string"
+    }
+  },
+  "fixture_kind": "synthetic diagnostic",
+  "tolerance": {
+    "atol": 1e-06,
+    "rtol": 1e-06
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "models": [
+    "anthropic/claude-fable-5.1",
+    "openai/gpt-6-astra",
+    "anthropic/claude-sonnet-5.5",
+    "google/gemini-3.1-flash-lite",
+    "deepseek/deepseek-v4.1-flash",
+    "qwen/qwen3.5-9b"
+  ],
+  "arms": [
+    "skills_only",
+    "python"
+  ],
+  "providers": {
+    "anthropic/claude-fable-5.1": [
+      "anthropic"
+    ],
+    "openai/gpt-6-astra": [
+      "openai"
+    ],
+    "anthropic/claude-sonnet-5.5": [
+      "anthropic"
+    ],
+    "google/gemini-3.1-flash-lite": [
+      "google-ai-studio"
+    ],
+    "deepseek/deepseek-v4.1-flash": [
+      "fireworks"
+    ],
+    "qwen/qwen3.5-9b": [
+      "deepinfra/bf16"
+    ]
+  },
+  "cases": [
+    "rainfall-completeness",
+    "ensemble-flux-spread",
+    "legacy-accumulation",
+    "forecast-observation-bias",
+    "iod-anomaly",
+    "multimodel-disagreement",
+    "rolling-nonoverlap",
+    "calendar-alignment",
+    "grid-alignment",
+    "duration-weighted-rainfall"
+  ],
+  "repetitions": 1,
+  "seed": 20260929,
+  "temperature": 0,
+  "reasoning_effort": "low",
+  "max_cost_usd": 25,
+  "max_calls": 24,
+  "max_executions": 24,
+  "max_total_tokens": 250000,
+  "max_output_tokens": 8192,
+  "max_context_bytes": 220000,
+  "task_timeout_seconds": 600,
+  "execution_timeout_seconds": 45,
+  "request_timeout_seconds": 120,
+  "allow_batch": true,
+  "protocol_version": "skills-only-v2",
+  "study_label": "Skills-only \u00b7 6 models \u00d7 10 tasks",
+  "hard_request_deadline": true,
+  "unknown_cost_policy": "reserve",
+  "billing_prices": {
+    "anthropic/claude-fable-5.1": {
+      "prompt": 1e-05,
+      "completion": 5e-05
+    },
+    "openai/gpt-6-astra": {
+      "prompt": 1e-05,
+      "completion": 5e-05
+    },
+    "anthropic/claude-sonnet-5.5": {
+      "prompt": 2e-06,
+      "completion": 1e-05
+    },
+    "google/gemini-3.1-flash-lite": {
+      "prompt": 2.5e-07,
+      "completion": 1.5e-06
+    },
+    "deepseek/deepseek-v4.1-flash": {
+      "prompt": 2.2e-07,
+      "completion": 6.6e-07
+    },
+    "qwen/qwen3.5-9b": {
+      "prompt": 1e-07,
+      "completion": 1.5e-07
+    }
+  },
+  "endpoint_parameters": {
+    "anthropic/claude-sonnet-5.5": [
+      "max_tokens",
+      "stop",
+      "reasoning",
+      "include_reasoning",
+      "tools",
+      "tool_choice",
+      "structured_outputs",
+      "response_format",
+      "verbosity",
+      "reasoning_effort"
+    ]
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "id": "forecast-observation-bias",
+  "title": "Align a temperature forecast with observations",
+  "brief": "forecast.zarr has t2m in K, scalar initialization 2024-01-01, and leads 1\u20134 days; obs.zarr has temperature in degree_Celsius from Jan 1\u20136. Match actual valid dates and grid coordinates, use only shared dates, and calculate forecast minus observation. Return dates, errors_c as [date][longitude] at latitude 0, bias_c as the mean error over dates for each longitude, and units='degree_Celsius'.",
+  "challenge": "Avoid lead/time broadcasting, handle Kelvin's offset, reconcile variable names, and inner-align dates.",
+  "inputs": [
+    "forecast.zarr",
+    "obs.zarr"
+  ],
+  "input_metadata": {
+    "forecast.zarr": {
+      "dimensions": {
+        "latitude": 1,
+        "step": 4,
+        "longitude": 2
+      },
+      "variables": {
+        "t2m": {
+          "dims": [
+            "latitude",
+            "step",
+            "longitude"
+          ],
+          "attrs": {
+            "units": "K",
+            "long_name": "t2m",
+            "data_interval": "1 day",
+            "standard_name": "air_temperature"
+          }
+        }
+      },
+      "coordinates": {
+        "latitude": [
+          "0.0"
+        ],
+        "step": [
+          "86400 seconds",
+          "172800 seconds",
+          "259200 seconds",
+          "345600 seconds"
+        ],
+        "time": [
+          "2024-01-01T00:00:00.000000000"
+        ],
+        "longitude": [
+          "30.0",
+          "31.0"
+        ]
+      }
+    },
+    "obs.zarr": {
+      "dimensions": {
+        "latitude": 1,
+        "time": 6,
+        "longitude": 2
+      },
+      "variables": {
+        "temperature": {
+          "dims": [
+            "latitude",
+            "time",
+            "longitude"
+          ],
+          "attrs": {
+            "units": "degree_Celsius",
+            "long_name": "temperature",
+            "data_interval": "1 day",
+            "standard_name": "air_temperature"
+          }
+        }
+      },
+      "coordinates": {
+        "latitude": [
+          "0.0"
+        ],
+        "time": [
+          "2024-01-01T00:00:00.000000000",
+          "2024-01-02T00:00:00.000000000",
+          "2024-01-03T00:00:00.000000000",
+          "2024-01-04T00:00:00.000000000",
+          "2024-01-05T00:00:00.000000000",
+          "2024-01-06T00:00:00.000000000"
+        ],
+        "longitude": [
+          "30.0",
+          "31.0"
+        ]
+      }
+    }
+  },
+  "answer_schema": {
+    "dates": {
+      "type": "array",
+      "length": 4,
+      "items": {
+        "type": "string"
+      }
+    },
+    "errors_c": {
+      "type": "array",
+      "length": 4,
+      "items": {
+        "type": "array",
+        "length": 2,
+        "items": {
+          "type": "number"
+        }
+      }
+    },
+    "bias_c": {
+      "type": "array",
+      "length": 2,
+      "items": {
+        "type": "number"
+      }
+    },
+    "units": {
+      "type": "string"
+    }
+  },
+  "fixture_kind": "synthetic diagnostic",
+  "tolerance": {
+    "atol": 1e-06,
+    "rtol": 1e-06
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "id": "multimodel-disagreement",
+  "title": "Compare the same forecast week across three models",
+  "brief": "Model stores a.zarr, b.zarr, c.zarr contain temperature for leads 7 and 14 days at stations A and B. b uses K; a and c use degree_Celsius. Select lead 14 days from each, normalize to Celsius, and combine in model order a,b,c. Return model_values_c as [model][station], sample inter-model standard deviation spread_c per station (ddof=1), and units='degree_Celsius'.",
+  "challenge": "Select matching leads, remove scalar lead coordinates, normalize units before combining, and summarize the model axis.",
+  "inputs": [
+    "a.zarr",
+    "b.zarr",
+    "c.zarr"
+  ],
+  "input_metadata": {
+    "a.zarr": {
+      "dimensions": {
+        "step": 2,
+        "station_id": 2
+      },
+      "variables": {
+        "temperature": {
+          "dims": [
+            "step",
+            "station_id"
+          ],
+          "attrs": {
+            "units": "degree_Celsius",
+            "long_name": "temperature",
+            "data_interval": "1 day",
+            "standard_name": "air_temperature"
+          }
+        }
+      },
+      "coordinates": {
+        "step": [
+          "604800 seconds",
+          "1209600 seconds"
+        ],
+        "station_id": [
+          "A",
+          "B"
+        ],
+        "time": [
+          "2024-01-01T00:00:00.000000000"
+        ]
+      }
+    },
+    "b.zarr": {
+      "dimensions": {
+        "step": 2,
+        "station_id": 2
+      },
+      "variables": {
+        "temperature": {
+          "dims": [
+            "step",
+            "station_id"
+          ],
+          "attrs": {
+            "units": "K",
+            "long_name": "temperature",
+            "data_interval": "1 day",
+            "standard_name": "air_temperature"
+          }
+        }
+      },
+      "coordinates": {
+        "step": [
+          "604800 seconds",
+          "1209600 seconds"
+        ],
+        "station_id": [
+          "A",
+          "B"
+        ],
+        "time": [
+          "2024-01-01T00:00:00.000000000"
+        ]
+      }
+    },
+    "c.zarr": {
+      "dimensions": {
+        "step": 2,
+        "station_id": 2
+      },
+      "variables": {
+        "temperature": {
+          "dims": [
+            "step",
+            "station_id"
+          ],
+          "attrs": {
+            "units": "degree_Celsius",
+            "long_name": "temperature",
+            "data_interval": "1 day",
+            "standard_name": "air_temperature"
+          }
+        }
+      },
+      "coordinates": {
+        "step": [
+          "604800 seconds",
+          "1209600 seconds"
+        ],
+        "station_id": [
+          "A",
+          "B"
+        ],
+        "time": [
+          "2024-01-01T00:00:00.000000000"
+        ]
+      }
+    }
+  },
+  "answer_schema": {
+    "model_values_c": {
+      "type": "array",
+      "length": 3,
+      "items": {
+        "type": "array",
+        "length": 2,
+        "items": {
+          "type": "number"
+        }
+      }
+    },
+    "spread_c": {
+      "type": "array",
+      "length": 2,
+      "items": {
+        "type": "number"
+      }
+    },
+    "units": {
+      "type": "string"
+    }
+  },
+  "fixture_kind": "synthetic diagnostic",
+  "tolerance": {
+    "atol": 1e-06,
+    "rtol": 1e-06
+  }
+}

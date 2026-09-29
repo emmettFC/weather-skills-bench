@@ -1,0 +1,20 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "weather-skills-bench"
+version = "0.1.0"
+description = "Deterministic scientific workflow benchmarks for weather agents"
+requires-python = ">=3.12,<3.13"
+dependencies = ["httpx", "python-dotenv", "numpy", "xarray", "zarr", "cftime"]
+
+[project.scripts]
+weather-bench = "weather_bench.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["weather_bench"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

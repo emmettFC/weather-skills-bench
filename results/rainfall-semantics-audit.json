@@ -1,0 +1,212 @@
+{
+  "study_id": "20260929T213240Z-167f76",
+  "kind": "post-hoc-sensitivity-audit",
+  "changes_registered_scores": false,
+  "issue": "Rainfall briefs do not specify clipping negative daily precipitation increments. The registered oracle clips; cumulative endpoint subtraction is also consistent with the brief. Interpret rainfall failures with this ambiguity in mind.",
+  "affected_cases": [
+    "e2e-kenya-rainfall",
+    "e2e-kenya-revision"
+  ],
+  "runs": [
+    {
+      "run_id": "2c7032011b2040869b94a7e3ac1f5f4f",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "arm": "python",
+      "case_id": "e2e-kenya-revision",
+      "status": "api_error",
+      "registered_passed": false,
+      "endpoint_scientific_passed": false,
+      "endpoint_delivery_passed": false
+    },
+    {
+      "run_id": "2bc6c1dbd687457abfe6711ca21a816a",
+      "model": "openai/gpt-6-astra",
+      "arm": "python",
+      "case_id": "e2e-kenya-rainfall",
+      "status": "submitted",
+      "registered_passed": false,
+      "endpoint_scientific_passed": false,
+      "endpoint_delivery_passed": false
+    },
+    {
+      "run_id": "b9fb5568e9284c08a6a2797490ed8547",
+      "model": "anthropic/claude-fable-5.1",
+      "arm": "skills_only",
+      "case_id": "e2e-kenya-revision",
+      "status": "submitted",
+      "registered_passed": true,
+      "endpoint_scientific_passed": false,
+      "endpoint_delivery_passed": false
+    },
+    {
+      "run_id": "f4c377fe31964425b2ebc37b51ebaec4",
+      "model": "qwen/qwen3.5-9b",
+      "arm": "skills_only",
+      "case_id": "e2e-kenya-revision",
+      "status": "api_error",
+      "registered_passed": false,
+      "endpoint_scientific_passed": false,
+      "endpoint_delivery_passed": false
+    },
+    {
+      "run_id": "3749a8a0c50447968186b0520806424c",
+      "model": "anthropic/claude-fable-5.1",
+      "arm": "python",
+      "case_id": "e2e-kenya-rainfall",
+      "status": "submitted",
+      "registered_passed": false,
+      "endpoint_scientific_passed": true,
+      "endpoint_delivery_passed": true
+    },
+    {
+      "run_id": "5c5ef9d5d31541ecb669d0717efd9a4a",
+      "model": "google/gemini-3.1-flash-lite",
+      "arm": "python",
+      "case_id": "e2e-kenya-rainfall",
+      "status": "api_error",
+      "registered_passed": false,
+      "endpoint_scientific_passed": false,
+      "endpoint_delivery_passed": false
+    },
+    {
+      "run_id": "b6ea97765daf412da3120852c7355e12",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "arm": "skills_only",
+      "case_id": "e2e-kenya-rainfall",
+      "status": "token_budget",
+      "registered_passed": false,
+      "endpoint_scientific_passed": false,
+      "endpoint_delivery_passed": false
+    },
+    {
+      "run_id": "4342e38dfbba4756b492e92088d9495c",
+      "model": "qwen/qwen3.5-9b",
+      "arm": "skills_only",
+      "case_id": "e2e-kenya-rainfall",
+      "status": "api_error",
+      "registered_passed": false,
+      "endpoint_scientific_passed": false,
+      "endpoint_delivery_passed": false
+    },
+    {
+      "run_id": "251d47fbf11a4d64a393d6acdeb20dd9",
+      "model": "anthropic/claude-fable-5.1",
+      "arm": "skills_only",
+      "case_id": "e2e-kenya-rainfall",
+      "status": "submitted",
+      "registered_passed": true,
+      "endpoint_scientific_passed": false,
+      "endpoint_delivery_passed": false
+    },
+    {
+      "run_id": "8905772d7342472b82865ecae2e6ce94",
+      "model": "openai/gpt-6-astra",
+      "arm": "skills_only",
+      "case_id": "e2e-kenya-rainfall",
+      "status": "submitted",
+      "registered_passed": true,
+      "endpoint_scientific_passed": false,
+      "endpoint_delivery_passed": false
+    },
+    {
+      "run_id": "7418bbb68458487e9985d8c3d94c2e66",
+      "model": "google/gemini-3.1-flash-lite",
+      "arm": "python",
+      "case_id": "e2e-kenya-revision",
+      "status": "api_error",
+      "registered_passed": false,
+      "endpoint_scientific_passed": false,
+      "endpoint_delivery_passed": false
+    },
+    {
+      "run_id": "db6451c148cb4441b1248c0593ea1c78",
+      "model": "anthropic/claude-fable-5.1",
+      "arm": "python",
+      "case_id": "e2e-kenya-revision",
+      "status": "submitted",
+      "registered_passed": false,
+      "endpoint_scientific_passed": true,
+      "endpoint_delivery_passed": true
+    },
+    {
+      "run_id": "e9e66716d452443481aa688777ae8db8",
+      "model": "qwen/qwen3.5-9b",
+      "arm": "python",
+      "case_id": "e2e-kenya-revision",
+      "status": "api_error",
+      "registered_passed": false,
+      "endpoint_scientific_passed": false,
+      "endpoint_delivery_passed": false
+    },
+    {
+      "run_id": "8573dfdaedb14231942253c03cad379c",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "arm": "python",
+      "case_id": "e2e-kenya-rainfall",
+      "status": "token_budget",
+      "registered_passed": false,
+      "endpoint_scientific_passed": false,
+      "endpoint_delivery_passed": false
+    },
+    {
+      "run_id": "8a30082222e94459881e7c678fdbaf8f",
+      "model": "openai/gpt-6-astra",
+      "arm": "python",
+      "case_id": "e2e-kenya-revision",
+      "status": "submitted",
+      "registered_passed": false,
+      "endpoint_scientific_passed": true,
+      "endpoint_delivery_passed": true
+    },
+    {
+      "run_id": "5c9bc4d0406e4b63be86d6adfdc59b62",
+      "model": "google/gemini-3.1-flash-lite",
+      "arm": "skills_only",
+      "case_id": "e2e-kenya-rainfall",
+      "status": "api_error",
+      "registered_passed": false,
+      "endpoint_scientific_passed": false,
+      "endpoint_delivery_passed": false
+    },
+    {
+      "run_id": "445d4a5998b54d04bd786f0e367f91ee",
+      "model": "google/gemini-3.1-flash-lite",
+      "arm": "skills_only",
+      "case_id": "e2e-kenya-revision",
+      "status": "api_error",
+      "registered_passed": false,
+      "endpoint_scientific_passed": false,
+      "endpoint_delivery_passed": false
+    },
+    {
+      "run_id": "b1fc43c7a40644b5a9f5941427096bdb",
+      "model": "qwen/qwen3.5-9b",
+      "arm": "python",
+      "case_id": "e2e-kenya-rainfall",
+      "status": "api_error",
+      "registered_passed": false,
+      "endpoint_scientific_passed": false,
+      "endpoint_delivery_passed": false
+    },
+    {
+      "run_id": "01f77616d4394c65b69aa4958781244a",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "arm": "skills_only",
+      "case_id": "e2e-kenya-revision",
+      "status": "token_budget",
+      "registered_passed": false,
+      "endpoint_scientific_passed": false,
+      "endpoint_delivery_passed": false
+    },
+    {
+      "run_id": "e9d29d0346504ea1a48f714f79d75986",
+      "model": "openai/gpt-6-astra",
+      "arm": "skills_only",
+      "case_id": "e2e-kenya-revision",
+      "status": "submitted",
+      "registered_passed": true,
+      "endpoint_scientific_passed": false,
+      "endpoint_delivery_passed": false
+    }
+  ]
+}
