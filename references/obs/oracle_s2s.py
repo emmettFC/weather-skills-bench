@@ -46,7 +46,7 @@ def answers():
     cw=float(box(clim,olat,olon,WEST));ce=float(box(clim,olat,olon,EAST))
     obs=o.values[is23];odays=stamps[is23]
     day=(m['lead_time'].values/24).astype(int)
-    result={'window_end_lead_days':[],'valid_from':[],'valid_to':[],
+    result={'valid_from':[],'valid_to':[],
             'forecast_dmi_c':[],'spread_dmi_c':[],'observed_dmi_c':[],'error_dmi_c':[]}
     for name,(a,b) in WINDOWS.items():
         sub=m.values[:,np.flatnonzero((day>=a)&(day<=b))].mean(axis=1)      # (member, lat, lon)
@@ -55,7 +55,6 @@ def answers():
         sel=np.flatnonzero(np.isin(odays,days))
         ow=float(box(obs[sel].mean(axis=0),olat,olon,WEST));oe=float(box(obs[sel].mean(axis=0),olat,olon,EAST))
         observed=(ow-cw)-(oe-ce)
-        result['window_end_lead_days'].append(b)
         result['valid_from'].append(str(days[0].date()));result['valid_to'].append(str(days[-1].date()))
         result['forecast_dmi_c'].append(float(member_dmi.mean()))
         result['spread_dmi_c'].append(float(member_dmi.std(ddof=1)))
@@ -71,6 +70,6 @@ if __name__=='__main__':
     existing=json.loads(path.read_text()) if path.exists() else {}
     existing['iod-s2s-forecast-skill']=r
     path.write_text(json.dumps(existing,indent=2)+'\n')
-    for i,w in enumerate(r['window_end_lead_days']):
-        print(f"day {w:2d}  {r['valid_from'][i]} to {r['valid_to'][i]}  forecast {r['forecast_dmi_c'][i]:+.6f}  "
+    for i in range(len(r['valid_from'])):
+        print(f"{r['valid_from'][i]} to {r['valid_to'][i]}  forecast {r['forecast_dmi_c'][i]:+.6f}  "
               f"spread {r['spread_dmi_c'][i]:.6f}  observed {r['observed_dmi_c'][i]:+.6f}  error {r['error_dmi_c'][i]:+.6f}")

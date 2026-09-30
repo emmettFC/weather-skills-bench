@@ -168,10 +168,9 @@ def s2s_case(answers):
            '--title','ECMWF S2S dipole forecast against observations, init 2023-09-25 (degree_Celsius)')]
     brief=("Build an ECMWF S2S ensemble forecast of the Indian Ocean Dipole Mode Index and score it against what "
       "happened. No weather data is preloaded. Take the S2S sea-surface temperature forecast initialised "
-      "2023-09-25 over 15N to 15S and 45E to 115E, and form two lead windows, days 1 to 7 and days 8 to 14. S2S "
-      "sea-surface temperature is filed as a 24 hour mean, so the field at lead 24 hours is the mean over the "
-      "initialisation day itself and day 1 is 2023-09-25. Average each window over its days for every ensemble "
-      "member, keeping the control and every perturbed member with equal weight. Separately, build a per-grid-cell "
+      "2023-09-25 over 15N to 15S and 45E to 115E, and form two forecast periods, 25 September to 1 October "
+      "2023 and 2 to 8 October 2023, both inclusive. Average each period over the days it covers for every "
+      "ensemble member, keeping the control and every perturbed member with equal weight. Separately, build a per-grid-cell "
       "observed climatology from NOAA OISST v2.1 as the arithmetic mean of sea-surface temperature over 24 "
       "September to 8 October in each of the ten years 2013 to 2022. Subtract the climatology to obtain anomalies "
       "on both sides. Average anomalies over a western box 50-70E, 10S-10N and an eastern box 90-110E, 10S-0 using "
@@ -180,7 +179,7 @@ def s2s_case(answers):
       "the closed interval, and missing cells are excluded with the weights renormalised over the valid cells. "
       "Report the ensemble mean index and the sample spread across members (ddof=1) for each window, the observed "
       "index over the matching calendar days, and the error as forecast minus observed. Return "
-      "window_end_lead_days, valid_from, valid_to, forecast_dmi_c, spread_dmi_c, observed_dmi_c, error_dmi_c, "
+      "valid_from, valid_to, forecast_dmi_c, spread_dmi_c, observed_dmi_c, error_dmi_c, "
       "units='degree_Celsius', source_url, and figure. Write a labelled figure to /work/outlook.png showing the "
       "forecast index, the observed index and the error for both windows, and return figure='/work/outlook.png'.")
     challenge=('The lead axis is labelled by the end of its averaging period, so taking the label at face value '
@@ -190,10 +189,9 @@ def s2s_case(answers):
     sources=[
       'ECMWF Data Stores, product c3s/ecmwf-s2s, variable sst, init 2023-09-25. This source is credentialed.',
       'NOAA PSL OPeNDAP: https://psl.noaa.gov/thredds/dodsC/Datasets/noaa.oisst.v2.highres/sst.day.mean.YYYY.nc, one file per calendar year.',
-      'These are provider exports rather than normalised outputs. Inspect their metadata, including units and the meaning of the lead axis.',
+      'These are provider exports rather than normalised outputs. Inspect their metadata, including units and coordinate conventions.',
       'The requested init and dates are archived and final. Pin them and do not substitute the latest available.']
-    exports={'window_end_lead_days':answers['iod-s2s-forecast-skill']['window_end_lead_days'],
-      'valid_from':answers['iod-s2s-forecast-skill']['valid_from'],
+    exports={'valid_from':answers['iod-s2s-forecast-skill']['valid_from'],
       'valid_to':answers['iod-s2s-forecast-skill']['valid_to'],
       'forecast_dmi_c':('fmean','sst'),'spread_dmi_c':('fspread','sst'),
       'observed_dmi_c':('odmi','sst'),'error_dmi_c':('error','sst'),

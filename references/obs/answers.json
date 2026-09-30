@@ -86,10 +86,6 @@
     "source_url": "https://psl.noaa.gov/thredds/dodsC/Datasets/noaa.oisst.v2.highres/sst.day.mean.2023.nc"
   },
   "iod-s2s-forecast-skill": {
-    "window_end_lead_days": [
-      7,
-      14
-    ],
     "valid_from": [
       "2023-09-25",
       "2023-10-02"
