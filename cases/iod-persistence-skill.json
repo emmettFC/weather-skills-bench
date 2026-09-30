@@ -62,9 +62,7 @@
   "suite": "end-to-end-v1",
   "source_notes": [
     "NOAA PSL OPeNDAP: https://psl.noaa.gov/thredds/dodsC/Datasets/noaa.oisst.v2.highres/sst.day.mean.YYYY.nc, one file per calendar year.",
-    "OISST v2.1 is a 0.25 degree global analysis. Grid centres sit at 0.125 + 0.25k, so neither 10.0 degrees latitude nor 50.0 degrees longitude is a cell centre.",
-    "The eastern box covers Sumatra and Java and is roughly an eighth land.",
-    "2023 fields are final, so the verification is stable.",
-    "The dipole was strengthening through early October 2023, so a forecast held from an earlier date is expected to sit below what was observed."
+    "OISST v2.1 is a 0.25 degree global analysis. Inspect the coordinates rather than assuming where cell centres fall.",
+    "The requested dates are final. Pin the dates asked for and do not substitute the latest available."
   ]
 }

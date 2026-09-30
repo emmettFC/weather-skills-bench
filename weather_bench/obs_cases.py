@@ -25,10 +25,8 @@ def obs_cases():
     answers=json.loads(path.read_text())
     sources=[
       'NOAA PSL OPeNDAP: https://psl.noaa.gov/thredds/dodsC/Datasets/noaa.oisst.v2.highres/sst.day.mean.YYYY.nc, one file per calendar year.',
-      'OISST v2.1 is a 0.25 degree global analysis. Grid centres sit at 0.125 + 0.25k, so neither 10.0 degrees latitude nor 50.0 degrees longitude is a cell centre. Resolving the closed intervals to centres gives an 80 by 80 western box and a 40 by 80 eastern box.',
-      'The eastern box covers Sumatra and Java. 399 of its 3200 cells are land and carry no value.',
-      '2023 fields are final. OISST revises for about two weeks after real time, so these dates are stable.',
-      'October 2023 was a strong positive dipole event. An index near zero indicates the anomaly step was skipped.']
+      'OISST v2.1 is a 0.25 degree global analysis. Inspect the coordinates rather than assuming where cell centres fall.',
+      'The requested dates are final. OISST revises for about two weeks after real time, so pin the dates asked for and do not substitute the latest available.']
     recipe=[fetch(f'clim{y}',y) for y in CLIM_YEARS]+[
       step('climstack','concat',' '.join(f'clim{y}' for y in CLIM_YEARS),'climstack','--dim','time'),
       step('climatology','summarize-dim','climstack','climatology','--dim','time','--method','mean'),
@@ -118,10 +116,8 @@ def skill_case(answers):
       'convention decides whether the forecasts look too high or too low, and the eastern box is an eighth land.')
     sources=[
       'NOAA PSL OPeNDAP: https://psl.noaa.gov/thredds/dodsC/Datasets/noaa.oisst.v2.highres/sst.day.mean.YYYY.nc, one file per calendar year.',
-      'OISST v2.1 is a 0.25 degree global analysis. Grid centres sit at 0.125 + 0.25k, so neither 10.0 degrees latitude nor 50.0 degrees longitude is a cell centre.',
-      'The eastern box covers Sumatra and Java and is roughly an eighth land.',
-      '2023 fields are final, so the verification is stable.',
-      'The dipole was strengthening through early October 2023, so a forecast held from an earlier date is expected to sit below what was observed.']
+      'OISST v2.1 is a 0.25 degree global analysis. Inspect the coordinates rather than assuming where cell centres fall.',
+      'The requested dates are final. Pin the dates asked for and do not substitute the latest available.']
     exports={'dates':('observed','@dates:time'),'observed_dmi_c':('observed','sst'),
       'forecast_early_c':('early','sst'),'forecast_late_c':('late','sst'),
       'error_early_c':('errearly','sst'),'error_late_c':('errlate','sst'),
@@ -192,11 +188,10 @@ def s2s_case(answers):
       'member spreads. Model and observations sit on different grids, so the box means cannot be differenced '
       'cell-by-cell. The eastern box is an eighth land.')
     sources=[
-      'ECMWF Data Stores, product c3s/ecmwf-s2s, variable sst, init 2023-09-25. Credentialed.',
-      'NOAA PSL OPeNDAP: https://psl.noaa.gov/thredds/dodsC/Datasets/noaa.oisst.v2.highres/sst.day.mean.YYYY.nc for the observed side.',
-      'S2S sea-surface temperature is stamped stepType=avg over each 24 hour period, so lead 24 hours is the initialisation day.',
-      'The model is on a 1.5 degree grid and the analysis on 0.25 degrees, so the two box means come from different cell counts.',
-      'The dipole was strengthening through early October 2023.']
+      'ECMWF Data Stores, product c3s/ecmwf-s2s, variable sst, init 2023-09-25. This source is credentialed.',
+      'NOAA PSL OPeNDAP: https://psl.noaa.gov/thredds/dodsC/Datasets/noaa.oisst.v2.highres/sst.day.mean.YYYY.nc, one file per calendar year.',
+      'These are provider exports rather than normalised outputs. Inspect their metadata, including units and the meaning of the lead axis.',
+      'The requested init and dates are archived and final. Pin them and do not substitute the latest available.']
     exports={'window_end_lead_days':answers['iod-s2s-forecast-skill']['window_end_lead_days'],
       'valid_from':answers['iod-s2s-forecast-skill']['valid_from'],
       'valid_to':answers['iod-s2s-forecast-skill']['valid_to'],

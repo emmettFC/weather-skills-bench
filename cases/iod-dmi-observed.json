@@ -50,9 +50,7 @@
   "suite": "end-to-end-v1",
   "source_notes": [
     "NOAA PSL OPeNDAP: https://psl.noaa.gov/thredds/dodsC/Datasets/noaa.oisst.v2.highres/sst.day.mean.YYYY.nc, one file per calendar year.",
-    "OISST v2.1 is a 0.25 degree global analysis. Grid centres sit at 0.125 + 0.25k, so neither 10.0 degrees latitude nor 50.0 degrees longitude is a cell centre. Resolving the closed intervals to centres gives an 80 by 80 western box and a 40 by 80 eastern box.",
-    "The eastern box covers Sumatra and Java. 399 of its 3200 cells are land and carry no value.",
-    "2023 fields are final. OISST revises for about two weeks after real time, so these dates are stable.",
-    "October 2023 was a strong positive dipole event. An index near zero indicates the anomaly step was skipped."
+    "OISST v2.1 is a 0.25 degree global analysis. Inspect the coordinates rather than assuming where cell centres fall.",
+    "The requested dates are final. OISST revises for about two weeks after real time, so pin the dates asked for and do not substitute the latest available."
   ]
 }

@@ -70,10 +70,9 @@
   },
   "suite": "end-to-end-v1",
   "source_notes": [
-    "ECMWF Data Stores, product c3s/ecmwf-s2s, variable sst, init 2023-09-25. Credentialed.",
-    "NOAA PSL OPeNDAP: https://psl.noaa.gov/thredds/dodsC/Datasets/noaa.oisst.v2.highres/sst.day.mean.YYYY.nc for the observed side.",
-    "S2S sea-surface temperature is stamped stepType=avg over each 24 hour period, so lead 24 hours is the initialisation day.",
-    "The model is on a 1.5 degree grid and the analysis on 0.25 degrees, so the two box means come from different cell counts.",
-    "The dipole was strengthening through early October 2023."
+    "ECMWF Data Stores, product c3s/ecmwf-s2s, variable sst, init 2023-09-25. This source is credentialed.",
+    "NOAA PSL OPeNDAP: https://psl.noaa.gov/thredds/dodsC/Datasets/noaa.oisst.v2.highres/sst.day.mean.YYYY.nc, one file per calendar year.",
+    "These are provider exports rather than normalised outputs. Inspect their metadata, including units and the meaning of the lead axis.",
+    "The requested init and dates are archived and final. Pin them and do not substitute the latest available."
   ]
 }
