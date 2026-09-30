@@ -87,10 +87,10 @@
     "init": "2023-09-25",
     "units": "degree_Celsius",
     "archive": "real-source-s2s-iod.zip",
-    "archive_sha256": "d29ab2ce15969fc7f0b6fdb53dba51678b1deef9e64f01fd40544f73aa91b90a",
+    "archive_sha256": "94d99ce67e80419ece7c6169d4c0cf153eeb846b25f918b96905ccb79473fccc",
     "member": "s2s-iod.nc",
-    "member_sha256": "66c679e1d0fcd946e9f91e2c5daf4f84a362fbe558f2ddfdf90ee0411dfebcd4",
-    "bytes": 2138110,
+    "member_sha256": "ef36f455b378338891e9597c6817cf8e0f7919eec5b995e5ffcc750e1459feb7",
+    "bytes": 2138162,
     "dimensions": {
       "member": 101,
       "lead_time": 14,
