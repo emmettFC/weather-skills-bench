@@ -1,0 +1,70 @@
+{
+  "id": "iod-persistence-skill",
+  "title": "Persistence forecasts of the Indian Ocean Dipole, scored against what happened",
+  "brief": "Build two persistence forecasts of the observed Indian Ocean Dipole Mode Index and score them against what happened. No weather data is preloaded. Use NOAA OISST v2.1 daily sea-surface temperature. Build a per-grid-cell climatology as the arithmetic mean of sea-surface temperature over 24 September to 8 October in each of the ten years 2013 to 2022, and subtract it to obtain anomalies. Average the anomalies over a western box 50-70E, 10S-10N and an eastern box 90-110E, 10S-0 using cosine-latitude weights and equal longitude weights, and take the index as west minus east. A grid cell belongs to a box when its centre lies inside the closed interval. The analysis is missing over land, so exclude missing cells and renormalise the weights over the valid cells of each box. A persistence forecast holds the index value observed on its issue date constant over the whole verification period. Issue one forecast on 2023-09-24 and another on 2023-10-01, and verify both against the observed index on each of 2023-10-02 to 2023-10-08 inclusive. Define error as forecast minus observed, and bias as the mean error over the seven verification days. Return dates (YYYY-MM-DD) in ascending order, observed_dmi_c, forecast_early_c and forecast_late_c (the two held values), error_early_c and error_late_c, bias_early_c and bias_late_c, units='degree_Celsius', source_url citing the exact raw store(s) used, and figure. Write a labelled figure to /work/outlook.png showing the observed index and the error of each forecast across the seven days, and return figure='/work/outlook.png'.",
+  "inputs": [],
+  "answer_schema": {
+    "dates": {
+      "type": "array",
+      "length": 7,
+      "items": {
+        "type": "string"
+      }
+    },
+    "observed_dmi_c": {
+      "type": "array",
+      "length": 7,
+      "items": {
+        "type": "number"
+      }
+    },
+    "forecast_early_c": {
+      "type": "number"
+    },
+    "forecast_late_c": {
+      "type": "number"
+    },
+    "error_early_c": {
+      "type": "array",
+      "length": 7,
+      "items": {
+        "type": "number"
+      }
+    },
+    "error_late_c": {
+      "type": "array",
+      "length": 7,
+      "items": {
+        "type": "number"
+      }
+    },
+    "bias_early_c": {
+      "type": "number"
+    },
+    "bias_late_c": {
+      "type": "number"
+    },
+    "units": {
+      "type": "string"
+    },
+    "figure": {
+      "type": "string"
+    },
+    "source_url": {
+      "type": "string"
+    }
+  },
+  "fixture_kind": "real archived forecasts; live source retrieval",
+  "tolerance": {
+    "atol": 0.0001,
+    "rtol": 1e-06
+  },
+  "suite": "end-to-end-v1",
+  "source_notes": [
+    "NOAA PSL OPeNDAP: https://psl.noaa.gov/thredds/dodsC/Datasets/noaa.oisst.v2.highres/sst.day.mean.YYYY.nc, one file per calendar year.",
+    "OISST v2.1 is a 0.25 degree global analysis. Grid centres sit at 0.125 + 0.25k, so neither 10.0 degrees latitude nor 50.0 degrees longitude is a cell centre.",
+    "The eastern box covers Sumatra and Java and is roughly an eighth land.",
+    "2023 fields are final, so the verification is stable.",
+    "The dipole was strengthening through early October 2023, so a forecast held from an earlier date is expected to sit below what was observed."
+  ]
+}

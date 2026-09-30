@@ -81,5 +81,22 @@
       "lat": 84,
       "lon": 244
     }
+  },
+  "s2s-iod": {
+    "url": "https://ecds.ecmwf.int/api c3s/ecmwf-s2s sst",
+    "init": "2023-09-25",
+    "units": "degree_Celsius",
+    "archive": "real-source-s2s-iod.zip",
+    "archive_sha256": "33d40d95cd6ec3fe32f30741958e14b5fe5da8c78d9e340b875c41c1621c719c",
+    "member": "s2s-iod.nc",
+    "member_sha256": "e37568454b219a57688bf32a071362ff0a153269bf5f3efb09bed3a625d6329a",
+    "bytes": 2118310,
+    "dimensions": {
+      "member": 100,
+      "lead_time": 14,
+      "lat": 21,
+      "lon": 47
+    },
+    "note": "Credentialed source. The sandbox holds no ECDS key and does not allowlist ecmwf.int, so this case runs outside the container until that is resolved."
   }
 }

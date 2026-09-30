@@ -84,5 +84,38 @@
     "units": "degree_Celsius",
     "figure": "/work/outlook.png",
     "source_url": "https://psl.noaa.gov/thredds/dodsC/Datasets/noaa.oisst.v2.highres/sst.day.mean.2023.nc"
+  },
+  "iod-s2s-forecast-skill": {
+    "window_end_lead_days": [
+      7,
+      14
+    ],
+    "valid_from": [
+      "2023-09-25",
+      "2023-10-02"
+    ],
+    "valid_to": [
+      "2023-10-01",
+      "2023-10-08"
+    ],
+    "forecast_dmi_c": [
+      1.3910141540483787,
+      1.4183064803232324
+    ],
+    "spread_dmi_c": [
+      0.11150948622916822,
+      0.14110098818302608
+    ],
+    "observed_dmi_c": [
+      1.136448661229398,
+      1.3623244791951095
+    ],
+    "error_dmi_c": [
+      0.25456549281898067,
+      0.055982001128122905
+    ],
+    "units": "degree_Celsius",
+    "figure": "/work/outlook.png",
+    "source_url": "https://ecds.ecmwf.int/api c3s/ecmwf-s2s sst init 2023-09-25"
   }
 }
