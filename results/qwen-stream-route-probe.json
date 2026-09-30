@@ -1,0 +1,31 @@
+{
+  "kind": "same-context-stream-probe-no-execution",
+  "source_run": "4d8cd22086ec46e3bc9821629fb8f230",
+  "provider": "DeepInfra",
+  "finish_reason": "length",
+  "usage": {
+    "prompt_tokens": 14370,
+    "completion_tokens": 1024,
+    "total_tokens": 15394,
+    "cost": 0.001574694,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.0015906,
+      "upstream_inference_prompt_cost": 0.001437,
+      "upstream_inference_completions_cost": 0.0001536
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 227,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "seconds": 48.142990957945585,
+  "visible_characters": 2403
+}

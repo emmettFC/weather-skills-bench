@@ -6,6 +6,7 @@ import time
 from pathlib import Path
 from .catalog import ROOT
 from .report import export_dashboard,MODEL_PROFILES
+from .health import output_stem
 
 
 def refresh(path):
@@ -15,21 +16,21 @@ def refresh(path):
     study=next(s for s in data['studies'] if s['study_id']==raw['study_id'])
     small=study['config'].get('study_role')=='small-model-extension'
     e2e=study['config'].get('study_role')=='end-to-end'
-    stem='e2e' if e2e else 'small-model' if small else 'expanded'
+    stem=output_stem(study['config'])
     n=len(study['runs']);finished=bool(study.get('finished_at'))
     state='Complete' if finished and n==study['planned_runs'] else 'Partial — stopped' if finished else study.get('health',{}).get('state','stopped').title()
     lines=['# '+('End-to-end real-forecast study' if e2e else 'Small-model comparison' if small else 'Expanded skills-only study'), '',f"**{state}: {n}/{study['planned_runs']} recorded attempts.** Study `{study['study_id']}`.",'',
-           f"{len(study['config']['models'])} models, {len(study['config']['cases'])} fixed diagnostic tasks, skills-only versus iterative Python, one repetition. One-shot is absent. Operator interruptions are unscored; provider errors remain in operational success rates. Matched capability tests exclude provider errors and interruptions.", '',
+           f"{len(study['config']['models'])} models, {len(study['config']['cases'])} fixed diagnostic tasks, skills-only versus No Skills (Python with execution feedback), one repetition. One-shot is absent. Operator interruptions are unscored; provider errors remain in operational success rates. Matched capability tests exclude provider errors and interruptions.", '',
            '| Model | Condition | Passed / scored | Median seconds | Mean tokens | USD / attempt | USD / success | Provider errors |',
            '|---|---|---:|---:|---:|---:|---:|---:|']
     def money(value):return 'Unknown' if value is None else f'${value:.4f}'
     for row in study['condition_statistics']:
         name=MODEL_PROFILES.get(row['model'],{}).get('label',row['model'])
-        arm='Skills only' if row['arm']=='skills_only' else 'Iterative Python'
+        arm='Skills only' if row['arm']=='skills_only' else 'No Skills'
         per_success='—' if not row['passed'] else money(row['cost_per_success_usd'])
         lines.append(f"| {name} | {arm} | {row['passed']}/{row['scored']} | {row['median_seconds']:.1f} | {row['mean_tokens']:,.0f} | {money(row['cost_per_attempt_usd'])} | {per_success} | {row['provider_errors']} |")
     lines+=['',f"Reported study charges: **${study['ledger']['spent']:.4f}**. Unconfirmed charges are additional; the ${study['ledger'].get('budget_reserve_usd',0):.4f} reserve is a budget precaution, not billed spend. Preflight charges are recorded separately in `results/preflight-v2.json`.",'',
-            '## Paired comparisons','', '| Model | Evaluable pairs | Skills-only wins | Python-only wins | Exact McNemar p | Holm-adjusted p |', '|---|---:|---:|---:|---:|---:|']
+            '## Paired comparisons','', '| Model | Evaluable pairs | Skills wins | No Skills wins | Exact McNemar p | Holm-adjusted p |', '|---|---:|---:|---:|---:|---:|']
     def pvalue(value):return '—' if value is None else f'{value:.4f}'
     for row in study['paired_statistics']:
         name=MODEL_PROFILES.get(row['model'],{}).get('label',row['model'])
@@ -43,6 +44,7 @@ def refresh(path):
             '- This study does not establish operational forecast quality in Africa, local-hosting feasibility, or performance on African networks. See [model review](MODEL_REVIEW.md), [methodology](METHODOLOGY.md), and [statistics](STATISTICS.md).', '',
             'The original availability-only pilot and its explanation remain in [FINDINGS.md](FINDINGS.md). The [dashboard](docs/index.html) contains task briefs, exact answers, clickable comparisons, and per-run traces.']
     findings='E2E_FINDINGS.md' if e2e else 'SMALL_MODEL_FINDINGS.md' if small else 'EXPANDED_FINDINGS.md'
+    if study['config'].get('output_stem'):findings=stem.upper().replace('-','_')+'_FINDINGS.md'
     if e2e:
         if study.get('quality'):
             lines[2:2]=['**Provisional:** '+study['quality']['note'], '', 'See END_TO_END.md and results/rainfall-semantics-audit.json for the independent sensitivity check. Registered scores are unchanged.', '']
@@ -50,6 +52,8 @@ def refresh(path):
         lines+=['', 'Live forecast retrieval and plotting are included in completion time. Source versions are checked before and after each attempt. Heat task has a documented catalog reference defect; a correct alternative remains eligible. See END_TO_END.md.']
     if small:
         lines=[line.replace('results/preflight-v2.json','results/preflight-small-models.json') for line in lines]
+    if study['config'].get('preflight_report'):
+        lines=[line.replace('results/preflight-v2.json',study['config']['preflight_report']) for line in lines]
     (ROOT/findings).write_text('\n'.join(lines)+'\n')
     (ROOT/f'results/{stem}-summary.json').write_text(json.dumps({'study_id':study['study_id'],'state':state,'recorded_attempts':n,'planned_attempts':study['planned_runs'],'condition_statistics':study['condition_statistics'],'paired_statistics':study['paired_statistics']},indent=2)+'\n')
     print(f'{state}: {n}/{study["planned_runs"]}; exports refreshed',flush=True)

@@ -42,3 +42,11 @@ views retain all attempted charges in reported spend and all traces in coverage.
 The JSON export supplies `task_outcome_statistics` alongside the original
 `condition_statistics`; neither is a matched-pair estimate. The separate paired
 analysis remains necessary when model/condition coverage differs.
+
+
+Recorded `MALFORMED_FUNCTION_CALL` and `UNEXPECTED_TOOL_CALL` native completion
+reasons are classified as `model_response_error`, rather than provider outages.
+They remain in task-outcome denominators and paired comparisons. Original statuses,
+numerical grades, and API responses are retained; the public export exposes the
+native finish reason and corrected classification. This identifies a response or
+integration failure, not necessarily a failure of meteorological reasoning.

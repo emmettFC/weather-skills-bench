@@ -5,6 +5,7 @@ import sys
 import time
 from pathlib import Path
 from .catalog import ROOT
+from .health import output_stem,atomic_json
 
 
 def dependency_finished(path):
@@ -22,13 +23,13 @@ def main():
     role=spec.get('study_role')
     if role not in ('small-model-extension','end-to-end'):
         raise ValueError('Unknown queued study role')
-    stem='e2e' if role=='end-to-end' else 'small-model'
+    stem=output_stem(spec)
     state_path=ROOT/f'results/{stem}-queue.json'
     state={'state':'waiting','after_study':after.stem,'config':str(config.relative_to(ROOT)),
-           'models':spec['models'],'planned_attempts':len(spec['models'])*len(spec['cases'])*len(spec['arms'])*spec['repetitions'],
+           'models':spec['models'],'planned_attempts':len(spec['retry_attempts']) if spec.get('retry_attempts') else len(spec['models'])*len(spec['cases'])*len(spec['arms'])*spec['repetitions'],
            'max_cost_usd':spec['max_cost_usd']}
     def save():
-        state_path.write_text(json.dumps(state,indent=2)+'\n')
+        atomic_json(state_path,state)
     save();print(stem+' study queued after '+after.stem,flush=True)
     while True:
         try:ready=dependency_finished(after)
@@ -44,13 +45,15 @@ def main():
             for path in set((ROOT/'results/studies').glob('*.json'))-before:
                 try:data=json.loads(path.read_text())
                 except json.JSONDecodeError:continue
-                if data['config'].get('study_role')==role:study_path=path;break
+                if data['config']==spec or (data['config'].get('study_role')==role and output_stem(data['config'])==stem):study_path=path;break
             if study_path is None:time.sleep(1)
-        monitor=None;monitor_log=None
+        monitor=None;monitor_log=None;bundle_worker=None;bundle_log=None
         if study_path:
             state.update(state='running',study_id=study_path.stem);save()
             monitor_log=(ROOT/f'.build/{stem}-monitor.log').open('w')
             monitor=subprocess.Popen([sys.executable,'-m','weather_bench.monitor',str(study_path)],cwd=ROOT,stdout=monitor_log,stderr=subprocess.STDOUT)
+            bundle_log=(ROOT/f'.build/{stem}-bundle.log').open('w')
+            bundle_worker=subprocess.Popen([sys.executable,'-u',str(ROOT/'scripts/watch_bundle.py'),str(study_path)],cwd=ROOT,stdout=bundle_log,stderr=subprocess.STDOUT)
         code=process.wait()
         if monitor:
             if code:monitor.terminate()
@@ -59,10 +62,17 @@ def main():
                 monitor.terminate();monitor_code=1
             monitor_log.close()
         else:monitor_code=1
+        bundle_code=1
+        if bundle_worker:
+            if code or monitor_code:bundle_worker.terminate()
+            try:bundle_code=bundle_worker.wait(timeout=30)
+            except subprocess.TimeoutExpired:
+                bundle_worker.terminate()
+            bundle_log.close()
         if study_path and not code:
             data=json.loads(study_path.read_text());state['recorded_attempts']=len(data['runs'])
             state['state']='complete' if len(data['runs'])==data['planned_runs'] else 'partial'
         else:state['state']='failed'
-        state.update(exit_code=code,audit_exit_code=monitor_code);save();print(json.dumps(state),flush=True)
+        state.update(exit_code=code,audit_exit_code=monitor_code,bundle_exit_code=bundle_code);save();print(json.dumps(state),flush=True)
 
 if __name__=='__main__':main()

@@ -25,7 +25,7 @@
       "model": "google/gemini-3.1-flash-lite",
       "arm": "skills_only",
       "rep": 0,
-      "status": "api_error",
+      "status": "model_response_error",
       "answer": null,
       "correctness": {
         "passed": false,
@@ -140,6 +140,13 @@
           "connection_seconds": 3.045969667029567
         }
       ],
+      "failure_detail": {
+        "category": "model_response",
+        "title": "Response format error",
+        "provider": "Google AI Studio",
+        "code": "MALFORMED_FUNCTION_CALL",
+        "message": "Provider reported an invalid generated tool call. This is a response/protocol failure; it does not demonstrate a service outage or a weather-reasoning error."
+      },
       "trace": [
         {
           "action": "protocol_error",
@@ -193,6 +200,7 @@
             "model": "google/gemini-3.1-flash-lite",
             "seconds": 1.051499666995369,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 3272,
               "completion_tokens": 169,
@@ -209,6 +217,7 @@
             "model": "google/gemini-3.1-flash-lite",
             "seconds": 2.519319917075336,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 3332,
               "completion_tokens": 113,
@@ -226,6 +235,7 @@
             "model": "google/gemini-3.1-flash-lite",
             "seconds": 3.2738971669459715,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 5092,
               "completion_tokens": 832,
@@ -243,6 +253,7 @@
             "model": "google/gemini-3.1-flash-lite",
             "seconds": 2.870979457977228,
             "finish_reason": "error",
+            "native_finish_reason": "MALFORMED_FUNCTION_CALL",
             "usage": {
               "prompt_tokens": 0,
               "completion_tokens": 0,
@@ -364,6 +375,13 @@
         }
       },
       "network_events": [],
+      "failure_detail": {
+        "category": "rate_limit",
+        "title": "Provider HTTP 429",
+        "provider": "Fireworks",
+        "code": "invalid_request_error",
+        "message": "429 \u00b7 Provider returned error \u00b7 Fireworks \u00b7 invalid_request_error \u00b7 upstream_provider_shared_pool"
+      },
       "trace": [
         {
           "action": "protocol_error",
@@ -392,6 +410,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 46.43838633398991,
             "finish_reason": "length",
+            "native_finish_reason": "length",
             "usage": {
               "prompt_tokens": 1310,
               "completion_tokens": 8192,
@@ -480,6 +499,7 @@
         }
       },
       "network_events": [],
+      "failure_detail": null,
       "trace": [
         {
           "action": "protocol_error",
@@ -536,6 +556,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 4.422457083011977,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 1102,
               "completion_tokens": 154,
@@ -552,6 +573,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 17.964262416935526,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 1284,
               "completion_tokens": 903,
@@ -569,6 +591,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 2.3545104999793693,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 2215,
               "completion_tokens": 48,
@@ -586,6 +609,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 5.439865792053752,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 2274,
               "completion_tokens": 268,
@@ -603,6 +627,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 16.542473957990296,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 2544,
               "completion_tokens": 984,
@@ -620,6 +645,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 3.9670170000754297,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 3494,
               "completion_tokens": 122,
@@ -637,6 +663,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 1.9569164579734206,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 3600,
               "completion_tokens": 26,
@@ -1256,6 +1283,7 @@
           "connection_seconds": 3.0117507519898936
         }
       ],
+      "failure_detail": null,
       "trace": [
         {
           "action": "read_skill",
@@ -1654,6 +1682,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 4.498886874993332,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 5147,
               "completion_tokens": 55,
@@ -1670,6 +1699,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 18.00960466696415,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 7701,
               "completion_tokens": 457,
@@ -1687,6 +1717,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 2.288675707997754,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 8525,
               "completion_tokens": 25,
@@ -1704,6 +1735,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 3.9779661659849808,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 9856,
               "completion_tokens": 181,
@@ -1721,6 +1753,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 17.6891247080639,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 18695,
               "completion_tokens": 1175,
@@ -1738,6 +1771,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 28.520187707967125,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 31978,
               "completion_tokens": 1784,
@@ -1755,6 +1789,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 11.97429749998264,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 35039,
               "completion_tokens": 679,
@@ -2399,6 +2434,13 @@
         }
       },
       "network_events": [],
+      "failure_detail": {
+        "category": "overload",
+        "title": "Provider capacity overload",
+        "provider": "DeepInfra",
+        "code": "engine_overloaded",
+        "message": "429 \u00b7 Provider returned error \u00b7 DeepInfra \u00b7 engine_overloaded \u00b7 upstream_provider_shared_pool"
+      },
       "trace": [
         {
           "action": "api_error",
@@ -3107,6 +3149,7 @@
           "connection_seconds": 0.9283197090262547
         }
       ],
+      "failure_detail": null,
       "trace": [
         {
           "action": "python",
@@ -3156,6 +3199,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 9.445343083003536,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 1748,
               "completion_tokens": 146,
@@ -3172,6 +3216,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 5.335548708913848,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 1979,
               "completion_tokens": 129,
@@ -3189,6 +3234,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 7.106679582968354,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 4023,
               "completion_tokens": 194,
@@ -3206,6 +3252,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 9.113289417000487,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 5946,
               "completion_tokens": 192,
@@ -3223,6 +3270,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 22.89632308401633,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 9093,
               "completion_tokens": 1492,
@@ -3240,6 +3288,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 7.22524845902808,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 10674,
               "completion_tokens": 97,
@@ -3309,7 +3358,7 @@
       "model": "google/gemini-3.1-flash-lite",
       "arm": "python",
       "rep": 0,
-      "status": "api_error",
+      "status": "model_response_error",
       "answer": null,
       "correctness": {
         "passed": false,
@@ -3365,6 +3414,13 @@
         }
       },
       "network_events": [],
+      "failure_detail": {
+        "category": "model_response",
+        "title": "Response format error",
+        "provider": "Google AI Studio",
+        "code": "MALFORMED_FUNCTION_CALL",
+        "message": "Provider reported an invalid generated tool call. This is a response/protocol failure; it does not demonstrate a service outage or a weather-reasoning error."
+      },
       "trace": [
         {
           "action": "api_error",
@@ -3386,6 +3442,7 @@
             "model": "google/gemini-3.1-flash-lite",
             "seconds": 2.6929192080860958,
             "finish_reason": "error",
+            "native_finish_reason": "MALFORMED_FUNCTION_CALL",
             "usage": {
               "prompt_tokens": 0,
               "completion_tokens": 0,
@@ -3551,6 +3608,7 @@
           "connection_seconds": 2.7312528339680284
         }
       ],
+      "failure_detail": null,
       "trace": [
         {
           "action": "read_skill",
@@ -3974,6 +4032,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 3.763612624956295,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 3099,
               "completion_tokens": 61,
@@ -3990,6 +4049,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 4.219550459063612,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 8644,
               "completion_tokens": 119,
@@ -4007,6 +4067,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 5.032636124989949,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 14579,
               "completion_tokens": 134,
@@ -4024,6 +4085,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 3.12583470903337,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 15579,
               "completion_tokens": 53,
@@ -4041,6 +4103,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 4.190028374898247,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 16324,
               "completion_tokens": 134,
@@ -4058,6 +4121,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 6.586078249965794,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 17397,
               "completion_tokens": 99,
@@ -4075,6 +4139,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 13.156930125085637,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 19020,
               "completion_tokens": 195,
@@ -4092,6 +4157,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 13.617509542033076,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 19124,
               "completion_tokens": 478,
@@ -4109,6 +4175,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 11.039153625024483,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 20943,
               "completion_tokens": 79,
@@ -4126,6 +4193,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 11.98434487497434,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 21452,
               "completion_tokens": 382,
@@ -4143,6 +4211,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 4.57803774997592,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 22392,
               "completion_tokens": 175,
@@ -4765,6 +4834,13 @@
         }
       },
       "network_events": [],
+      "failure_detail": {
+        "category": "router_admission",
+        "title": "OpenRouter credit-check timeout",
+        "provider": "Anthropic",
+        "code": "429",
+        "message": "429 \u00b7 OpenRouter could not verify available credits for this request in time. Retry shortly. \u00b7 openrouter_admission_control"
+      },
       "trace": [
         {
           "action": "read_skill",
@@ -4793,6 +4869,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 4.649889792082831,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 4938,
               "completion_tokens": 55,
@@ -4828,7 +4905,7 @@
       "model": "google/gemini-3.1-flash-lite",
       "arm": "python",
       "rep": 0,
-      "status": "api_error",
+      "status": "model_response_error",
       "answer": null,
       "correctness": {
         "passed": false,
@@ -4874,6 +4951,13 @@
         }
       },
       "network_events": [],
+      "failure_detail": {
+        "category": "model_response",
+        "title": "Response format error",
+        "provider": "Google AI Studio",
+        "code": "MALFORMED_FUNCTION_CALL",
+        "message": "Provider reported an invalid generated tool call. This is a response/protocol failure; it does not demonstrate a service outage or a weather-reasoning error."
+      },
       "trace": [
         {
           "action": "api_error",
@@ -4895,6 +4979,7 @@
             "model": "google/gemini-3.1-flash-lite",
             "seconds": 4.0343527080258355,
             "finish_reason": "error",
+            "native_finish_reason": "MALFORMED_FUNCTION_CALL",
             "usage": {
               "prompt_tokens": 0,
               "completion_tokens": 0,
@@ -5055,6 +5140,7 @@
           "connection_seconds": 2.141793292015791
         }
       ],
+      "failure_detail": null,
       "trace": [
         {
           "action": "protocol_error",
@@ -5362,6 +5448,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 2.085472874925472,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 3259,
               "completion_tokens": 195,
@@ -5378,6 +5465,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 1.1379387499764562,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 3402,
               "completion_tokens": 70,
@@ -5395,6 +5483,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 1.7290268749929965,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 5073,
               "completion_tokens": 133,
@@ -5412,6 +5501,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 2.135804207995534,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 12746,
               "completion_tokens": 125,
@@ -5429,6 +5519,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 4.260847499943338,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 12854,
               "completion_tokens": 181,
@@ -5446,6 +5537,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 1.6832666670670733,
             "finish_reason": "tool_calls",
+            "native_finish_reason": "tool_calls",
             "usage": {
               "prompt_tokens": 13073,
               "completion_tokens": 98,
@@ -5463,6 +5555,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 1.4072826250921935,
             "finish_reason": "tool_calls",
+            "native_finish_reason": "tool_calls",
             "usage": {
               "prompt_tokens": 13100,
               "completion_tokens": 68,
@@ -5480,6 +5573,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 1.2919115419499576,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 13127,
               "completion_tokens": 61,
@@ -5497,6 +5591,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 8.09079066698905,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 14460,
               "completion_tokens": 1070,
@@ -5514,6 +5609,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 12.002884041052312,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 15425,
               "completion_tokens": 1201,
@@ -5531,6 +5627,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 1.7827088750200346,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 15573,
               "completion_tokens": 70,
@@ -5548,6 +5645,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 5.612994540948421,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 16248,
               "completion_tokens": 443,
@@ -5565,6 +5663,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 3.070331915980205,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 16337,
               "completion_tokens": 70,
@@ -5582,6 +5681,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 1.9413162909913808,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 16499,
               "completion_tokens": 128,
@@ -5599,6 +5699,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 3.47506233304739,
             "finish_reason": "tool_calls",
+            "native_finish_reason": "tool_calls",
             "usage": {
               "prompt_tokens": 17188,
               "completion_tokens": 191,
@@ -5616,6 +5717,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 3.177716000005603,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 17215,
               "completion_tokens": 283,
@@ -5633,6 +5735,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 2.673278916045092,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 17315,
               "completion_tokens": 23,
@@ -5650,6 +5753,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 2.513226042035967,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 19157,
               "completion_tokens": 148,
@@ -5667,6 +5771,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 2.1973094580462202,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 19281,
               "completion_tokens": 99,
@@ -5684,6 +5789,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 9.36327024991624,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 19473,
               "completion_tokens": 669,
@@ -5701,6 +5807,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 9.534630000009201,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 19635,
               "completion_tokens": 906,
@@ -5718,6 +5825,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 2.0248729169834405,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 19759,
               "completion_tokens": 83,
@@ -5735,6 +5843,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 3.1828472919296473,
             "finish_reason": "tool_calls",
+            "native_finish_reason": "tool_calls",
             "usage": {
               "prompt_tokens": 19954,
               "completion_tokens": 271,
@@ -5752,6 +5861,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 5.302919041016139,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 19981,
               "completion_tokens": 437,
@@ -6116,6 +6226,13 @@
           "connection_seconds": 0.09053191600833088
         }
       ],
+      "failure_detail": {
+        "category": "overload",
+        "title": "Provider capacity overload",
+        "provider": "DeepInfra",
+        "code": "engine_overloaded",
+        "message": "429 \u00b7 Provider returned error \u00b7 DeepInfra \u00b7 engine_overloaded \u00b7 upstream_provider_shared_pool"
+      },
       "trace": [
         {
           "action": "python",
@@ -6151,6 +6268,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 36.41979958291631,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 1094,
               "completion_tokens": 288,
@@ -6167,6 +6285,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 19.54476004105527,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 1285,
               "completion_tokens": 152,
@@ -6341,6 +6460,13 @@
           "connection_seconds": 2.8995348350144923
         }
       ],
+      "failure_detail": {
+        "category": "rate_limit",
+        "title": "Provider rate limit",
+        "provider": "Fireworks",
+        "code": "RATE_LIMIT_EXCEEDED",
+        "message": "429 \u00b7 Provider returned error \u00b7 Fireworks \u00b7 RATE_LIMIT_EXCEEDED \u00b7 upstream_provider_shared_pool"
+      },
       "trace": [
         {
           "action": "read_skill",
@@ -6569,6 +6695,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 1.5545307080028579,
             "finish_reason": "tool_calls",
+            "native_finish_reason": "tool_calls",
             "usage": {
               "prompt_tokens": 3214,
               "completion_tokens": 111,
@@ -6585,6 +6712,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 2.2083574580028653,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 4885,
               "completion_tokens": 171,
@@ -6602,6 +6730,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 1.376218541059643,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 5116,
               "completion_tokens": 43,
@@ -6619,6 +6748,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 2.7813116250326857,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 5143,
               "completion_tokens": 101,
@@ -6636,6 +6766,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 0.9742617500014603,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 6026,
               "completion_tokens": 40,
@@ -6653,6 +6784,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 37.20105216605589,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 8241,
               "completion_tokens": 2862,
@@ -6670,6 +6802,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 13.975377875030972,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 11448,
               "completion_tokens": 1389,
@@ -6687,6 +6820,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 4.7480829590931535,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 12477,
               "completion_tokens": 221,
@@ -6704,6 +6838,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 10.305486417026259,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 13245,
               "completion_tokens": 461,
@@ -6721,6 +6856,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 2.429242791957222,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 13348,
               "completion_tokens": 154,
@@ -6738,6 +6874,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 9.147982249967754,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 13506,
               "completion_tokens": 737,
@@ -6755,6 +6892,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 4.497397958068177,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 14527,
               "completion_tokens": 240,
@@ -6772,6 +6910,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 20.127179957926273,
             "finish_reason": "tool_calls",
+            "native_finish_reason": "tool_calls",
             "usage": {
               "prompt_tokens": 14630,
               "completion_tokens": 2094,
@@ -6789,6 +6928,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 49.86933133401908,
             "finish_reason": "tool_calls",
+            "native_finish_reason": "tool_calls",
             "usage": {
               "prompt_tokens": 14657,
               "completion_tokens": 4165,
@@ -6806,6 +6946,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 17.304982208064757,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 14684,
               "completion_tokens": 1325,
@@ -6823,6 +6964,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 95.93928016698919,
             "finish_reason": "length",
+            "native_finish_reason": "length",
             "usage": {
               "prompt_tokens": 14790,
               "completion_tokens": 8192,
@@ -6840,6 +6982,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 31.584618707885966,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 14817,
               "completion_tokens": 4099,
@@ -7192,6 +7335,13 @@
         }
       },
       "network_events": [],
+      "failure_detail": {
+        "category": "overload",
+        "title": "Provider capacity overload",
+        "provider": "DeepInfra",
+        "code": "engine_overloaded",
+        "message": "429 \u00b7 Provider returned error \u00b7 DeepInfra \u00b7 engine_overloaded \u00b7 upstream_provider_shared_pool"
+      },
       "trace": [
         {
           "action": "api_error",
@@ -7275,6 +7425,13 @@
           "connection_seconds": 0.07992495794314891
         }
       ],
+      "failure_detail": {
+        "category": "rate_limit",
+        "title": "Provider rate limit",
+        "provider": "Fireworks",
+        "code": "RATE_LIMIT_EXCEEDED",
+        "message": "429 \u00b7 Provider returned error \u00b7 Fireworks \u00b7 RATE_LIMIT_EXCEEDED \u00b7 upstream_provider_shared_pool"
+      },
       "trace": [
         {
           "action": "protocol_error",
@@ -7310,6 +7467,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 4.351157457916997,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 1118,
               "completion_tokens": 763,
@@ -7326,6 +7484,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 1.9136093329871073,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 1855,
               "completion_tokens": 200,
@@ -7923,6 +8082,7 @@
           "connection_seconds": 0.7164211670169607
         }
       ],
+      "failure_detail": null,
       "trace": [
         {
           "action": "read_skill",
@@ -8207,6 +8367,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 3.802847499959171,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 4989,
               "completion_tokens": 55,
@@ -8223,6 +8384,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 7.39917804102879,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 7543,
               "completion_tokens": 309,
@@ -8240,6 +8402,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 6.14377579104621,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 8031,
               "completion_tokens": 25,
@@ -8257,6 +8420,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 5.09991266601719,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 9362,
               "completion_tokens": 168,
@@ -8274,6 +8438,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 13.149457915918902,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 22335,
               "completion_tokens": 1077,
@@ -8291,6 +8456,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 11.279444208019413,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 24033,
               "completion_tokens": 838,
@@ -8308,6 +8474,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 9.686749499989673,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 28300,
               "completion_tokens": 523,
@@ -8768,6 +8935,7 @@
         "partial_trace": true,
         "timing_complete": false
       },
+      "failure_detail": null,
       "trace": [
         {
           "action": "protocol_error",
@@ -8872,6 +9040,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": null,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 3170,
               "completion_tokens": 565,
@@ -8888,6 +9057,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": null,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 3390,
               "completion_tokens": 41,
@@ -8905,6 +9075,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": null,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 5017,
               "completion_tokens": 278,
@@ -8922,6 +9093,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": null,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 5451,
               "completion_tokens": 181,
@@ -8939,6 +9111,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": null,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 5624,
               "completion_tokens": 67,
@@ -8956,6 +9129,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": null,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 10929,
               "completion_tokens": 285,
@@ -8973,6 +9147,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": null,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 12476,
               "completion_tokens": 198,
@@ -9612,6 +9787,7 @@
           "connection_seconds": 2.1621120430063456
         }
       ],
+      "failure_detail": null,
       "trace": [
         {
           "action": "read_skill",
@@ -9824,6 +10000,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 3.9777898750035092,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 3145,
               "completion_tokens": 70,
@@ -9840,6 +10017,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 3.2425914170453325,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 11333,
               "completion_tokens": 107,
@@ -9857,6 +10035,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 3.4909582920372486,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 13689,
               "completion_tokens": 111,
@@ -9874,6 +10053,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 7.648971375077963,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 14386,
               "completion_tokens": 290,
@@ -9891,6 +10071,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 5.224159957957454,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 15132,
               "completion_tokens": 181,
@@ -10174,7 +10355,7 @@
       "model": "google/gemini-3.1-flash-lite",
       "arm": "python",
       "rep": 0,
-      "status": "api_error",
+      "status": "model_response_error",
       "answer": null,
       "correctness": {
         "passed": false,
@@ -10234,6 +10415,13 @@
         }
       },
       "network_events": [],
+      "failure_detail": {
+        "category": "model_response",
+        "title": "Response format error",
+        "provider": "Google AI Studio",
+        "code": "MALFORMED_FUNCTION_CALL",
+        "message": "Provider reported an invalid generated tool call. This is a response/protocol failure; it does not demonstrate a service outage or a weather-reasoning error."
+      },
       "trace": [
         {
           "action": "api_error",
@@ -10255,6 +10443,7 @@
             "model": "google/gemini-3.1-flash-lite",
             "seconds": 4.044012750033289,
             "finish_reason": "error",
+            "native_finish_reason": "MALFORMED_FUNCTION_CALL",
             "usage": {
               "prompt_tokens": 0,
               "completion_tokens": 0,
@@ -11102,6 +11291,7 @@
           "connection_seconds": 1.4477699589915574
         }
       ],
+      "failure_detail": null,
       "trace": [
         {
           "action": "python",
@@ -11151,6 +11341,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 6.496137458016165,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 1906,
               "completion_tokens": 298,
@@ -11167,6 +11358,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 21.702093750005588,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 7515,
               "completion_tokens": 1818,
@@ -11184,6 +11376,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 17.95927833300084,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 9124,
               "completion_tokens": 1448,
@@ -11201,6 +11394,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 7.683247709064744,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 11252,
               "completion_tokens": 378,
@@ -11218,6 +11412,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 4.314391124993563,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 11764,
               "completion_tokens": 60,
@@ -11235,6 +11430,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 3.56824312498793,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 11859,
               "completion_tokens": 11,
@@ -11359,6 +11555,13 @@
         }
       },
       "network_events": [],
+      "failure_detail": {
+        "category": "overload",
+        "title": "Provider capacity overload",
+        "provider": "DeepInfra",
+        "code": "engine_overloaded",
+        "message": "429 \u00b7 Provider returned error \u00b7 DeepInfra \u00b7 engine_overloaded \u00b7 upstream_provider_shared_pool"
+      },
       "trace": [
         {
           "action": "protocol_error",
@@ -11394,6 +11597,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 64.45928633306175,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 1317,
               "completion_tokens": 563,
@@ -11410,6 +11614,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 21.828388958005235,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 1655,
               "completion_tokens": 193,
@@ -11503,6 +11708,7 @@
         }
       },
       "network_events": [],
+      "failure_detail": null,
       "trace": [
         {
           "action": "protocol_error",
@@ -11587,6 +11793,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 19.942306791897863,
             "finish_reason": "length",
+            "native_finish_reason": "length",
             "usage": {
               "prompt_tokens": 1163,
               "completion_tokens": 8192,
@@ -11603,6 +11810,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 27.310660500079393,
             "finish_reason": "length",
+            "native_finish_reason": "length",
             "usage": {
               "prompt_tokens": 9358,
               "completion_tokens": 8192,
@@ -11620,6 +11828,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 24.629312583012506,
             "finish_reason": "length",
+            "native_finish_reason": "length",
             "usage": {
               "prompt_tokens": 17502,
               "completion_tokens": 8192,
@@ -11637,6 +11846,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 26.769343166961335,
             "finish_reason": "length",
+            "native_finish_reason": "length",
             "usage": {
               "prompt_tokens": 25666,
               "completion_tokens": 8192,
@@ -11654,6 +11864,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 23.49771104194224,
             "finish_reason": "length",
+            "native_finish_reason": "length",
             "usage": {
               "prompt_tokens": 33482,
               "completion_tokens": 8192,
@@ -11671,6 +11882,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 31.307709082961082,
             "finish_reason": "length",
+            "native_finish_reason": "length",
             "usage": {
               "prompt_tokens": 41676,
               "completion_tokens": 8192,
@@ -11688,6 +11900,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 21.942044166033156,
             "finish_reason": "length",
+            "native_finish_reason": "length",
             "usage": {
               "prompt_tokens": 41703,
               "completion_tokens": 8192,
@@ -11705,6 +11918,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 19.900601916015148,
             "finish_reason": "length",
+            "native_finish_reason": "length",
             "usage": {
               "prompt_tokens": 49288,
               "completion_tokens": 8192,
@@ -11722,6 +11936,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 1.227999082999304,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 57108,
               "completion_tokens": 120,
@@ -11739,6 +11954,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 21.86469033395406,
             "finish_reason": "length",
+            "native_finish_reason": "length",
             "usage": {
               "prompt_tokens": 57160,
               "completion_tokens": 8192,
@@ -12873,6 +13089,7 @@
           "connection_seconds": 0.12065633304882795
         }
       ],
+      "failure_detail": null,
       "trace": [
         {
           "action": "python",
@@ -12936,6 +13153,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 3.5590094999643043,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 1242,
               "completion_tokens": 125,
@@ -12952,6 +13170,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 2.7016782910795882,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 1442,
               "completion_tokens": 119,
@@ -12969,6 +13188,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 1.952361417002976,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 1882,
               "completion_tokens": 62,
@@ -12986,6 +13206,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 5.036944125080481,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 3214,
               "completion_tokens": 132,
@@ -13003,6 +13224,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 5.743825208046474,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 8091,
               "completion_tokens": 258,
@@ -13020,6 +13242,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 3.183984832954593,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 13449,
               "completion_tokens": 144,
@@ -13037,6 +13260,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 18.56774775008671,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 14239,
               "completion_tokens": 972,
@@ -13054,6 +13278,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 1.4483548330608755,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 15240,
               "completion_tokens": 9,
@@ -13141,7 +13366,7 @@
       "model": "google/gemini-3.1-flash-lite",
       "arm": "skills_only",
       "rep": 0,
-      "status": "api_error",
+      "status": "model_response_error",
       "answer": null,
       "correctness": {
         "passed": false,
@@ -13273,6 +13498,13 @@
           "connection_seconds": 1.7705742499092594
         }
       ],
+      "failure_detail": {
+        "category": "model_response",
+        "title": "Response format error",
+        "provider": "Google AI Studio",
+        "code": "MALFORMED_FUNCTION_CALL",
+        "message": "Provider reported an invalid generated tool call. This is a response/protocol failure; it does not demonstrate a service outage or a weather-reasoning error."
+      },
       "trace": [
         {
           "action": "protocol_error",
@@ -13324,6 +13556,7 @@
             "model": "google/gemini-3.1-flash-lite",
             "seconds": 0.9108644999796525,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 3304,
               "completion_tokens": 172,
@@ -13340,6 +13573,7 @@
             "model": "google/gemini-3.1-flash-lite",
             "seconds": 0.955857792054303,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 3364,
               "completion_tokens": 151,
@@ -13357,6 +13591,7 @@
             "model": "google/gemini-3.1-flash-lite",
             "seconds": 6.19315170799382,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 5124,
               "completion_tokens": 1815,
@@ -13374,6 +13609,7 @@
             "model": "google/gemini-3.1-flash-lite",
             "seconds": 1.798689709044993,
             "finish_reason": "error",
+            "native_finish_reason": "MALFORMED_FUNCTION_CALL",
             "usage": {
               "prompt_tokens": 0,
               "completion_tokens": 0,
@@ -13433,7 +13669,7 @@
       "model": "google/gemini-3.1-flash-lite",
       "arm": "skills_only",
       "rep": 0,
-      "status": "api_error",
+      "status": "model_response_error",
       "answer": null,
       "correctness": {
         "passed": false,
@@ -13573,6 +13809,13 @@
         }
       },
       "network_events": [],
+      "failure_detail": {
+        "category": "model_response",
+        "title": "Response format error",
+        "provider": "Google AI Studio",
+        "code": "MALFORMED_FUNCTION_CALL",
+        "message": "Provider reported an invalid generated tool call. This is a response/protocol failure; it does not demonstrate a service outage or a weather-reasoning error."
+      },
       "trace": [
         {
           "action": "protocol_error",
@@ -13608,6 +13851,7 @@
             "model": "google/gemini-3.1-flash-lite",
             "seconds": 1.1189602499362081,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 3495,
               "completion_tokens": 235,
@@ -13624,6 +13868,7 @@
             "model": "google/gemini-3.1-flash-lite",
             "seconds": 0.9072021250613034,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 3619,
               "completion_tokens": 146,
@@ -13641,6 +13886,7 @@
             "model": "google/gemini-3.1-flash-lite",
             "seconds": 2.789650540915318,
             "finish_reason": "error",
+            "native_finish_reason": "MALFORMED_FUNCTION_CALL",
             "usage": {
               "prompt_tokens": 0,
               "completion_tokens": 0,
@@ -13828,6 +14074,7 @@
           "connection_seconds": 1.6697459999704733
         }
       ],
+      "failure_detail": null,
       "trace": [
         {
           "action": "python",
@@ -13856,6 +14103,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 6.884719666908495,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 1697,
               "completion_tokens": 266,
@@ -13872,6 +14120,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 17.570555665995926,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 7272,
               "completion_tokens": 1415,
@@ -13889,6 +14138,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 8.866313499980606,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 8987,
               "completion_tokens": 179,
@@ -13987,6 +14237,13 @@
         }
       },
       "network_events": [],
+      "failure_detail": {
+        "category": "overload",
+        "title": "Provider capacity overload",
+        "provider": "DeepInfra",
+        "code": "engine_overloaded",
+        "message": "429 \u00b7 Provider returned error \u00b7 DeepInfra \u00b7 engine_overloaded \u00b7 upstream_provider_shared_pool"
+      },
       "trace": [
         {
           "action": "api_error",
@@ -14063,6 +14320,7 @@
         }
       },
       "network_events": [],
+      "failure_detail": null,
       "trace": [
         {
           "action": "protocol_error",
@@ -14105,6 +14363,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 4.605672917095944,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 1056,
               "completion_tokens": 158,
@@ -14121,6 +14380,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 15.811931416974403,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 1242,
               "completion_tokens": 1043,
@@ -14138,6 +14398,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 15.427875666995533,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 2313,
               "completion_tokens": 1020,
@@ -14155,6 +14416,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 15.690467791981064,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 3342,
               "completion_tokens": 863,
@@ -14172,6 +14434,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 1.7536156669957563,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 4234,
               "completion_tokens": 9,
@@ -14401,6 +14664,7 @@
           "connection_seconds": 2.2321098760003224
         }
       ],
+      "failure_detail": null,
       "trace": [
         {
           "action": "protocol_error",
@@ -14601,6 +14865,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 20.778377459035255,
             "finish_reason": "length",
+            "native_finish_reason": "length",
             "usage": {
               "prompt_tokens": 3406,
               "completion_tokens": 8192,
@@ -14617,6 +14882,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 0.7700589580927044,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 11557,
               "completion_tokens": 62,
@@ -14634,6 +14900,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 1.924957750015892,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 13228,
               "completion_tokens": 419,
@@ -14651,6 +14918,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 0.8608341250801459,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 13676,
               "completion_tokens": 67,
@@ -14668,6 +14936,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 0.7671792090404779,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 13754,
               "completion_tokens": 27,
@@ -14685,6 +14954,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 0.9113950419705361,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 14637,
               "completion_tokens": 73,
@@ -14702,6 +14972,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 21.50429399998393,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 17285,
               "completion_tokens": 4605,
@@ -14719,6 +14990,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 13.47237120801583,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 18874,
               "completion_tokens": 3332,
@@ -14736,6 +15008,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 26.80146533390507,
             "finish_reason": "length",
+            "native_finish_reason": "length",
             "usage": {
               "prompt_tokens": 20715,
               "completion_tokens": 8192,
@@ -14753,6 +15026,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 31.28812516690232,
             "finish_reason": "length",
+            "native_finish_reason": "length",
             "usage": {
               "prompt_tokens": 20742,
               "completion_tokens": 8192,
@@ -14770,6 +15044,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 28.11243637499865,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 20769,
               "completion_tokens": 7840,
@@ -14787,6 +15062,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 28.574580375105143,
             "finish_reason": "length",
+            "native_finish_reason": "length",
             "usage": {
               "prompt_tokens": 30416,
               "completion_tokens": 8192,
@@ -14804,6 +15080,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 26.59944749996066,
             "finish_reason": "length",
+            "native_finish_reason": "length",
             "usage": {
               "prompt_tokens": 30443,
               "completion_tokens": 8192,
@@ -14821,6 +15098,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 31.014559541014023,
             "finish_reason": "length",
+            "native_finish_reason": "length",
             "usage": {
               "prompt_tokens": 30470,
               "completion_tokens": 8192,
@@ -14838,6 +15116,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 15.269875500001945,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 30497,
               "completion_tokens": 3819,
@@ -15607,6 +15886,7 @@
           "connection_seconds": 1.5036953339586034
         }
       ],
+      "failure_detail": null,
       "trace": [
         {
           "action": "read_skill",
@@ -15939,6 +16219,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 2.843560416949913,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 3285,
               "completion_tokens": 70,
@@ -15955,6 +16236,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 6.600786624941975,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 11473,
               "completion_tokens": 194,
@@ -15972,6 +16254,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 6.322666790918447,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 17120,
               "completion_tokens": 357,
@@ -15989,6 +16272,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 10.074996042065322,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 18559,
               "completion_tokens": 358,
@@ -16006,6 +16290,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 6.776653624954633,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 19573,
               "completion_tokens": 232,

@@ -1,9 +1,7 @@
 {
-  "study_id": "20260929T213240Z-167f76",
+  "study_id": "20260930T013445Z-a569f5",
   "recorded_attempts": 30,
-  "partial_trace_runs": [
-    "d29e9942a53e451db45a63a460a9f4ff"
-  ],
+  "partial_trace_runs": [],
   "passed": true,
   "checks": [
     "Unique isolated run IDs and task/model/condition cells",

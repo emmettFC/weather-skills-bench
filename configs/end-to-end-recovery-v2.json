@@ -1,0 +1,123 @@
+{
+  "models": [
+    "anthropic/claude-fable-5.1",
+    "openai/gpt-6-astra",
+    "google/gemini-3.1-flash-lite",
+    "deepseek/deepseek-v4.1-flash",
+    "qwen/qwen3.5-9b"
+  ],
+  "arms": [
+    "skills_only",
+    "python"
+  ],
+  "providers": {
+    "anthropic/claude-fable-5.1": [
+      "anthropic"
+    ],
+    "openai/gpt-6-astra": [
+      "openai"
+    ],
+    "google/gemini-3.1-flash-lite": [
+      "google-ai-studio",
+      "google-vertex/global"
+    ],
+    "deepseek/deepseek-v4.1-flash": [
+      "wafer",
+      "novita/fp8"
+    ],
+    "qwen/qwen3.5-9b": [
+      "parasail/bf16",
+      "deepinfra/bf16"
+    ]
+  },
+  "cases": [
+    "e2e-kenya-rainfall",
+    "e2e-kenya-revision",
+    "e2e-kenya-heat"
+  ],
+  "repetitions": 1,
+  "seed": 20260929,
+  "temperature": 0,
+  "reasoning_effort": "low",
+  "max_cost_usd": 15,
+  "max_calls": 40,
+  "max_executions": 40,
+  "max_total_tokens": 350000,
+  "max_output_tokens": 8192,
+  "max_context_bytes": 220000,
+  "task_timeout_seconds": 1200,
+  "execution_timeout_seconds": 240,
+  "request_timeout_seconds": 120,
+  "allow_batch": true,
+  "protocol_version": "end-to-end-v2",
+  "study_label": "Recovery \u00b7 real forecasts",
+  "hard_request_deadline": true,
+  "unknown_cost_policy": "reserve",
+  "billing_prices": {
+    "anthropic/claude-fable-5.1": {
+      "prompt": 1e-05,
+      "completion": 5e-05
+    },
+    "openai/gpt-6-astra": {
+      "prompt": 1e-05,
+      "completion": 5e-05
+    },
+    "google/gemini-3.1-flash-lite": {
+      "prompt": 2.5e-07,
+      "completion": 1.5e-06
+    },
+    "deepseek/deepseek-v4.1-flash": {
+      "prompt": 1.95e-07,
+      "completion": 7.8e-07
+    },
+    "qwen/qwen3.5-9b": {
+      "prompt": 1.0000000000000001e-07,
+      "completion": 2.5e-07
+    }
+  },
+  "endpoint_parameters": {},
+  "study_role": "end-to-end",
+  "json_mode": true,
+  "provider_allow_fallbacks": true,
+  "recover_model_response_errors": true,
+  "provider_retry": {
+    "max_retries_per_run": 3,
+    "max_consecutive_retries": 2,
+    "base_delay_seconds": 2,
+    "max_delay_seconds": 30,
+    "http_statuses": [
+      429,
+      500,
+      502,
+      503,
+      504
+    ]
+  },
+  "study_note": "Independent recovery cohort; JSON output, tested routes and bounded retries. Rainfall preprocessing clarified for both arms before any run. Do not pool with the original pilot.",
+  "provider_price_caps": {
+    "anthropic/claude-fable-5.1": {
+      "prompt": 10,
+      "completion": 50
+    },
+    "openai/gpt-6-astra": {
+      "prompt": 10,
+      "completion": 50
+    },
+    "google/gemini-3.1-flash-lite": {
+      "prompt": 0.25,
+      "completion": 1.5
+    },
+    "deepseek/deepseek-v4.1-flash": {
+      "prompt": 0.195,
+      "completion": 0.78
+    },
+    "qwen/qwen3.5-9b": {
+      "prompt": 0.1,
+      "completion": 0.25
+    }
+  },
+  "task_clarifications": {
+    "e2e-kenya-rainfall": "Precipitation preprocessing: the raw archive contains cumulative precipitation. Compute daily increments along forecast lead time and clip each negative daily increment to zero before summing the requested weeks. Use the same rule for each issue in the revision comparison. Preserve the task's stated units, date windows and weighting. Direct subtraction of cumulative weekly endpoints is not equivalent when negative increments occur.",
+    "e2e-kenya-revision": "Precipitation preprocessing: the raw archive contains cumulative precipitation. Compute daily increments along forecast lead time and clip each negative daily increment to zero before summing the requested weeks. Use the same rule for each issue in the revision comparison. Preserve the task's stated units, date windows and weighting. Direct subtraction of cumulative weekly endpoints is not equivalent when negative increments occur."
+  }
+}

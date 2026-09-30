@@ -9,6 +9,14 @@ import time
 from .catalog import ROOT
 
 
+def output_stem(config):
+    default='e2e' if config.get('study_role')=='end-to-end' else 'small-model' if config.get('study_role')=='small-model-extension' else 'expanded'
+    stem=config.get('output_stem',default)
+    if not isinstance(stem,str) or not stem or not stem.replace('-','').isalnum():
+        raise ValueError('Study output stem must contain letters, numbers or hyphens')
+    return stem
+
+
 def atomic_json(path, value):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)

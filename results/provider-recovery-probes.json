@@ -1,0 +1,633 @@
+{
+  "generated_at": "2026-09-30T01:25:17.118827+00:00",
+  "kind": "transport-probes",
+  "runs": [
+    {
+      "model": "google/gemini-3.1-flash-lite",
+      "arm": "skills_only",
+      "providers": [
+        "google-ai-studio"
+      ],
+      "json_mode": false,
+      "turn": 1,
+      "http_status": 200,
+      "provider": "Google AI Studio",
+      "finish_reason": "stop",
+      "native_finish_reason": "STOP",
+      "usage": {
+        "prompt_tokens": 2567,
+        "completion_tokens": 42,
+        "total_tokens": 2609,
+        "cost": 0.0006977025
+      },
+      "response": "{\"action\": \"read_skill\", \"skill\": \"inspect-zarr\"}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 0.7418973749736324
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite",
+      "arm": "skills_only",
+      "providers": [
+        "google-ai-studio"
+      ],
+      "json_mode": false,
+      "turn": 2,
+      "http_status": 200,
+      "provider": "Google AI Studio",
+      "finish_reason": "stop",
+      "native_finish_reason": "STOP",
+      "usage": {
+        "prompt_tokens": 3566,
+        "completion_tokens": 102,
+        "total_tokens": 3668,
+        "cost": 0.001034055
+      },
+      "response": "{\"action\": \"skill\", \"skill\": \"inspect-zarr\", \"args\": [\"--input\", \"/inputs/example.zarr\"]}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 0.7619271669536829
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite",
+      "arm": "python",
+      "providers": [
+        "google-ai-studio"
+      ],
+      "json_mode": false,
+      "turn": 1,
+      "http_status": 200,
+      "provider": "Google AI Studio",
+      "finish_reason": "stop",
+      "native_finish_reason": "STOP",
+      "usage": {
+        "prompt_tokens": 455,
+        "completion_tokens": 125,
+        "total_tokens": 580,
+        "cost": 0.0002982375
+      },
+      "response": "{\"action\": \"python\", \"code\": \"print(1 + 1)\"}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 0.7343117919517681
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite",
+      "arm": "python",
+      "providers": [
+        "google-ai-studio"
+      ],
+      "json_mode": false,
+      "turn": 2,
+      "http_status": 200,
+      "provider": "Google AI Studio",
+      "finish_reason": "stop",
+      "native_finish_reason": "STOP",
+      "usage": {
+        "prompt_tokens": 512,
+        "completion_tokens": 101,
+        "total_tokens": 613,
+        "cost": 0.000276705
+      },
+      "response": "{\"action\": \"submit\"}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 0.7643456249497831
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite",
+      "arm": "skills_only",
+      "providers": [
+        "google-ai-studio"
+      ],
+      "json_mode": true,
+      "turn": 1,
+      "http_status": 200,
+      "provider": "Google AI Studio",
+      "finish_reason": "stop",
+      "native_finish_reason": "STOP",
+      "usage": {
+        "prompt_tokens": 2567,
+        "completion_tokens": 83,
+        "total_tokens": 2650,
+        "cost": 0.0007585875
+      },
+      "response": "{\"action\": \"read_skill\", \"skill\": \"inspect-zarr\"}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 0.9086893750354648
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite",
+      "arm": "skills_only",
+      "providers": [
+        "google-ai-studio"
+      ],
+      "json_mode": true,
+      "turn": 2,
+      "http_status": 200,
+      "provider": "Google AI Studio",
+      "finish_reason": "stop",
+      "native_finish_reason": "STOP",
+      "usage": {
+        "prompt_tokens": 3566,
+        "completion_tokens": 137,
+        "total_tokens": 3703,
+        "cost": 0.00108603
+      },
+      "response": "{\"action\": \"skill\", \"skill\": \"inspect-zarr\", \"args\": [\"--input\", \"/inputs/example.zarr\"]}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 0.9285852500470355
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite",
+      "arm": "python",
+      "providers": [
+        "google-ai-studio"
+      ],
+      "json_mode": true,
+      "turn": 1,
+      "http_status": 200,
+      "provider": "Google AI Studio",
+      "finish_reason": "stop",
+      "native_finish_reason": "STOP",
+      "usage": {
+        "prompt_tokens": 455,
+        "completion_tokens": 123,
+        "total_tokens": 578,
+        "cost": 0.0002952675
+      },
+      "response": "{\"action\": \"python\", \"code\": \"print(1 + 1)\"}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 1.0757287910673767
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite",
+      "arm": "python",
+      "providers": [
+        "google-ai-studio"
+      ],
+      "json_mode": true,
+      "turn": 2,
+      "http_status": 200,
+      "provider": "Google AI Studio",
+      "finish_reason": "stop",
+      "native_finish_reason": "STOP",
+      "usage": {
+        "prompt_tokens": 512,
+        "completion_tokens": 79,
+        "total_tokens": 591,
+        "cost": 0.000244035
+      },
+      "response": "{\"action\": \"submit\"}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 0.690790459048003
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite",
+      "arm": "skills_only",
+      "providers": [
+        "google-vertex/global"
+      ],
+      "json_mode": true,
+      "turn": 1,
+      "http_status": 200,
+      "provider": "Google",
+      "finish_reason": "stop",
+      "native_finish_reason": "STOP",
+      "usage": {
+        "prompt_tokens": 2565,
+        "completion_tokens": 95,
+        "total_tokens": 2660,
+        "cost": 0.0007759125
+      },
+      "response": "{\"action\": \"read_skill\", \"skill\": \"inspect-zarr\"}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 0.9989918749779463
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite",
+      "arm": "skills_only",
+      "providers": [
+        "google-vertex/global"
+      ],
+      "json_mode": true,
+      "turn": 2,
+      "http_status": 200,
+      "provider": "Google",
+      "finish_reason": "stop",
+      "native_finish_reason": "STOP",
+      "usage": {
+        "prompt_tokens": 3562,
+        "completion_tokens": 272,
+        "total_tokens": 3834,
+        "cost": 0.001285515
+      },
+      "response": "{\"action\": \"skill\", \"skill\": \"inspect-zarr\", \"args\": [\"--input\", \"/inputs/example.zarr\"]}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 1.490588083048351
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite",
+      "arm": "python",
+      "providers": [
+        "google-vertex/global"
+      ],
+      "json_mode": true,
+      "turn": 1,
+      "http_status": 200,
+      "provider": "Google",
+      "finish_reason": "stop",
+      "native_finish_reason": "STOP",
+      "usage": {
+        "prompt_tokens": 453,
+        "completion_tokens": 79,
+        "total_tokens": 532,
+        "cost": 0.0002294325
+      },
+      "response": "{\"action\": \"python\", \"code\": \"print(1 + 1)\"}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 1.3278567920206115
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite",
+      "arm": "python",
+      "providers": [
+        "google-vertex/global"
+      ],
+      "json_mode": true,
+      "turn": 2,
+      "http_status": 200,
+      "provider": "Google",
+      "finish_reason": "stop",
+      "native_finish_reason": "STOP",
+      "usage": {
+        "prompt_tokens": 508,
+        "completion_tokens": 59,
+        "total_tokens": 567,
+        "cost": 0.000213345
+      },
+      "response": "{\"action\": \"submit\"}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 0.8852554589975625
+    },
+    {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "arm": "skills_only",
+      "providers": [
+        "deepseek"
+      ],
+      "json_mode": true,
+      "turn": 1,
+      "http_status": 404,
+      "provider": null,
+      "finish_reason": null,
+      "native_finish_reason": null,
+      "usage": {
+        "prompt_tokens": null,
+        "completion_tokens": null,
+        "total_tokens": null,
+        "cost": null
+      },
+      "response": "",
+      "transport_ok": false,
+      "action_valid": false,
+      "error": "{'message': '0 endpoints out of 1 requested are available matching your guardrail restrictions and data policy. We removed them for the following reasons (an endpoint may have matched multiple reasons):\\nPaid model training violation (account settings): 1 endpoint excluded; configurable at https://openrouter.ai/settings/privacy', 'code': 404, 'metadata': {'input_endpoint_count': 1, 'ineligibility_reasons': [{'reason': 'paid-model-training-violation-by-account', 'endpoint_count': 1, 'configure_url': 'https://openrouter.ai/settings/privacy'}], 'routing_funnel': [{'step': 'Initial Endpoints', 'endpoint_count': 33}, {'step': 'Filter by Allowed Providers', 'endpoint_count': 1, 'reason': \"not in your request's provider.only preference\"}], 'failed_routing_step': 'Filter by Guardrails'}}",
+      "passed": false,
+      "seconds": 0.028204958885908127
+    },
+    {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "arm": "python",
+      "providers": [
+        "deepseek"
+      ],
+      "json_mode": true,
+      "turn": 1,
+      "http_status": 404,
+      "provider": null,
+      "finish_reason": null,
+      "native_finish_reason": null,
+      "usage": {
+        "prompt_tokens": null,
+        "completion_tokens": null,
+        "total_tokens": null,
+        "cost": null
+      },
+      "response": "",
+      "transport_ok": false,
+      "action_valid": false,
+      "error": "{'message': '0 endpoints out of 1 requested are available matching your guardrail restrictions and data policy. We removed them for the following reasons (an endpoint may have matched multiple reasons):\\nPaid model training violation (account settings): 1 endpoint excluded; configurable at https://openrouter.ai/settings/privacy', 'code': 404, 'metadata': {'input_endpoint_count': 1, 'ineligibility_reasons': [{'reason': 'paid-model-training-violation-by-account', 'endpoint_count': 1, 'configure_url': 'https://openrouter.ai/settings/privacy'}], 'routing_funnel': [{'step': 'Initial Endpoints', 'endpoint_count': 33}, {'step': 'Filter by Allowed Providers', 'endpoint_count': 1, 'reason': \"not in your request's provider.only preference\"}], 'failed_routing_step': 'Filter by Guardrails'}}",
+      "passed": false,
+      "seconds": 0.04273008299060166
+    },
+    {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "arm": "skills_only",
+      "providers": [
+        "novita/fp8"
+      ],
+      "json_mode": true,
+      "turn": 1,
+      "http_status": 200,
+      "provider": "Novita",
+      "finish_reason": "stop",
+      "native_finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 2575,
+        "completion_tokens": 96,
+        "total_tokens": 2671,
+        "cost": 0.00057123495
+      },
+      "response": "{\"action\": \"read_skill\", \"skill\": \"inspect-zarr\"}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 2.193822291912511
+    },
+    {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "arm": "skills_only",
+      "providers": [
+        "novita/fp8"
+      ],
+      "json_mode": true,
+      "turn": 2,
+      "http_status": 200,
+      "provider": "Novita",
+      "finish_reason": "stop",
+      "native_finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 3498,
+        "completion_tokens": 183,
+        "total_tokens": 3681,
+        "cost": 0.00033227766
+      },
+      "response": "{\"action\": \"skill\", \"skill\": \"inspect-zarr\", \"args\": [\"--input\", \"/inputs/example.zarr\"]}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 2.7243294999934733
+    },
+    {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "arm": "python",
+      "providers": [
+        "novita/fp8"
+      ],
+      "json_mode": true,
+      "turn": 1,
+      "http_status": 200,
+      "provider": "Novita",
+      "finish_reason": "stop",
+      "native_finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 480,
+        "completion_tokens": 103,
+        "total_tokens": 583,
+        "cost": 0.0001722006
+      },
+      "response": "{\"action\": \"python\", \"code\": \"print(1 + 1)\"}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 2.2382204580353573
+    },
+    {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "arm": "python",
+      "providers": [
+        "novita/fp8"
+      ],
+      "json_mode": true,
+      "turn": 2,
+      "http_status": 200,
+      "provider": "Novita",
+      "finish_reason": "stop",
+      "native_finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 538,
+        "completion_tokens": 64,
+        "total_tokens": 602,
+        "cost": 8.0633124e-05
+      },
+      "response": "{\"action\": \"submit\"}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 2.66956658300478
+    },
+    {
+      "model": "qwen/qwen3.5-9b",
+      "arm": "skills_only",
+      "providers": [
+        "parasail/bf16"
+      ],
+      "json_mode": true,
+      "turn": 1,
+      "http_status": 200,
+      "provider": "Parasail",
+      "finish_reason": "stop",
+      "native_finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 2525,
+        "completion_tokens": 64,
+        "total_tokens": 2589,
+        "cost": 0.000265815
+      },
+      "response": "{\"action\":\"read_skill\",\"skill\":\"inspect-zarr\"}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 2.7337784999981523
+    },
+    {
+      "model": "qwen/qwen3.5-9b",
+      "arm": "skills_only",
+      "providers": [
+        "parasail/bf16"
+      ],
+      "json_mode": true,
+      "turn": 2,
+      "http_status": 200,
+      "provider": "Parasail",
+      "finish_reason": "stop",
+      "native_finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 3446,
+        "completion_tokens": 195,
+        "total_tokens": 3641,
+        "cost": 0.0003894165
+      },
+      "response": "{\"action\":\"skill\",\"skill\":\"inspect-zarr\",\"args\":[\"--input\",\"/inputs/example.zarr\"]}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 4.727057416923344
+    },
+    {
+      "model": "qwen/qwen3.5-9b",
+      "arm": "python",
+      "providers": [
+        "parasail/bf16"
+      ],
+      "json_mode": true,
+      "turn": 1,
+      "http_status": 200,
+      "provider": "Parasail",
+      "finish_reason": "stop",
+      "native_finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 452,
+        "completion_tokens": 86,
+        "total_tokens": 538,
+        "cost": 6.6033e-05
+      },
+      "response": "{\"action\":\"python\",\"code\":\"print(1 + 1)\"}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 2.0537132089957595
+    },
+    {
+      "model": "qwen/qwen3.5-9b",
+      "arm": "python",
+      "providers": [
+        "parasail/bf16"
+      ],
+      "json_mode": true,
+      "turn": 2,
+      "http_status": 200,
+      "provider": "Parasail",
+      "finish_reason": "stop",
+      "native_finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 513,
+        "completion_tokens": 174,
+        "total_tokens": 687,
+        "cost": 9.3852e-05
+      },
+      "response": "{\"action\":\"submit\"}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 6.544253707979806
+    },
+    {
+      "model": "qwen/qwen3.5-9b",
+      "arm": "skills_only",
+      "providers": [
+        "together"
+      ],
+      "json_mode": true,
+      "turn": 1,
+      "http_status": 200,
+      "provider": "Together",
+      "finish_reason": "stop",
+      "native_finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 2525,
+        "completion_tokens": 119,
+        "total_tokens": 2644,
+        "cost": 0.00045441
+      },
+      "response": "{\"action\":\"read_skill\",\"skill\":\"inspect-zarr\"}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 1.6420270840171725
+    },
+    {
+      "model": "qwen/qwen3.5-9b",
+      "arm": "skills_only",
+      "providers": [
+        "together"
+      ],
+      "json_mode": true,
+      "turn": 2,
+      "http_status": 200,
+      "provider": "Together",
+      "finish_reason": "stop",
+      "native_finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 3446,
+        "completion_tokens": 74,
+        "total_tokens": 3520,
+        "cost": 0.0005982768
+      },
+      "response": "{\"action\":\"skill\",\"skill\":\"inspect-zarr\",\"args\":[\"--input\",\"/inputs/example.zarr\"]}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 1.2014797079609707
+    },
+    {
+      "model": "qwen/qwen3.5-9b",
+      "arm": "python",
+      "providers": [
+        "together"
+      ],
+      "json_mode": true,
+      "turn": 1,
+      "http_status": 200,
+      "provider": "Together",
+      "finish_reason": "stop",
+      "native_finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 452,
+        "completion_tokens": 86,
+        "total_tokens": 538,
+        "cost": 9.73566e-05
+      },
+      "response": "{\"action\":\"python\",\"code\":\"print(1 + 1)\"}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 1.0999714999925345
+    },
+    {
+      "model": "qwen/qwen3.5-9b",
+      "arm": "python",
+      "providers": [
+        "together"
+      ],
+      "json_mode": true,
+      "turn": 2,
+      "http_status": 200,
+      "provider": "Together",
+      "finish_reason": "stop",
+      "native_finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 513,
+        "completion_tokens": 48,
+        "total_tokens": 561,
+        "cost": 9.82179e-05
+      },
+      "response": "{\"action\":\"submit\"}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 0.6280254580779001
+    }
+  ],
+  "known_cost_usd": 0.010414549133999997
+}

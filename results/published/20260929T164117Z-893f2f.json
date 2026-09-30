@@ -73,6 +73,7 @@
         "skills": "sha256:e8951c32b0ea9a917ad78f7c9cc271aec830ba41768ae9d594ac3c05045f15b9"
       },
       "original_status": "execution_budget",
+      "failure_detail": null,
       "trace": [
         {
           "action": "skill",
@@ -333,6 +334,7 @@
             "model": "google/gemini-2.5-flash",
             "seconds": 5.412681166897528,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 2845,
               "completion_tokens": 869,
@@ -349,6 +351,7 @@
             "model": "google/gemini-2.5-flash",
             "seconds": 1.6104042920051143,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 3097,
               "completion_tokens": 111,
@@ -366,6 +369,7 @@
             "model": "google/gemini-2.5-flash",
             "seconds": 2.4279742090729997,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 3295,
               "completion_tokens": 267,
@@ -383,6 +387,7 @@
             "model": "google/gemini-2.5-flash",
             "seconds": 2.590529583976604,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 3493,
               "completion_tokens": 131,
@@ -400,6 +405,7 @@
             "model": "google/gemini-2.5-flash",
             "seconds": 3.21815433294978,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 3825,
               "completion_tokens": 455,
@@ -417,6 +423,7 @@
             "model": "google/gemini-2.5-flash",
             "seconds": 5.186033667065203,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 4314,
               "completion_tokens": 823,
@@ -434,6 +441,7 @@
             "model": "google/gemini-2.5-flash",
             "seconds": 4.313670375035144,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 4448,
               "completion_tokens": 521,
@@ -451,6 +459,7 @@
             "model": "google/gemini-2.5-flash",
             "seconds": 2.2845080830156803,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 4681,
               "completion_tokens": 137,
@@ -468,6 +477,7 @@
             "model": "google/gemini-2.5-flash",
             "seconds": 2.487553749931976,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 4879,
               "completion_tokens": 132,
@@ -485,6 +495,7 @@
             "model": "google/gemini-2.5-flash",
             "seconds": 1.5556356660090387,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 5172,
               "completion_tokens": 118,
@@ -502,6 +513,7 @@
             "model": "google/gemini-2.5-flash",
             "seconds": 1.4406514579895884,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 5446,
               "completion_tokens": 109,
@@ -519,6 +531,7 @@
             "model": "google/gemini-2.5-flash",
             "seconds": 2.578586500021629,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 5717,
               "completion_tokens": 249,
@@ -536,6 +549,7 @@
             "model": "google/gemini-2.5-flash",
             "seconds": 4.623312833020464,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 6016,
               "completion_tokens": 710,
@@ -553,6 +567,7 @@
             "model": "google/gemini-2.5-flash",
             "seconds": 2.3589774580905214,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 6314,
               "completion_tokens": 156,
@@ -570,6 +585,7 @@
             "model": "google/gemini-2.5-flash",
             "seconds": 2.6328891250304878,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 6867,
               "completion_tokens": 288,
@@ -587,6 +603,7 @@
             "model": "google/gemini-2.5-flash",
             "seconds": 2.413051333045587,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 7137,
               "completion_tokens": 190,
@@ -604,6 +621,7 @@
             "model": "google/gemini-2.5-flash",
             "seconds": 3.160329750040546,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 7499,
               "completion_tokens": 367,
@@ -621,6 +639,7 @@
             "model": "google/gemini-2.5-flash",
             "seconds": 0.860117792035453,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 7833,
               "completion_tokens": 43,
@@ -958,6 +977,7 @@
         "python": "sha256:fbbf5ced34f1cde42f832267039079e3e3331a2618a005af7142a45820cc6742"
       },
       "original_status": "submitted",
+      "failure_detail": null,
       "trace": [
         {
           "action": "python",
@@ -979,6 +999,7 @@
             "model": "anthropic/claude-sonnet-4.6",
             "seconds": 6.047059749951586,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 811,
               "completion_tokens": 336,
@@ -1048,6 +1069,7 @@
         "python": "sha256:fbbf5ced34f1cde42f832267039079e3e3331a2618a005af7142a45820cc6742"
       },
       "original_status": "submitted",
+      "failure_detail": null,
       "trace": [
         {
           "action": "python",
@@ -1069,6 +1091,7 @@
             "model": "google/gemini-2.5-flash",
             "seconds": 8.49058637500275,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 1197,
               "completion_tokens": 1867,
@@ -1138,6 +1161,7 @@
         "python": "sha256:fbbf5ced34f1cde42f832267039079e3e3331a2618a005af7142a45820cc6742"
       },
       "original_status": "submitted",
+      "failure_detail": null,
       "trace": [
         {
           "action": "python",
@@ -1159,6 +1183,7 @@
             "model": "google/gemini-2.5-flash",
             "seconds": 9.144131332985125,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 1145,
               "completion_tokens": 1882,
@@ -1175,6 +1200,7 @@
             "model": "google/gemini-2.5-flash",
             "seconds": 0.4754551659571007,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 2402,
               "completion_tokens": 5,
@@ -1238,6 +1264,7 @@
         "python": "sha256:fbbf5ced34f1cde42f832267039079e3e3331a2618a005af7142a45820cc6742"
       },
       "original_status": "token_budget",
+      "failure_detail": null,
       "trace": [
         {
           "action": "python",
@@ -1350,6 +1377,7 @@
             "model": "qwen/qwen3-30b-a3b-instruct-2507",
             "seconds": 10.42666683299467,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 1028,
               "completion_tokens": 834,
@@ -1366,6 +1394,7 @@
             "model": "qwen/qwen3-30b-a3b-instruct-2507",
             "seconds": 9.820649542030878,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 1951,
               "completion_tokens": 841,
@@ -1383,6 +1412,7 @@
             "model": "qwen/qwen3-30b-a3b-instruct-2507",
             "seconds": 9.358388833003119,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 2880,
               "completion_tokens": 851,
@@ -1400,6 +1430,7 @@
             "model": "qwen/qwen3-30b-a3b-instruct-2507",
             "seconds": 9.206060292082839,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 3819,
               "completion_tokens": 817,
@@ -1417,6 +1448,7 @@
             "model": "qwen/qwen3-30b-a3b-instruct-2507",
             "seconds": 9.283120709005743,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 4723,
               "completion_tokens": 814,
@@ -1434,6 +1466,7 @@
             "model": "qwen/qwen3-30b-a3b-instruct-2507",
             "seconds": 9.356105874991044,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 5625,
               "completion_tokens": 815,
@@ -1451,6 +1484,7 @@
             "model": "qwen/qwen3-30b-a3b-instruct-2507",
             "seconds": 9.35531845910009,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 6528,
               "completion_tokens": 808,
@@ -1468,6 +1502,7 @@
             "model": "qwen/qwen3-30b-a3b-instruct-2507",
             "seconds": 10.015750707942061,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 7424,
               "completion_tokens": 865,
@@ -1485,6 +1520,7 @@
             "model": "qwen/qwen3-30b-a3b-instruct-2507",
             "seconds": 9.70428470801562,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 8377,
               "completion_tokens": 865,
@@ -1502,6 +1538,7 @@
             "model": "qwen/qwen3-30b-a3b-instruct-2507",
             "seconds": 10.030272290925495,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 9330,
               "completion_tokens": 865,
@@ -1519,6 +1556,7 @@
             "model": "qwen/qwen3-30b-a3b-instruct-2507",
             "seconds": 10.190982875064947,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 10283,
               "completion_tokens": 865,
@@ -1536,6 +1574,7 @@
             "model": "qwen/qwen3-30b-a3b-instruct-2507",
             "seconds": 10.326215125038289,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 11236,
               "completion_tokens": 865,
@@ -1553,6 +1592,7 @@
             "model": "qwen/qwen3-30b-a3b-instruct-2507",
             "seconds": 12.71261233300902,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 12189,
               "completion_tokens": 865,
@@ -1570,6 +1610,7 @@
             "model": "qwen/qwen3-30b-a3b-instruct-2507",
             "seconds": 9.891648499993607,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 13142,
               "completion_tokens": 865,
@@ -1736,6 +1777,13 @@
         "python": "sha256:fbbf5ced34f1cde42f832267039079e3e3331a2618a005af7142a45820cc6742"
       },
       "original_status": "api_error",
+      "failure_detail": {
+        "category": "rate_limit",
+        "title": "Provider HTTP 429",
+        "provider": "Google",
+        "code": "429",
+        "message": "429 \u00b7 Provider returned error \u00b7 Google \u00b7 upstream_provider_shared_pool"
+      },
       "trace": [
         {
           "action": "api_error",
@@ -1804,6 +1852,7 @@
         "python": "sha256:fbbf5ced34f1cde42f832267039079e3e3331a2618a005af7142a45820cc6742"
       },
       "original_status": "submitted",
+      "failure_detail": null,
       "trace": [
         {
           "action": "protocol_error",
@@ -1839,6 +1888,7 @@
             "model": "anthropic/claude-sonnet-4.6",
             "seconds": 10.469389250036329,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 955,
               "completion_tokens": 565,
@@ -1855,6 +1905,7 @@
             "model": "anthropic/claude-sonnet-4.6",
             "seconds": 5.3843330829404294,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 1419,
               "completion_tokens": 330,
@@ -1872,6 +1923,7 @@
             "model": "anthropic/claude-sonnet-4.6",
             "seconds": 7.036754584056325,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 1757,
               "completion_tokens": 378,
@@ -1889,6 +1941,7 @@
             "model": "anthropic/claude-sonnet-4.6",
             "seconds": 2.284600415965542,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 2444,
               "completion_tokens": 8,
@@ -1985,6 +2038,13 @@
         "skills": "sha256:e8951c32b0ea9a917ad78f7c9cc271aec830ba41768ae9d594ac3c05045f15b9"
       },
       "original_status": "api_error",
+      "failure_detail": {
+        "category": "rate_limit",
+        "title": "Provider HTTP 429",
+        "provider": "Google",
+        "code": "429",
+        "message": "429 \u00b7 Provider returned error \u00b7 Google \u00b7 upstream_provider_shared_pool"
+      },
       "trace": [
         {
           "action": "api_error",
@@ -2045,6 +2105,13 @@
         "python": "sha256:fbbf5ced34f1cde42f832267039079e3e3331a2618a005af7142a45820cc6742"
       },
       "original_status": "api_error",
+      "failure_detail": {
+        "category": "rate_limit",
+        "title": "Provider HTTP 429",
+        "provider": "Google",
+        "code": "429",
+        "message": "429 \u00b7 Provider returned error \u00b7 Google \u00b7 upstream_provider_shared_pool"
+      },
       "trace": [
         {
           "action": "api_error",
@@ -2113,6 +2180,7 @@
         "python": "sha256:fbbf5ced34f1cde42f832267039079e3e3331a2618a005af7142a45820cc6742"
       },
       "original_status": "submitted",
+      "failure_detail": null,
       "trace": [
         {
           "action": "python",
@@ -2134,6 +2202,7 @@
             "model": "google/gemini-2.5-flash",
             "seconds": 9.145254958071746,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 782,
               "completion_tokens": 1870,
@@ -2150,6 +2219,7 @@
             "model": "google/gemini-2.5-flash",
             "seconds": 0.7412868749815971,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 1913,
               "completion_tokens": 5,
@@ -2213,6 +2283,7 @@
         "python": "sha256:fbbf5ced34f1cde42f832267039079e3e3331a2618a005af7142a45820cc6742"
       },
       "original_status": "submitted",
+      "failure_detail": null,
       "trace": [
         {
           "action": "python",
@@ -2234,6 +2305,7 @@
             "model": "qwen/qwen3-30b-a3b-instruct-2507",
             "seconds": 9.022926290985197,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 1077,
               "completion_tokens": 750,
@@ -2329,6 +2401,7 @@
         "skills": "sha256:e8951c32b0ea9a917ad78f7c9cc271aec830ba41768ae9d594ac3c05045f15b9"
       },
       "original_status": "submitted",
+      "failure_detail": null,
       "trace": [
         {
           "action": "python",
@@ -2397,6 +2470,7 @@
             "model": "google/gemini-2.5-flash",
             "seconds": 5.054495249991305,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 2482,
               "completion_tokens": 850,
@@ -2413,6 +2487,7 @@
             "model": "google/gemini-2.5-flash",
             "seconds": 2.9946594999637455,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 2639,
               "completion_tokens": 411,
@@ -2430,6 +2505,7 @@
             "model": "google/gemini-2.5-flash",
             "seconds": 5.031662916066125,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 2893,
               "completion_tokens": 840,
@@ -2447,6 +2523,7 @@
             "model": "google/gemini-2.5-flash",
             "seconds": 4.88050479197409,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 3468,
               "completion_tokens": 769,
@@ -2464,6 +2541,7 @@
             "model": "google/gemini-2.5-flash",
             "seconds": 4.65526274999138,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 3705,
               "completion_tokens": 964,
@@ -2481,6 +2559,7 @@
             "model": "google/gemini-2.5-flash",
             "seconds": 0.6035477499244735,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 4338,
               "completion_tokens": 5,
@@ -2657,6 +2736,7 @@
         "skills": "sha256:e8951c32b0ea9a917ad78f7c9cc271aec830ba41768ae9d594ac3c05045f15b9"
       },
       "original_status": "submitted",
+      "failure_detail": null,
       "trace": [
         {
           "action": "protocol_error",
@@ -2699,6 +2779,7 @@
             "model": "anthropic/claude-sonnet-4.6",
             "seconds": 8.392335916985758,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 2766,
               "completion_tokens": 456,
@@ -2715,6 +2796,7 @@
             "model": "anthropic/claude-sonnet-4.6",
             "seconds": 7.5051321249920875,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 3229,
               "completion_tokens": 419,
@@ -2732,6 +2814,7 @@
             "model": "anthropic/claude-sonnet-4.6",
             "seconds": 2.378130124998279,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 3699,
               "completion_tokens": 106,
@@ -2749,6 +2832,7 @@
             "model": "anthropic/claude-sonnet-4.6",
             "seconds": 9.63974849996157,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 4187,
               "completion_tokens": 354,
@@ -2766,6 +2850,7 @@
             "model": "anthropic/claude-sonnet-4.6",
             "seconds": 1.3389349998906255,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 4739,
               "completion_tokens": 8,
@@ -2856,6 +2941,7 @@
         "python": "sha256:fbbf5ced34f1cde42f832267039079e3e3331a2618a005af7142a45820cc6742"
       },
       "original_status": "submitted",
+      "failure_detail": null,
       "trace": [
         {
           "action": "python",
@@ -2877,6 +2963,7 @@
             "model": "anthropic/claude-sonnet-4.6",
             "seconds": 5.248501583002508,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 755,
               "completion_tokens": 297,
@@ -2893,6 +2980,7 @@
             "model": "anthropic/claude-sonnet-4.6",
             "seconds": 4.522877832991071,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 1126,
               "completion_tokens": 8,
@@ -2963,6 +3051,7 @@
         "python": "sha256:fbbf5ced34f1cde42f832267039079e3e3331a2618a005af7142a45820cc6742"
       },
       "original_status": "submitted",
+      "failure_detail": null,
       "trace": [
         {
           "action": "python",
@@ -2984,6 +3073,7 @@
             "model": "qwen/qwen3-30b-a3b-instruct-2507",
             "seconds": 9.021699249977246,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 1129,
               "completion_tokens": 736,
@@ -3000,6 +3090,7 @@
             "model": "qwen/qwen3-30b-a3b-instruct-2507",
             "seconds": 0.5108853750862181,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 1921,
               "completion_tokens": 5,
@@ -3094,6 +3185,7 @@
         "skills": "sha256:e8951c32b0ea9a917ad78f7c9cc271aec830ba41768ae9d594ac3c05045f15b9"
       },
       "original_status": "token_budget",
+      "failure_detail": null,
       "trace": [
         {
           "action": "python",
@@ -3178,6 +3270,7 @@
             "model": "qwen/qwen3-30b-a3b-instruct-2507",
             "seconds": 10.501857041032054,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 2699,
               "completion_tokens": 918,
@@ -3194,6 +3287,7 @@
             "model": "qwen/qwen3-30b-a3b-instruct-2507",
             "seconds": 10.488378957961686,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 3917,
               "completion_tokens": 932,
@@ -3211,6 +3305,7 @@
             "model": "qwen/qwen3-30b-a3b-instruct-2507",
             "seconds": 13.077592625049874,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 5201,
               "completion_tokens": 1124,
@@ -3228,6 +3323,7 @@
             "model": "qwen/qwen3-30b-a3b-instruct-2507",
             "seconds": 13.629146125051193,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 6442,
               "completion_tokens": 1154,
@@ -3245,6 +3341,7 @@
             "model": "qwen/qwen3-30b-a3b-instruct-2507",
             "seconds": 13.36314933304675,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 8039,
               "completion_tokens": 1110,
@@ -3262,6 +3359,7 @@
             "model": "qwen/qwen3-30b-a3b-instruct-2507",
             "seconds": 13.020873332978226,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 9567,
               "completion_tokens": 1110,
@@ -3279,6 +3377,7 @@
             "model": "qwen/qwen3-30b-a3b-instruct-2507",
             "seconds": 12.790756292059086,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 11095,
               "completion_tokens": 1110,
@@ -3296,6 +3395,7 @@
             "model": "qwen/qwen3-30b-a3b-instruct-2507",
             "seconds": 14.028427083045244,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 12623,
               "completion_tokens": 1110,
@@ -3313,6 +3413,7 @@
             "model": "qwen/qwen3-30b-a3b-instruct-2507",
             "seconds": 13.429681250010617,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 14151,
               "completion_tokens": 1110,
@@ -3330,6 +3431,7 @@
             "model": "qwen/qwen3-30b-a3b-instruct-2507",
             "seconds": 12.858416249975562,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 15679,
               "completion_tokens": 1110,
@@ -3498,6 +3600,7 @@
         "python": "sha256:fbbf5ced34f1cde42f832267039079e3e3331a2618a005af7142a45820cc6742"
       },
       "original_status": "submitted",
+      "failure_detail": null,
       "trace": [
         {
           "action": "python",
@@ -3519,6 +3622,7 @@
             "model": "google/gemini-2.5-flash",
             "seconds": 7.716898541082628,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 1107,
               "completion_tokens": 1654,
@@ -3581,6 +3685,7 @@
         "python": "sha256:fbbf5ced34f1cde42f832267039079e3e3331a2618a005af7142a45820cc6742"
       },
       "original_status": "submitted",
+      "failure_detail": null,
       "trace": [
         {
           "action": "python",
@@ -3602,6 +3707,7 @@
             "model": "anthropic/claude-sonnet-4.6",
             "seconds": 8.388529791962355,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 1026,
               "completion_tokens": 463,
@@ -3689,6 +3795,13 @@
         "skills": "sha256:e8951c32b0ea9a917ad78f7c9cc271aec830ba41768ae9d594ac3c05045f15b9"
       },
       "original_status": "api_error",
+      "failure_detail": {
+        "category": "rate_limit",
+        "title": "Provider HTTP 429",
+        "provider": "Google",
+        "code": "429",
+        "message": "429 \u00b7 Provider returned error \u00b7 Google \u00b7 upstream_provider_shared_pool"
+      },
       "trace": [
         {
           "action": "api_error",
@@ -3750,6 +3863,7 @@
         "python": "sha256:fbbf5ced34f1cde42f832267039079e3e3331a2618a005af7142a45820cc6742"
       },
       "original_status": "call_budget",
+      "failure_detail": null,
       "trace": [
         {
           "action": "protocol_error",
@@ -3771,6 +3885,7 @@
             "model": "deepseek/deepseek-v3.2",
             "seconds": 29.625496125081554,
             "finish_reason": "error",
+            "native_finish_reason": null,
             "usage": {
               "prompt_tokens": 831,
               "completion_tokens": 514,
@@ -3839,6 +3954,7 @@
         "python": "sha256:fbbf5ced34f1cde42f832267039079e3e3331a2618a005af7142a45820cc6742"
       },
       "original_status": "submitted",
+      "failure_detail": null,
       "trace": [
         {
           "action": "python",
@@ -3888,6 +4004,7 @@
             "model": "qwen/qwen3-30b-a3b-instruct-2507",
             "seconds": 8.780731000006199,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 768,
               "completion_tokens": 673,
@@ -3904,6 +4021,7 @@
             "model": "qwen/qwen3-30b-a3b-instruct-2507",
             "seconds": 8.913474833010696,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 1698,
               "completion_tokens": 703,
@@ -3921,6 +4039,7 @@
             "model": "qwen/qwen3-30b-a3b-instruct-2507",
             "seconds": 8.385675125056878,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 2658,
               "completion_tokens": 657,
@@ -3938,6 +4057,7 @@
             "model": "qwen/qwen3-30b-a3b-instruct-2507",
             "seconds": 7.789605166995898,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 3408,
               "completion_tokens": 629,
@@ -3955,6 +4075,7 @@
             "model": "qwen/qwen3-30b-a3b-instruct-2507",
             "seconds": 8.192617915919982,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 4130,
               "completion_tokens": 636,
@@ -3972,6 +4093,7 @@
             "model": "qwen/qwen3-30b-a3b-instruct-2507",
             "seconds": 0.5125451670028269,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 4822,
               "completion_tokens": 5,
@@ -4066,6 +4188,7 @@
         "python": "sha256:fbbf5ced34f1cde42f832267039079e3e3331a2618a005af7142a45820cc6742"
       },
       "original_status": "submitted",
+      "failure_detail": null,
       "trace": [
         {
           "action": "python",
@@ -4087,6 +4210,7 @@
             "model": "qwen/qwen3-30b-a3b-instruct-2507",
             "seconds": 9.023443209007382,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 817,
               "completion_tokens": 682,
@@ -4148,6 +4272,13 @@
         "python": "sha256:fbbf5ced34f1cde42f832267039079e3e3331a2618a005af7142a45820cc6742"
       },
       "original_status": "api_error",
+      "failure_detail": {
+        "category": "rate_limit",
+        "title": "Provider HTTP 429",
+        "provider": "Google",
+        "code": "429",
+        "message": "429 \u00b7 Provider returned error \u00b7 Google \u00b7 upstream_provider_shared_pool"
+      },
       "trace": [
         {
           "action": "api_error",
@@ -4242,6 +4373,7 @@
         "skills": "sha256:e8951c32b0ea9a917ad78f7c9cc271aec830ba41768ae9d594ac3c05045f15b9"
       },
       "original_status": "submitted",
+      "failure_detail": null,
       "trace": [
         {
           "action": "protocol_error",
@@ -4277,6 +4409,7 @@
             "model": "anthropic/claude-sonnet-4.6",
             "seconds": 10.98507845797576,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 2751,
               "completion_tokens": 424,
@@ -4293,6 +4426,7 @@
             "model": "anthropic/claude-sonnet-4.6",
             "seconds": 4.455579875037074,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 3182,
               "completion_tokens": 340,
@@ -4310,6 +4444,7 @@
             "model": "anthropic/claude-sonnet-4.6",
             "seconds": 4.754148000036366,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 3521,
               "completion_tokens": 383,
@@ -4327,6 +4462,7 @@
             "model": "anthropic/claude-sonnet-4.6",
             "seconds": 1.0292224159929901,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 3935,
               "completion_tokens": 8,

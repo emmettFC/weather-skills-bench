@@ -318,3 +318,51 @@ def test_task_budget_timeout_is_not_misclassified_as_provider_exclusion():
     assert effective_status(dict(run,solve_seconds=120),config)=='api_error'
     assert effective_status(dict(run,status='interrupted'),config)=='interrupted'
     assert run['status']=='api_error'
+
+
+def test_native_tool_response_failure_is_not_provider_outage():
+    from weather_bench.report import effective_status,failure_detail
+    run={'status':'api_error','solve_seconds':2,'events':[{'action':'api_error','message':"{'message': 'Provider ended completion with error'}"}],
+         'requests':[{'provider':'Google AI Studio'}]}
+    config={'hard_request_deadline':True,'task_timeout_seconds':1200}
+    assert effective_status(run,config,'MALFORMED_FUNCTION_CALL')=='model_response_error'
+    assert effective_status(run,config,'UNEXPECTED_TOOL_CALL')=='model_response_error'
+    assert effective_status(run,config)=='api_error'  # Do not infer a cause without evidence.
+    detail=failure_detail(run,'MALFORMED_FUNCTION_CALL')
+    assert detail['category']=='model_response' and detail['code']=='MALFORMED_FUNCTION_CALL'
+    assert run['status']=='api_error'  # Historical evidence remains untouched.
+
+
+def test_failure_diagnostics_distinguish_overload_credit_check_and_server_errors():
+    import json
+    from weather_bench.report import failure_detail
+    def describe(meta,code=429):
+        run={'status':'api_error','events':[{'action':'api_error','message':json.dumps({'error':{'code':code,'message':'error','metadata':meta},'user_id':'private-account'})}]}
+        detail=failure_detail(run)
+        assert 'private-account' not in json.dumps(detail)
+        return detail
+    assert describe({'provider_error_code':'engine_overloaded','provider_name':'DeepInfra'})['category']=='overload'
+    assert describe({'provider_error_code':'RATE_LIMIT_EXCEEDED'})['category']=='rate_limit'
+    assert describe({'limit_source':'openrouter_admission_control'})['category']=='router_admission'
+    assert describe({},500)['category']=='server'
+    assert describe({'provider_error_code':'invalid_request_error'})['title']=='Provider HTTP 429'
+
+
+def test_native_finish_reason_survives_public_audit(tmp_path,monkeypatch):
+    import json
+    from weather_bench import report
+    monkeypatch.setattr(report,'ROOT',tmp_path)
+    raw=tmp_path/'results/raw/run';raw.mkdir(parents=True)
+    (raw/'000.json').write_text(json.dumps({'request':{'messages':[]},'response':{'choices':[{'native_finish_reason':'MALFORMED_FUNCTION_CALL','message':{'content':'visible','reasoning':'PRIVATE'}}]}}))
+    run={'run_id':'run','requests':[{'finish_reason':'error','usage':{}}],'events':[]}
+    audit=report.public_audit(run)
+    assert audit['model_calls'][0]['native_finish_reason']=='MALFORMED_FUNCTION_CALL'
+    assert 'PRIVATE' not in json.dumps(audit)
+
+
+def test_response_failures_remain_in_capability_denominator():
+    from weather_bench.statistics import condition_summary
+    run={'model':'m','arm':'python','status':'model_response_error','correctness':{'passed':False},
+         'usage':{'known_cost_usd':.01,'cost_complete':True,'total_tokens':100},'solve_seconds':1.,'trace':[]}
+    result=condition_summary([run],include_provider_errors=False)[0]
+    assert result['scored']==1 and result['success_rate']==0 and result['provider_errors']==0

@@ -1,0 +1,79 @@
+{
+  "generated_at": "2026-09-30T01:53:47.177351+00:00",
+  "kind": "transport-probes",
+  "runs": [
+    {
+      "model": "mistralai/ministral-3b-2512",
+      "arm": "skills_only",
+      "providers": [
+        "mistral/zdr"
+      ],
+      "json_mode": true,
+      "turn": 1,
+      "http_status": 200,
+      "provider": "Mistral",
+      "finish_reason": "stop",
+      "native_finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 2563,
+        "completion_tokens": 18,
+        "total_tokens": 2581,
+        "cost": 0.000255519
+      },
+      "response": "{\"action\": \"read_skill\", \"skill\": \"inspect-zarr\"}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 0.6149857919663191
+    },
+    {
+      "model": "mistralai/ministral-3b-2512",
+      "arm": "skills_only",
+      "providers": [
+        "mistral/zdr"
+      ],
+      "json_mode": true,
+      "turn": 2,
+      "http_status": 200,
+      "provider": "Mistral",
+      "finish_reason": "stop",
+      "native_finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 3510,
+        "completion_tokens": 30,
+        "total_tokens": 3540,
+        "cost": 0.0001248588
+      },
+      "response": "{\"action\": \"skill\", \"skill\": \"inspect-zarr\", \"args\": [\"--input\", \"/inputs/example.zarr\"]}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 0.5258223749697208
+    },
+    {
+      "model": "mistralai/ministral-3b-2512",
+      "arm": "python",
+      "providers": [
+        "mistral/zdr"
+      ],
+      "json_mode": true,
+      "turn": 1,
+      "http_status": 200,
+      "provider": "Mistral",
+      "finish_reason": "stop",
+      "native_finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 438,
+        "completion_tokens": 219,
+        "total_tokens": 657,
+        "cost": 6.5043e-05
+      },
+      "response": "{\"action\":\"python\",\"code\":\"import fsspec; import aiohttp; import os; os.environ['HTTPS_PROXY'] = 'http://proxy:port'; try: \\n    # Test HTTP access to Google Cloud Storage\\n    fs = fsspec.filesystem('gcs')\\n    fs.open('gs://storage.googleapis.com/testfile.txt', 'rb').read()\\n    print('Google Cloud Storage access verified')\\nexcept Exception as e:\\n    print(f'Google Cloud Storage error: {e}')\\n\\ntry:\\n    # Test HTTP access to Natural Earth\\n    async with aiohttp.ClientSession() as session:\\n        async with session.get('https://naturalearth.s3.amazonaws.com/ne_110m_admin_0_countries.zip') as resp:\\n            if resp.status == 200:\\n                print('Natural Earth S3 access verified')\\nexcept Exception as e:\\n    print(f'Natural Earth S3 error: {e}')\"}",
+      "transport_ok": true,
+      "action_valid": false,
+      "passed": false,
+      "seconds": 1.3200986669398844
+    }
+  ],
+  "known_cost_usd": 0.0004454208
+}

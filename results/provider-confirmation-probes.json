@@ -1,0 +1,391 @@
+{
+  "generated_at": "2026-09-30T01:27:27.259019+00:00",
+  "kind": "transport-probes",
+  "runs": [
+    {
+      "model": "anthropic/claude-fable-5.1",
+      "arm": "skills_only",
+      "providers": [
+        "anthropic"
+      ],
+      "json_mode": true,
+      "turn": 1,
+      "http_status": 200,
+      "provider": "Anthropic",
+      "finish_reason": "stop",
+      "native_finish_reason": "end_turn",
+      "usage": {
+        "prompt_tokens": 3957,
+        "completion_tokens": 26,
+        "total_tokens": 3983,
+        "cost": 0.0404613
+      },
+      "response": "{\"action\": \"read_skill\", \"skill\": \"inspect-zarr\"}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 3.726057624910027
+    },
+    {
+      "model": "anthropic/claude-fable-5.1",
+      "arm": "skills_only",
+      "providers": [
+        "anthropic"
+      ],
+      "json_mode": true,
+      "turn": 2,
+      "http_status": 200,
+      "provider": "Anthropic",
+      "finish_reason": "stop",
+      "native_finish_reason": "end_turn",
+      "usage": {
+        "prompt_tokens": 5343,
+        "completion_tokens": 45,
+        "total_tokens": 5388,
+        "cost": 0.0551232
+      },
+      "response": "{\"action\": \"skill\", \"skill\": \"inspect-zarr\", \"args\": [\"--input\", \"/inputs/example.zarr\"]}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 4.063048124895431
+    },
+    {
+      "model": "anthropic/claude-fable-5.1",
+      "arm": "python",
+      "providers": [
+        "anthropic"
+      ],
+      "json_mode": true,
+      "turn": 1,
+      "http_status": 200,
+      "provider": "Anthropic",
+      "finish_reason": "stop",
+      "native_finish_reason": "end_turn",
+      "usage": {
+        "prompt_tokens": 713,
+        "completion_tokens": 23,
+        "total_tokens": 736,
+        "cost": 0.0081972
+      },
+      "response": "{\"action\": \"python\", \"code\": \"print(1 + 1)\"}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 10.779581582988612
+    },
+    {
+      "model": "anthropic/claude-fable-5.1",
+      "arm": "python",
+      "providers": [
+        "anthropic"
+      ],
+      "json_mode": true,
+      "turn": 2,
+      "http_status": 200,
+      "provider": "Anthropic",
+      "finish_reason": "stop",
+      "native_finish_reason": "end_turn",
+      "usage": {
+        "prompt_tokens": 791,
+        "completion_tokens": 11,
+        "total_tokens": 802,
+        "cost": 0.0083754
+      },
+      "response": "{\"action\": \"submit\"}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 13.075510125025176
+    },
+    {
+      "model": "openai/gpt-6-astra",
+      "arm": "skills_only",
+      "providers": [
+        "openai"
+      ],
+      "json_mode": true,
+      "turn": 1,
+      "http_status": 200,
+      "provider": "OpenAI",
+      "finish_reason": "stop",
+      "native_finish_reason": "completed",
+      "usage": {
+        "prompt_tokens": 2467,
+        "completion_tokens": 22,
+        "total_tokens": 2489,
+        "cost": 0.0316107
+      },
+      "response": "{\"action\": \"read_skill\", \"skill\": \"inspect-zarr\"}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 2.5005523749860004
+    },
+    {
+      "model": "openai/gpt-6-astra",
+      "arm": "skills_only",
+      "providers": [
+        "openai"
+      ],
+      "json_mode": true,
+      "turn": 2,
+      "http_status": 200,
+      "provider": "OpenAI",
+      "finish_reason": "stop",
+      "native_finish_reason": "completed",
+      "usage": {
+        "prompt_tokens": 3364,
+        "completion_tokens": 35,
+        "total_tokens": 3399,
+        "cost": 0.015301935
+      },
+      "response": "{\"action\": \"skill\", \"skill\": \"inspect-zarr\", \"args\": [\"--input\", \"/inputs/example.zarr\"]}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 2.163923375075683
+    },
+    {
+      "model": "openai/gpt-6-astra",
+      "arm": "python",
+      "providers": [
+        "openai"
+      ],
+      "json_mode": true,
+      "turn": 1,
+      "http_status": 200,
+      "provider": "OpenAI",
+      "finish_reason": "stop",
+      "native_finish_reason": "completed",
+      "usage": {
+        "prompt_tokens": 427,
+        "completion_tokens": 22,
+        "total_tokens": 449,
+        "cost": 0.0053163
+      },
+      "response": "{\"action\":\"python\",\"code\":\"print(1 + 1)\"}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 1.6897764169843867
+    },
+    {
+      "model": "openai/gpt-6-astra",
+      "arm": "python",
+      "providers": [
+        "openai"
+      ],
+      "json_mode": true,
+      "turn": 2,
+      "http_status": 200,
+      "provider": "OpenAI",
+      "finish_reason": "stop",
+      "native_finish_reason": "completed",
+      "usage": {
+        "prompt_tokens": 486,
+        "completion_tokens": 39,
+        "total_tokens": 525,
+        "cost": 0.0067419
+      },
+      "response": "{\"action\":\"submit\"}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 2.4059337079524994
+    },
+    {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "arm": "skills_only",
+      "providers": [
+        "wafer"
+      ],
+      "json_mode": true,
+      "turn": 1,
+      "http_status": 200,
+      "provider": "Wafer",
+      "finish_reason": "stop",
+      "native_finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 2553,
+        "completion_tokens": 35,
+        "total_tokens": 2588,
+        "cost": 0.000179278803
+      },
+      "response": "{\"action\":\"read_skill\",\"skill\":\"inspect-zarr\"}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 0.571612042025663
+    },
+    {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "arm": "skills_only",
+      "providers": [
+        "wafer"
+      ],
+      "json_mode": true,
+      "turn": 2,
+      "http_status": 200,
+      "provider": "Wafer",
+      "finish_reason": "stop",
+      "native_finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 3473,
+        "completion_tokens": 124,
+        "total_tokens": 3597,
+        "cost": 0.000231767019
+      },
+      "response": "{\"action\":\"skill\",\"skill\":\"inspect-zarr\",\"args\":[\"--input\",\"/inputs/example.zarr\"]}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 0.6935865000123158
+    },
+    {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "arm": "python",
+      "providers": [
+        "wafer"
+      ],
+      "json_mode": true,
+      "turn": 1,
+      "http_status": 200,
+      "provider": "Wafer",
+      "finish_reason": "stop",
+      "native_finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 458,
+        "completion_tokens": 51,
+        "total_tokens": 509,
+        "cost": 5.1642558e-05
+      },
+      "response": "{\"action\": \"python\", \"code\": \"print(1 + 1)\"}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 0.8123692920198664
+    },
+    {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "arm": "python",
+      "providers": [
+        "wafer"
+      ],
+      "json_mode": true,
+      "turn": 2,
+      "http_status": 200,
+      "provider": "Wafer",
+      "finish_reason": "stop",
+      "native_finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 516,
+        "completion_tokens": 152,
+        "total_tokens": 668,
+        "cost": 9.432126e-05
+      },
+      "response": "{\"action\": \"submit\"}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 0.9074350830633193
+    },
+    {
+      "model": "qwen/qwen3.5-9b",
+      "arm": "skills_only",
+      "providers": [
+        "deepinfra/bf16"
+      ],
+      "json_mode": true,
+      "turn": 1,
+      "http_status": 200,
+      "provider": "DeepInfra",
+      "finish_reason": "stop",
+      "native_finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 2525,
+        "completion_tokens": 91,
+        "total_tokens": 2616,
+        "cost": 0.0002634885
+      },
+      "response": "{\"action\":\"read_skill\",\"skill\":\"inspect-zarr\"}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 7.180832625017501
+    },
+    {
+      "model": "qwen/qwen3.5-9b",
+      "arm": "skills_only",
+      "providers": [
+        "deepinfra/bf16"
+      ],
+      "json_mode": true,
+      "turn": 2,
+      "http_status": 200,
+      "provider": "DeepInfra",
+      "finish_reason": "stop",
+      "native_finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 3446,
+        "completion_tokens": 96,
+        "total_tokens": 3542,
+        "cost": 0.00035541
+      },
+      "response": "{\"action\":\"skill\",\"skill\":\"inspect-zarr\",\"args\":[\"--input\",\"/inputs/example.zarr\"]}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 7.7133828330552205
+    },
+    {
+      "model": "qwen/qwen3.5-9b",
+      "arm": "python",
+      "providers": [
+        "deepinfra/bf16"
+      ],
+      "json_mode": true,
+      "turn": 1,
+      "http_status": 200,
+      "provider": "DeepInfra",
+      "finish_reason": "stop",
+      "native_finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 452,
+        "completion_tokens": 74,
+        "total_tokens": 526,
+        "cost": 5.5737e-05
+      },
+      "response": "{\"action\":\"python\",\"code\":\"print(1 + 1)\"}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 7.928102291887626
+    },
+    {
+      "model": "qwen/qwen3.5-9b",
+      "arm": "python",
+      "providers": [
+        "deepinfra/bf16"
+      ],
+      "json_mode": true,
+      "turn": 2,
+      "http_status": 200,
+      "provider": "DeepInfra",
+      "finish_reason": "stop",
+      "native_finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 513,
+        "completion_tokens": 56,
+        "total_tokens": 569,
+        "cost": 5.9103e-05
+      },
+      "response": "{\"action\":\"submit\"}",
+      "transport_ok": true,
+      "action_valid": true,
+      "passed": true,
+      "seconds": 5.737187916063704
+    }
+  ],
+  "known_cost_usd": 0.17241868313999997
+}

@@ -1,5 +1,6 @@
 """Static results and sanitized, allowlisted execution logs for human auditing."""
 import json
+import ast
 import os
 import re
 from .catalog import ROOT
@@ -13,6 +14,7 @@ MODEL_PROFILES={
     "deepseek/deepseek-v3.2":{"label":"DeepSeek V3.2","weights":"Open","category":"Large MoE"},
     "qwen/qwen3-30b-a3b-instruct-2507":{"label":"Qwen3 30B A3B","weights":"Open","category":"Compact MoE"}}
 MODEL_PROFILES.update({
+    "mistralai/ministral-3b-2512":{"label":"Ministral 3 3B","weights":"Open","category":"Small"},
     "meta-llama/llama-3.2-1b-instruct":{"label":"Llama 3.2 1B","weights":"Open","category":"Small"},
     "meta-llama/llama-3.2-3b-instruct":{"label":"Llama 3.2 3B","weights":"Open","category":"Small"},
     "anthropic/claude-fable-5.1":{"label":"Claude Fable 5.1","weights":"Closed","category":"Frontier"},
@@ -38,7 +40,7 @@ def public_text(value):
 
 
 def public_event(event):
-    result={k:event[k] for k in ("action","skill","args","returncode","seconds","turn") if k in event}
+    result={k:event[k] for k in ("action","skill","args","returncode","seconds","turn","http_status","retry_number","wait_seconds","native_finish_reason") if k in event}
     if "fields" in event:
         result["fields"]=json.loads(public_text(json.dumps(event["fields"])))
     for key in ("code","stdout","stderr","message"):
@@ -60,12 +62,14 @@ def public_event(event):
     return result
 
 
-def effective_status(run,config):
+def effective_status(run,config,native_reason=None):
     """The shared task deadline can expire during an in-flight HTTP request.
 
     Preserve the raw transport status separately; classify a measured exhaustion
     of the overall task budget as a task timeout, not a provider-only exclusion.
     """
+    if run['status']=='api_error' and native_reason in ('MALFORMED_FUNCTION_CALL','UNEXPECTED_TOOL_CALL'):
+        return 'model_response_error'
     if (config.get("hard_request_deadline") and run["status"]=="api_error"
             and run["solve_seconds"]>=config["task_timeout_seconds"]
             and any(e.get("action")=="api_error" and e.get("message")=="ReadTimeout"
@@ -79,9 +83,10 @@ def public_audit(run):
     raw_dir=ROOT/"results/raw"/run["run_id"]
     for index,request in enumerate(run.get("requests", [])):
         usage=request.get("usage") or {}
-        call={"number":index+1,"provider":request.get("provider"),
+        call={"number":request.get("turn",index+1),"provider":request.get("provider"),
               "model":request.get("resolved_model"),"seconds":request.get("seconds"),
               "finish_reason":request.get("finish_reason"),
+              "native_finish_reason":request.get("native_finish_reason"),
               "usage":{k:usage.get(k) for k in ("prompt_tokens","completion_tokens","total_tokens","cost")}}
         call["usage"]["cached_tokens"]=(usage.get("prompt_tokens_details") or {}).get("cached_tokens",0)
         call["usage"]["reasoning_tokens"]=(usage.get("completion_tokens_details") or {}).get("reasoning_tokens",0)
@@ -89,6 +94,8 @@ def public_audit(run):
         if path.exists():
             raw=json.loads(path.read_text())
             choices=raw.get("response",{}).get("choices") or []
+            if choices:
+                call['native_finish_reason']=choices[0].get('native_finish_reason',call['native_finish_reason'])
             # Visible assistant output only. Deliberately omit reasoning fields.
             content=(choices[0].get("message") or {}).get("content") if choices else None
             call["response"]=public_text(content) if isinstance(content,str) else None
@@ -104,6 +111,44 @@ def public_audit(run):
     return {"version":1,"model_calls":calls,"instructions":instructions,
             "events": [public_event(e) for e in run.get("events",[])],
             "note":(run.get("recovery",{}).get("note","")+" ")+"Recorded execution output is bounded by the runner (stdout 16,000 characters; stderr last 8,000). Visible model responses only; hidden reasoning, API envelopes, credentials and account identifiers are excluded. Model calls and execution events are separate ordered logs, not a reconstructed timestamp alignment."}
+
+
+
+def failure_detail(run,native_reason=None):
+    if run['status']=='task_timeout':
+        return {'category':'task_budget','title':'Task time limit exhausted','provider':None,'code':'task_timeout',
+                'message':'The shared task deadline was exhausted. This is a task outcome, including time spent generating responses and executing actions.'}
+    if run['status'] not in ('api_error','model_response_error'):
+        return None
+    provider=next((r.get('provider') for r in reversed(run.get('requests',[])) if r.get('provider')),None)
+    if native_reason in ('MALFORMED_FUNCTION_CALL','UNEXPECTED_TOOL_CALL'):
+        return {'category':'model_response','title':'Response format error','provider':provider,'code':native_reason,
+                'message':'Provider reported an invalid generated tool call. This is a response/protocol failure; it does not demonstrate a service outage or a weather-reasoning error.'}
+    event=next((e for e in reversed(run.get('events',[])) if e['action']=='api_error'),{})
+    message=event.get('message','');envelope={}
+    try:
+        try:envelope=json.loads(message)
+        except ValueError:envelope=ast.literal_eval(message)
+    except (ValueError,SyntaxError,TypeError):pass
+    if not isinstance(envelope,dict):envelope={}
+    error=envelope.get('error',envelope)
+    if not isinstance(error,dict):error={}
+    meta=error.get('metadata') or {}
+    if not isinstance(meta,dict):meta={}
+    code=error.get('code');provider=meta.get('provider_name') or provider
+    provider_code=meta.get('provider_error_code') or meta.get('provider_code')
+    scope=meta.get('limit_source','')
+    title='Provider error';category='provider'
+    if scope=='openrouter_admission_control':title='OpenRouter credit-check timeout';category='router_admission'
+    elif provider_code=='engine_overloaded':title='Provider capacity overload';category='overload'
+    elif provider_code=='RATE_LIMIT_EXCEEDED':title='Provider rate limit';category='rate_limit'
+    elif code==429:title='Provider HTTP 429';category='rate_limit'
+    elif message=='ReadTimeout':title='Request timeout';category='timeout'
+    elif message=='RemoteProtocolError':title='Connection/protocol failure';category='connection'
+    elif isinstance(code,int) and code>=500:title='Provider server error';category='server'
+    return {'category':category,'title':title,'provider':public_text(provider) if provider else None,
+            'code':public_text(provider_code or code or message or native_reason),
+            'message':public_event(event).get('message',public_text(message))}
 
 
 def export_dashboard():
@@ -134,17 +179,21 @@ def export_dashboard():
             runs.append({k:r[k] for k in ("run_id","case_id","model","arm","rep","status","answer","correctness","workflow","usage","solve_seconds","setup_seconds","wall_seconds","llm_seconds","execution_seconds","input_sha256","image_ids")})
             runs[-1]["original_status"]=r["status"]
             if r["run_id"] in sensitivity_runs:runs[-1]["sensitivity_audit"]=sensitivity_runs[r["run_id"]]
-            for key in ('scientific_correctness','figure','source_versions','network_events','recovery'):
+            for key in ('scientific_correctness','figure','source_versions','network_events','recovery','http_attempts','provider_retries','retry_wait_seconds','retry_of'):
                 if key in r:runs[-1][key]=r[key]
-            runs[-1]["status"]=effective_status(r,s["config"])
+            audit=public_audit(r)
+            native_reason=next((q.get('native_finish_reason') for q in reversed(audit['model_calls']) if q.get('native_finish_reason')),None)
+            runs[-1]["status"]=effective_status(r,s["config"],native_reason)
+            runs[-1]['failure_detail']=failure_detail({**r,'status':runs[-1]['status']},native_reason)
             runs[-1]["trace"]=[{"action":e["action"],"skill":e.get("skill"),"args":e.get("args"),"returncode":e.get("returncode"),"seconds":e.get("seconds",0)} for e in r["events"]]
             runs[-1]["providers"]=sorted({q["provider"] for q in r["requests"] if q.get("provider")})
-            runs[-1]["audit"]=public_audit(r)
+            runs[-1]["audit"]=audit
         studies.append({"study_id":s["study_id"],"kind":s["kind"],"started_at":s["started_at"],
                         "quality":quality if quality and s["config"].get("protocol_version")==quality["protocol_version"] else None,"health":study_health(s),"finished_at":s.get("finished_at"),"planned_runs":s["planned_runs"],"runs":runs,
                         "catalog_commit":s["catalog_commit"],"ledger":s["ledger"],
                         "resumed_from":s.get("resumed_from"),"resume_note":s.get("resume_note"),
-                        "diagnostics":{"provider_failures":len(s.get("infrastructure_runs",[])),
+                        "diagnostics":{"provider_failures":sum(r.get('status')=='api_error' for r in s.get('infrastructure_runs',[])),
+                            "archived_interruptions":sum(r.get('status')=='interrupted' for r in s.get('infrastructure_runs',[])),
                             "interruption":s.get("interruption"),"excluded_models":s.get("excluded_models",{}),
                             "supplementary_runs":len(s.get("supplementary_runs",[]))},
                         "config":{k:v for k,v in s["config"].items() if k!="model_metadata"}})
@@ -155,6 +204,9 @@ def export_dashboard():
     for path in published.glob("*.json"):
         s=json.loads(path.read_text()); available.setdefault(s["study_id"],s)
     studies=[available[k] for k in sorted(available)]
+    from .comparison import comparison_views,repair_views
+    studies+=comparison_views(studies)
+    studies+=repair_views(studies)
     from .statistics import paired_summary,condition_summary
     for s in studies:
         s["paired_statistics"]=paired_summary(s["runs"],"skills_only" if "skills_only" in s["config"]["arms"] else "skills",len(s["config"]["models"]))

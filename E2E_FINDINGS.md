@@ -1,35 +1,32 @@
 # End-to-end real-forecast study
 
-**Provisional:** Two rainfall briefs omit the negative-increment clipping rule used by the reference. A separate sensitivity audit checks direct cumulative differences without changing registered scores. Provider failures and this ambiguity prevent a defensible model ranking.
+**Complete: 30/30 recorded attempts.** Study `20260930T013445Z-a569f5`.
 
-See END_TO_END.md and results/rainfall-semantics-audit.json for the independent sensitivity check. Registered scores are unchanged.
-
-**Complete: 30/30 recorded attempts.** Study `20260929T213240Z-167f76`.
-
-5 models, 3 real-forecast end-to-end tasks, skills-only versus iterative Python, one repetition. One-shot is absent. Operator interruptions are unscored; provider errors remain in operational success rates. Matched capability tests exclude provider errors and interruptions.
+5 models, 3 real-forecast end-to-end tasks, skills-only versus No Skills (Python with execution feedback), one repetition. One-shot is absent. Operator interruptions are unscored; provider errors remain in operational success rates. Matched capability tests exclude provider errors and interruptions.
 
 | Model | Condition | Passed / scored | Median seconds | Mean tokens | USD / attempt | USD / success | Provider errors |
 |---|---|---:|---:|---:|---:|---:|---:|
-| Claude Fable 5.1 | Iterative Python | 1/3 | 65.5 | 37,654 | $0.4800 | $1.4400 | 0 |
-| Claude Fable 5.1 | Skills only | 2/3 | 74.6 | 77,959 | $0.8696 | $1.3043 | 1 |
-| DeepSeek V4.1 Flash | Iterative Python | 0/3 | 47.2 | 140,464 | $0.0232 | — | 2 |
-| DeepSeek V4.1 Flash | Skills only | 0/3 | 257.2 | 312,727 | $0.0323 | — | 1 |
-| Gemini 3.1 Flash-Lite | Iterative Python | 0/3 | 4.3 | 0 | $0.0000 | — | 3 |
-| Gemini 3.1 Flash-Lite | Skills only | 0/3 | 13.0 | 11,412 | $0.0043 | — | 3 |
-| GPT-6 Astra | Iterative Python | 0/3 | 52.9 | 31,639 | $0.2390 | — | 0 |
-| GPT-6 Astra | Skills only | 3/3 | 56.0 | 103,376 | $0.3727 | $0.3727 | 0 |
-| Qwen3.5 9B | Iterative Python | 0/3 | 57.1 | 2,182 | $0.0002 | — | 3 |
-| Qwen3.5 9B | Skills only | 0/2 | 0.5 | 0 | $0.0000 | — | 2 |
+| Claude Fable 5.1 | No Skills | 2/3 | 43.1 | 17,856 | Unknown | Unknown | 1 |
+| Claude Fable 5.1 | Skills only | 2/3 | 117.4 | 221,078 | $2.4593 | $3.6889 | 0 |
+| DeepSeek V4.1 Flash | No Skills | 3/3 | 26.7 | 50,187 | $0.0041 | $0.0041 | 0 |
+| DeepSeek V4.1 Flash | Skills only | 0/3 | 297.4 | 167,402 | Unknown | — | 2 |
+| Gemini 3.1 Flash-Lite | No Skills | 2/3 | 25.7 | 33,738 | Unknown | Unknown | 1 |
+| Gemini 3.1 Flash-Lite | Skills only | 1/3 | 150.0 | 275,645 | $0.0711 | $0.2134 | 0 |
+| GPT-6 Astra | No Skills | 1/3 | 51.4 | 17,344 | Unknown | Unknown | 2 |
+| GPT-6 Astra | Skills only | 3/3 | 100.5 | 103,241 | $0.3744 | $0.3744 | 0 |
+| Qwen3.5 9B | No Skills | 0/3 | 360.3 | 167,301 | Unknown | — | 2 |
+| Qwen3.5 9B | Skills only | 0/3 | 218.5 | 155,090 | Unknown | — | 2 |
 
-Reported study charges: **$6.0688**. Unconfirmed charges are additional; the $0.0573 reserve is a budget precaution, not billed spend. Preflight charges are recorded separately in `results/preflight-v2.json`.
+Reported study charges: **$10.0006**. Unconfirmed charges are additional; the $4.0439 reserve is a budget precaution, not billed spend. Preflight charges are recorded separately in `results/preflight-v2.json`.
 
 ## Paired comparisons
 
-| Model | Evaluable pairs | Skills-only wins | Python-only wins | Exact McNemar p | Holm-adjusted p |
+| Model | Evaluable pairs | Skills wins | No Skills wins | Exact McNemar p | Holm-adjusted p |
 |---|---:|---:|---:|---:|---:|
-| Claude Fable 5.1 | 2 | 2 | 0 | 0.5000 | 1.0000 |
-| DeepSeek V4.1 Flash | 1 | 0 | 0 | 1.0000 | 1.0000 |
-| GPT-6 Astra | 3 | 3 | 0 | 0.2500 | 1.0000 |
+| Claude Fable 5.1 | 2 | 0 | 0 | 1.0000 | 1.0000 |
+| DeepSeek V4.1 Flash | 1 | 0 | 1 | 1.0000 | 1.0000 |
+| Gemini 3.1 Flash-Lite | 2 | 0 | 1 | 1.0000 | 1.0000 |
+| GPT-6 Astra | 1 | 0 | 0 | 1.0000 | 1.0000 |
 
 These are exploratory comparisons on a small, deliberately chosen archived real-forecast task set. An insignificant difference does not establish equivalence. Interim rows have unequal coverage and should not be used to rank models.
 

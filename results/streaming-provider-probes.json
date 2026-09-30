@@ -1,0 +1,202 @@
+{
+  "runs": [
+    {
+      "model": "anthropic/claude-fable-5.1",
+      "source_run": "10a8129cb58345d1a54e7aed0845100f",
+      "kind": "stream-interface-check-no-execution",
+      "passed": true,
+      "provider": "Anthropic",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 1697,
+        "completion_tokens": 340,
+        "total_tokens": 2037,
+        "cost": 0.0336303,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.03397,
+          "upstream_inference_prompt_cost": 0.01697,
+          "upstream_inference_completions_cost": 0.017
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 21,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "error": null,
+      "seconds": 12.780426083947532
+    },
+    {
+      "model": "openai/gpt-6-astra",
+      "source_run": "05c62ccce36d40f2a2c6185c573d1a24",
+      "kind": "stream-interface-check-no-execution",
+      "passed": true,
+      "provider": "OpenAI",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 1056,
+        "completion_tokens": 74,
+        "total_tokens": 1130,
+        "cost": 0.016723575,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 1053,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0168925,
+          "upstream_inference_prompt_cost": 0.0131925,
+          "upstream_inference_completions_cost": 0.0037
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "error": null,
+      "seconds": 3.238595165894367
+    },
+    {
+      "model": "google/gemini-3.1-flash-lite",
+      "source_run": "607c542ab1804c11849017a9d21cad44",
+      "kind": "stream-interface-check-no-execution",
+      "passed": true,
+      "provider": "Google AI Studio",
+      "finish_reason": "length",
+      "usage": {
+        "prompt_tokens": 1461,
+        "completion_tokens": 1009,
+        "total_tokens": 2470,
+        "cost": 0.0018599625,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00187875,
+          "upstream_inference_prompt_cost": 0.00036525,
+          "upstream_inference_completions_cost": 0.0015135
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 182,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "error": null,
+      "seconds": 3.261216124985367
+    },
+    {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "source_run": "d58c3833f53f4595b9f2300baf8ce967",
+      "kind": "stream-interface-check-no-execution",
+      "passed": true,
+      "provider": "Wafer",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 3338,
+        "completion_tokens": 117,
+        "total_tokens": 3455,
+        "cost": 0.000411543,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0004157,
+          "upstream_inference_prompt_cost": 0.0003338,
+          "upstream_inference_completions_cost": 8.19e-05
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 98,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "error": null,
+      "seconds": 0.7799411249579862
+    },
+    {
+      "model": "qwen/qwen3.5-9b",
+      "source_run": "8a24aaaa4929414c86ab936c05b5aa64",
+      "kind": "stream-interface-check-no-execution",
+      "passed": true,
+      "provider": "Parasail",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 3295,
+        "completion_tokens": 316,
+        "total_tokens": 3611,
+        "cost": 0.000404415,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0004085,
+          "upstream_inference_prompt_cost": 0.0003295,
+          "upstream_inference_completions_cost": 7.9e-05
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 252,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "error": null,
+      "seconds": 15.583721209084615
+    },
+    {
+      "model": "mistralai/ministral-3b-2512",
+      "source_run": "651a359dd9834cc7b587490b29dd27e7",
+      "kind": "stream-interface-check-no-execution",
+      "passed": true,
+      "provider": "Mistral",
+      "finish_reason": "length",
+      "usage": {
+        "prompt_tokens": 3348,
+        "completion_tokens": 1024,
+        "total_tokens": 4372,
+        "cost": 0.000432828,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0004372,
+          "upstream_inference_prompt_cost": 0.0003348,
+          "upstream_inference_completions_cost": 0.0001024
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "error": null,
+      "seconds": 5.598019958939403
+    }
+  ]
+}

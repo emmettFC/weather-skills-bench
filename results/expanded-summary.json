@@ -153,7 +153,7 @@
       "cost_complete": true,
       "cost_per_attempt_usd": 0.0026573827500000003,
       "cost_per_success_usd": 0.00442897125,
-      "provider_errors": 2,
+      "provider_errors": 0,
       "protocol_rejections": 2,
       "runs_using_skills": 0,
       "runs_reading_guides": 0
@@ -175,7 +175,7 @@
       "cost_complete": true,
       "cost_per_attempt_usd": 0.02822492475,
       "cost_per_success_usd": 0.070562311875,
-      "provider_errors": 4,
+      "provider_errors": 0,
       "protocol_rejections": 54,
       "runs_using_skills": 9,
       "runs_reading_guides": 10
@@ -317,19 +317,19 @@
     },
     {
       "model": "google/gemini-3.1-flash-lite",
-      "pairs": 6,
-      "tasks": 6,
-      "excluded_provider_pairs": 4,
+      "pairs": 10,
+      "tasks": 10,
+      "excluded_provider_pairs": 0,
       "skills_only_wins": 2,
-      "python_only_wins": 2,
+      "python_only_wins": 4,
       "both_pass": 2,
-      "both_fail": 0,
-      "success_difference": 0.0,
+      "both_fail": 2,
+      "success_difference": -0.2,
       "task_bootstrap_95": [
-        -0.6666666666666666,
-        0.6666666666666666
+        -0.6,
+        0.3
       ],
-      "mcnemar_exact_p": 1.0,
+      "mcnemar_exact_p": 0.6875,
       "inference_note": "Exploratory; tasks are a fixed diagnostic set. Bootstrap resamples whole task effects and is omitted at degenerate boundaries. McNemar is omitted when fixtures repeat.",
       "mcnemar_holm_p": 1
     },

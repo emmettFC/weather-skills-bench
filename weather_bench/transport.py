@@ -1,7 +1,54 @@
 """Wall-clock request deadlines and conservative accounting for unconfirmed requests."""
 from contextlib import contextmanager
+import json
 import signal
 import httpx
+
+
+def stream_completion(client,body,timeout,journal):
+    """Collect one SSE response; never return a partial action for execution.
+
+    Persist partial responses on failure, including generation IDs and any usage.
+    The runner decides whether a failed transport may retry within its budgets.
+    """
+    from .health import atomic_json
+    payload={'choices':[]};choice={'index':0,'message':{'role':'assistant','content':''}}
+    done=False
+    try:
+        with client.stream('POST','https://openrouter.ai/api/v1/chat/completions',json=body,timeout=timeout) as response:
+            if response.status_code>=400:
+                response.read();response.raise_for_status()
+            if 'text/event-stream' not in response.headers.get('content-type',''):
+                response.read();return response,response.json()
+            event=[]
+            def consume(lines):
+                nonlocal done
+                if not lines:return
+                data='\n'.join(lines)
+                if data.strip()=='[DONE]':done=True;return
+                chunk=json.loads(data)
+                for key in ('id','model','provider','usage','error'):
+                    if key in chunk:payload[key]=chunk[key]
+                for c in chunk.get('choices',[]):
+                    if c.get('index',0)!=0:continue
+                    delta=c.get('delta') or {}
+                    content=delta.get('content')
+                    if isinstance(content,str):choice['message']['content']+=content
+                    for key in ('finish_reason','native_finish_reason','error'):
+                        if c.get(key) is not None:choice[key]=c[key]
+                    payload['choices']=[choice]
+            for line in response.iter_lines():
+                if not line:
+                    consume(event);event=[]
+                    if done:break
+                elif line.startswith('data:'):event.append(line[5:].lstrip())
+            if event:consume(event)
+            if not done and not payload.get('error'):
+                raise httpx.RemoteProtocolError('Completion stream ended without DONE')
+            return response,payload
+    except (httpx.HTTPError,ValueError,KeyboardInterrupt) as exc:
+        atomic_json(journal,{'request':body,'response':payload,'transport_error':type(exc).__name__,'detail':str(exc),'complete':False})
+        raise
 
 
 @contextmanager

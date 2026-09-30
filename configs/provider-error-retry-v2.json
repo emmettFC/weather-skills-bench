@@ -1,0 +1,171 @@
+{
+  "models": [
+    "anthropic/claude-fable-5.1",
+    "openai/gpt-6-astra",
+    "google/gemini-3.1-flash-lite",
+    "deepseek/deepseek-v4.1-flash",
+    "qwen/qwen3.5-9b",
+    "mistralai/ministral-3b-2512"
+  ],
+  "arms": [
+    "skills_only",
+    "python"
+  ],
+  "providers": {
+    "anthropic/claude-fable-5.1": [
+      "anthropic"
+    ],
+    "openai/gpt-6-astra": [
+      "openai"
+    ],
+    "google/gemini-3.1-flash-lite": [
+      "google-ai-studio",
+      "google-vertex/global"
+    ],
+    "deepseek/deepseek-v4.1-flash": [
+      "wafer",
+      "novita/fp8"
+    ],
+    "qwen/qwen3.5-9b": [
+      "deepinfra/bf16",
+      "parasail/bf16"
+    ],
+    "mistralai/ministral-3b-2512": [
+      "mistral/zdr"
+    ]
+  },
+  "cases": [
+    "e2e-kenya-rainfall",
+    "e2e-kenya-revision",
+    "e2e-kenya-heat"
+  ],
+  "repetitions": 1,
+  "seed": 20260929,
+  "temperature": 0,
+  "reasoning_effort": "low",
+  "max_cost_usd": 15,
+  "max_calls": 40,
+  "max_executions": 40,
+  "max_total_tokens": 350000,
+  "max_output_tokens": 8192,
+  "max_context_bytes": 220000,
+  "task_timeout_seconds": 1200,
+  "execution_timeout_seconds": 240,
+  "request_timeout_seconds": 600,
+  "allow_batch": true,
+  "protocol_version": "end-to-end-v2-transport-retry",
+  "study_label": "Provider retries \u00b7 15 attempts",
+  "hard_request_deadline": true,
+  "unknown_cost_policy": "reserve",
+  "billing_prices": {
+    "anthropic/claude-fable-5.1": {
+      "prompt": 1e-05,
+      "completion": 5e-05
+    },
+    "openai/gpt-6-astra": {
+      "prompt": 1e-05,
+      "completion": 5e-05
+    },
+    "google/gemini-3.1-flash-lite": {
+      "prompt": 2.5e-07,
+      "completion": 1.5e-06
+    },
+    "deepseek/deepseek-v4.1-flash": {
+      "prompt": 1.95e-07,
+      "completion": 7.8e-07
+    },
+    "qwen/qwen3.5-9b": {
+      "prompt": 1.0000000000000001e-07,
+      "completion": 2.5e-07
+    },
+    "mistralai/ministral-3b-2512": {
+      "prompt": 1e-07,
+      "completion": 1e-07
+    }
+  },
+  "endpoint_parameters": {},
+  "study_role": "end-to-end",
+  "json_mode": true,
+  "provider_allow_fallbacks": true,
+  "recover_model_response_errors": true,
+  "provider_retry": {
+    "max_retries_per_run": 3,
+    "max_consecutive_retries": 2,
+    "base_delay_seconds": 2,
+    "max_delay_seconds": 30,
+    "http_statuses": [
+      429,
+      500,
+      502,
+      503,
+      504
+    ],
+    "transport_errors": [
+      "ReadTimeout",
+      "RemoteProtocolError",
+      "ConnectTimeout",
+      "ConnectError",
+      "ReadError",
+      "WriteError",
+      "completion_error",
+      "server_error"
+    ]
+  },
+  "study_note": "One new isolated completed attempt per original provider-failed cell; completed retry outcomes retained. Transport uses streaming and bounded network retries. A generating Qwen request was operator-interrupted after the 300-second ceiling cut off long repeated output; its costs and trace remain archived. Unfinished cells resume with a 600-second request ceiling within the unchanged 1200-second task deadline, with DeepInfra preferred for Qwen.",
+  "provider_price_caps": {
+    "anthropic/claude-fable-5.1": {
+      "prompt": 10,
+      "completion": 50
+    },
+    "openai/gpt-6-astra": {
+      "prompt": 10,
+      "completion": 50
+    },
+    "google/gemini-3.1-flash-lite": {
+      "prompt": 0.25,
+      "completion": 1.5
+    },
+    "deepseek/deepseek-v4.1-flash": {
+      "prompt": 0.195,
+      "completion": 0.78
+    },
+    "qwen/qwen3.5-9b": {
+      "prompt": 0.1,
+      "completion": 0.25
+    },
+    "mistralai/ministral-3b-2512": {
+      "prompt": 0.1,
+      "completion": 0.1
+    }
+  },
+  "task_clarifications": {
+    "e2e-kenya-rainfall": "Precipitation preprocessing: the raw archive contains cumulative precipitation. Compute daily increments along forecast lead time and clip each negative daily increment to zero before summing the requested weeks. Use the same rule for each issue in the revision comparison. Preserve the task's stated units, date windows and weighting. Direct subtraction of cumulative weekly endpoints is not equivalent when negative increments occur.",
+    "e2e-kenya-revision": "Precipitation preprocessing: the raw archive contains cumulative precipitation. Compute daily increments along forecast lead time and clip each negative daily increment to zero before summing the requested weeks. Use the same rule for each issue in the revision comparison. Preserve the task's stated units, date windows and weighting. Direct subtraction of cumulative weekly endpoints is not equivalent when negative increments occur."
+  },
+  "output_stem": "provider-retry",
+  "retry_sources": [
+    "20260930T013445Z-a569f5",
+    "20260930T050605Z-3ebbaf"
+  ],
+  "retry_attempts": [
+    "d58c3833f53f4595b9f2300baf8ce967",
+    "8a24aaaa4929414c86ab936c05b5aa64",
+    "2af9ddff392c46b1bbc83fafec8c742b",
+    "607c542ab1804c11849017a9d21cad44",
+    "5e4e8f1f70ed476386d2b5bc85aca08d",
+    "f7d9fdd34d3d45f4a88f7e48baae8d60",
+    "10a8129cb58345d1a54e7aed0845100f",
+    "6a36f1760ecc4350950d825dfb7d7b13",
+    "05c62ccce36d40f2a2c6185c573d1a24",
+    "bd5550e635274142aa8d9dc67b3b4633",
+    "651a359dd9834cc7b587490b29dd27e7",
+    "b75a1f790a9e41699d1cb428c2175029",
+    "cb9c39997a084b979992c347bd725fd1",
+    "5713756d8689487e93d88efd1a7c1b7d",
+    "787c937639f84144871e81ea0b01d7db"
+  ],
+  "comparison_parent": "comparison-20260930T013445Z-a569f5",
+  "stream_responses": true,
+  "fresh_http_connections": true,
+  "preflight_report": "results/streaming-provider-probes.json"
+}

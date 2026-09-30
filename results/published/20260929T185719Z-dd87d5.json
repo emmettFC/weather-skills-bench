@@ -101,6 +101,7 @@
         "skills": "sha256:e8951c32b0ea9a917ad78f7c9cc271aec830ba41768ae9d594ac3c05045f15b9"
       },
       "original_status": "submitted",
+      "failure_detail": null,
       "trace": [
         {
           "action": "read_skill",
@@ -374,6 +375,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 4.581299375044182,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 4006,
               "completion_tokens": 132,
@@ -390,6 +392,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 9.520181124913506,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 11626,
               "completion_tokens": 556,
@@ -407,6 +410,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 5.96825945796445,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 12119,
               "completion_tokens": 25,
@@ -424,6 +428,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 7.372654000064358,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 13450,
               "completion_tokens": 465,
@@ -441,6 +446,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 5.571220708079636,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 16109,
               "completion_tokens": 92,
@@ -813,6 +819,7 @@
         "python": "sha256:fbbf5ced34f1cde42f832267039079e3e3331a2618a005af7142a45820cc6742"
       },
       "original_status": "submitted",
+      "failure_detail": null,
       "trace": [
         {
           "action": "python",
@@ -841,6 +848,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 18.796612249920145,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 857,
               "completion_tokens": 681,
@@ -857,6 +865,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 30.565336416941136,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 2067,
               "completion_tokens": 1043,
@@ -874,6 +883,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 5.312475333921611,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 3347,
               "completion_tokens": 208,
@@ -963,6 +973,13 @@
         "python": "sha256:fbbf5ced34f1cde42f832267039079e3e3331a2618a005af7142a45820cc6742"
       },
       "original_status": "api_error",
+      "failure_detail": {
+        "category": "router_admission",
+        "title": "OpenRouter credit-check timeout",
+        "provider": "Anthropic",
+        "code": "429",
+        "message": "429 \u00b7 OpenRouter could not verify available credits for this request in time. Retry shortly. \u00b7 openrouter_admission_control"
+      },
       "trace": [
         {
           "action": "python",
@@ -991,6 +1008,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 9.401116875000298,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 1461,
               "completion_tokens": 382,
@@ -1066,6 +1084,7 @@
         "python": "sha256:fbbf5ced34f1cde42f832267039079e3e3331a2618a005af7142a45820cc6742"
       },
       "original_status": "submitted",
+      "failure_detail": null,
       "trace": [
         {
           "action": "python",
@@ -1094,6 +1113,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 11.893762542051263,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 810,
               "completion_tokens": 452,
@@ -1110,6 +1130,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 39.82643962500151,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 1590,
               "completion_tokens": 1661,
@@ -1127,6 +1148,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 5.116400207974948,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 3022,
               "completion_tokens": 215,
@@ -1207,6 +1229,7 @@
         "python": "sha256:fbbf5ced34f1cde42f832267039079e3e3331a2618a005af7142a45820cc6742"
       },
       "original_status": "submitted",
+      "failure_detail": null,
       "trace": [
         {
           "action": "python",
@@ -1228,6 +1251,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 7.169317375053652,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 1192,
               "completion_tokens": 291,
@@ -1244,6 +1268,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 3.2006933329394087,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 1650,
               "completion_tokens": 11,
@@ -1340,6 +1365,7 @@
         "skills": "sha256:e8951c32b0ea9a917ad78f7c9cc271aec830ba41768ae9d594ac3c05045f15b9"
       },
       "original_status": "submitted",
+      "failure_detail": null,
       "trace": [
         {
           "action": "protocol_error",
@@ -1539,6 +1565,7 @@
             "model": "google/gemini-3.1-flash-lite",
             "seconds": 0.9182467909995466,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 2887,
               "completion_tokens": 128,
@@ -1555,6 +1582,7 @@
             "model": "google/gemini-3.1-flash-lite",
             "seconds": 1.2194090830162168,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 2925,
               "completion_tokens": 272,
@@ -1572,6 +1600,7 @@
             "model": "google/gemini-3.1-flash-lite",
             "seconds": 5.367791166994721,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 3121,
               "completion_tokens": 1523,
@@ -1589,6 +1618,7 @@
             "model": "google/gemini-3.1-flash-lite",
             "seconds": 5.137974124983884,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 3191,
               "completion_tokens": 1349,
@@ -1606,6 +1636,7 @@
             "model": "google/gemini-3.1-flash-lite",
             "seconds": 2.4184460000833496,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 3229,
               "completion_tokens": 544,
@@ -1623,6 +1654,7 @@
             "model": "google/gemini-3.1-flash-lite",
             "seconds": 0.903843667008914,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 3303,
               "completion_tokens": 117,
@@ -1640,6 +1672,7 @@
             "model": "google/gemini-3.1-flash-lite",
             "seconds": 2.3047409169375896,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 4311,
               "completion_tokens": 600,
@@ -1657,6 +1690,7 @@
             "model": "google/gemini-3.1-flash-lite",
             "seconds": 1.4509757079649717,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 4575,
               "completion_tokens": 282,
@@ -1674,6 +1708,7 @@
             "model": "google/gemini-3.1-flash-lite",
             "seconds": 2.9595945000182837,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 6198,
               "completion_tokens": 743,
@@ -1691,6 +1726,7 @@
             "model": "google/gemini-3.1-flash-lite",
             "seconds": 2.9179854589747265,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 7886,
               "completion_tokens": 833,
@@ -1708,6 +1744,7 @@
             "model": "google/gemini-3.1-flash-lite",
             "seconds": 2.858744667028077,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 8050,
               "completion_tokens": 556,
@@ -1725,6 +1762,7 @@
             "model": "google/gemini-3.1-flash-lite",
             "seconds": 3.0606843340210617,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 8958,
               "completion_tokens": 806,
@@ -1742,6 +1780,7 @@
             "model": "google/gemini-3.1-flash-lite",
             "seconds": 1.0867135419975966,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 9746,
               "completion_tokens": 179,
@@ -1759,6 +1798,7 @@
             "model": "google/gemini-3.1-flash-lite",
             "seconds": 2.897158582927659,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 9784,
               "completion_tokens": 246,
@@ -1776,6 +1816,7 @@
             "model": "google/gemini-3.1-flash-lite",
             "seconds": 1.4557292910758406,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 9826,
               "completion_tokens": 366,
@@ -1793,6 +1834,7 @@
             "model": "google/gemini-3.1-flash-lite",
             "seconds": 1.057504624943249,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 10784,
               "completion_tokens": 149,
@@ -1810,6 +1852,7 @@
             "model": "google/gemini-3.1-flash-lite",
             "seconds": 2.1163495830260217,
             "finish_reason": "stop",
+            "native_finish_reason": "STOP",
             "usage": {
               "prompt_tokens": 11012,
               "completion_tokens": 576,
@@ -2064,6 +2107,7 @@
         "python": "sha256:fbbf5ced34f1cde42f832267039079e3e3331a2618a005af7142a45820cc6742"
       },
       "original_status": "submitted",
+      "failure_detail": null,
       "trace": [
         {
           "action": "python",
@@ -2085,6 +2129,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 8.4203480000142,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 1072,
               "completion_tokens": 446,
@@ -2101,6 +2146,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 6.634557542041875,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 2061,
               "completion_tokens": 11,
@@ -2192,6 +2238,7 @@
         "skills": "sha256:e8951c32b0ea9a917ad78f7c9cc271aec830ba41768ae9d594ac3c05045f15b9"
       },
       "original_status": "submitted",
+      "failure_detail": null,
       "trace": [
         {
           "action": "read_skill",
@@ -2319,6 +2366,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 2.8932407499523833,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 2529,
               "completion_tokens": 159,
@@ -2335,6 +2383,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 5.968380791018717,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 7688,
               "completion_tokens": 400,
@@ -2352,6 +2401,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 3.764951957971789,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 8222,
               "completion_tokens": 62,
@@ -2369,6 +2419,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 2.301006374997087,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 8507,
               "completion_tokens": 139,
@@ -2386,6 +2437,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 2.382203874993138,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 8979,
               "completion_tokens": 36,
@@ -2403,6 +2455,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 2.1278945000376552,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 9177,
               "completion_tokens": 71,
@@ -2638,6 +2691,7 @@
         "skills": "sha256:e8951c32b0ea9a917ad78f7c9cc271aec830ba41768ae9d594ac3c05045f15b9"
       },
       "original_status": "call_budget",
+      "failure_detail": null,
       "trace": [
         {
           "action": "protocol_error",
@@ -2937,6 +2991,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 8.280188958044164,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 2669,
               "completion_tokens": 303,
@@ -2953,6 +3008,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 1.3829523340100423,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 2772,
               "completion_tokens": 57,
@@ -2970,6 +3026,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 4.622413083910942,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 2822,
               "completion_tokens": 214,
@@ -2987,6 +3044,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 1.7091340000042692,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 2872,
               "completion_tokens": 59,
@@ -3004,6 +3062,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 1.6948981250170618,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 2920,
               "completion_tokens": 37,
@@ -3021,6 +3080,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 14.032363625010476,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 3806,
               "completion_tokens": 534,
@@ -3038,6 +3098,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 3.0334488750668243,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 4099,
               "completion_tokens": 134,
@@ -3055,6 +3116,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 3.23304604110308,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 4387,
               "completion_tokens": 126,
@@ -3072,6 +3134,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 13.474138250108808,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 4680,
               "completion_tokens": 540,
@@ -3089,6 +3152,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 1.2816676249494776,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 4764,
               "completion_tokens": 26,
@@ -3106,6 +3170,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 3.086796291056089,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 6603,
               "completion_tokens": 129,
@@ -3123,6 +3188,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 2.769638416939415,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 6849,
               "completion_tokens": 110,
@@ -3140,6 +3206,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 4.834610040998086,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 7096,
               "completion_tokens": 188,
@@ -3157,6 +3224,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 2.5498813749291003,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 7343,
               "completion_tokens": 95,
@@ -3174,6 +3242,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 1.2755390000529587,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 7413,
               "completion_tokens": 30,
@@ -3191,6 +3260,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 1.837413000059314,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 8175,
               "completion_tokens": 81,
@@ -3208,6 +3278,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 1.5566317499615252,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 8424,
               "completion_tokens": 46,
@@ -3225,6 +3296,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 4.255249916925095,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 9309,
               "completion_tokens": 165,
@@ -3242,6 +3314,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 3.755544290994294,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 9519,
               "completion_tokens": 197,
@@ -3259,6 +3332,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 10.11186441697646,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 9730,
               "completion_tokens": 589,
@@ -3276,6 +3350,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 7.250735917012207,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 9963,
               "completion_tokens": 343,
@@ -3293,6 +3368,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 7.481648458982818,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 10174,
               "completion_tokens": 383,
@@ -3310,6 +3386,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 4.53612562501803,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 10370,
               "completion_tokens": 129,
@@ -3327,6 +3404,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 6.226395832956769,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 10568,
               "completion_tokens": 293,
@@ -3715,6 +3793,7 @@
         "skills": "sha256:e8951c32b0ea9a917ad78f7c9cc271aec830ba41768ae9d594ac3c05045f15b9"
       },
       "original_status": "interrupted",
+      "failure_detail": null,
       "trace": [
         {
           "action": "protocol_error",
@@ -3941,6 +4020,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 12.184282000060193,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 2489,
               "completion_tokens": 578,
@@ -3957,6 +4037,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 8.372976874932647,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 2540,
               "completion_tokens": 382,
@@ -3974,6 +4055,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 3.9240834169322625,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 2591,
               "completion_tokens": 189,
@@ -3991,6 +4073,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 1.153991000028327,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 2640,
               "completion_tokens": 41,
@@ -4008,6 +4091,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 2.5788808750221506,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 3526,
               "completion_tokens": 75,
@@ -4025,6 +4109,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 22.67205341695808,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 4512,
               "completion_tokens": 847,
@@ -4042,6 +4127,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 1.257260417100042,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 4571,
               "completion_tokens": 28,
@@ -4059,6 +4145,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 6.75051691592671,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 6153,
               "completion_tokens": 241,
@@ -4076,6 +4163,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 1.7385939169907942,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 6388,
               "completion_tokens": 61,
@@ -4093,6 +4181,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 6.426805333001539,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 7373,
               "completion_tokens": 271,
@@ -4110,6 +4199,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 23.77629650000017,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 8947,
               "completion_tokens": 866,
@@ -4127,6 +4217,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 22.36078891600482,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 9192,
               "completion_tokens": 953,
@@ -4144,6 +4235,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 2.7637156669516116,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 10032,
               "completion_tokens": 149,
@@ -4161,6 +4253,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 7.238643791992217,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 10897,
               "completion_tokens": 346,
@@ -4178,6 +4271,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 1.0619826250476763,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 11135,
               "completion_tokens": 47,
@@ -4195,6 +4289,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 10.137100708088838,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 11885,
               "completion_tokens": 455,
@@ -4212,6 +4307,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 1.6616653749952093,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 11959,
               "completion_tokens": 82,
@@ -4229,6 +4325,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 2.611614749999717,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 13567,
               "completion_tokens": 98,
@@ -4246,6 +4343,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 5.109715708065778,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 13816,
               "completion_tokens": 219,
@@ -4263,6 +4361,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 175.64402200002223,
             "finish_reason": "length",
+            "native_finish_reason": "length",
             "usage": {
               "prompt_tokens": 14462,
               "completion_tokens": 8192,
@@ -4280,6 +4379,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 1.9709431669907644,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 14496,
               "completion_tokens": 52,
@@ -4579,6 +4679,7 @@
         "skills": "sha256:e8951c32b0ea9a917ad78f7c9cc271aec830ba41768ae9d594ac3c05045f15b9"
       },
       "original_status": "submitted",
+      "failure_detail": null,
       "trace": [
         {
           "action": "protocol_error",
@@ -4692,6 +4793,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 6.53497716691345,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 3649,
               "completion_tokens": 148,
@@ -4708,6 +4810,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 5.347607042058371,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 3781,
               "completion_tokens": 86,
@@ -4725,6 +4828,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 7.444103999994695,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 8691,
               "completion_tokens": 287,
@@ -4742,6 +4846,7 @@
             "model": "anthropic/claude-fable-5.1",
             "seconds": 4.47530158306472,
             "finish_reason": "stop",
+            "native_finish_reason": "end_turn",
             "usage": {
               "prompt_tokens": 10343,
               "completion_tokens": 198,
@@ -4953,6 +5058,7 @@
         "skills": "sha256:e8951c32b0ea9a917ad78f7c9cc271aec830ba41768ae9d594ac3c05045f15b9"
       },
       "original_status": "submitted",
+      "failure_detail": null,
       "trace": [
         {
           "action": "read_skill",
@@ -5116,6 +5222,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 7.0051213330589235,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 2433,
               "completion_tokens": 512,
@@ -5132,6 +5239,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 20.083251916919835,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 8126,
               "completion_tokens": 1024,
@@ -5149,6 +5257,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 9.80340645799879,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 8700,
               "completion_tokens": 494,
@@ -5166,6 +5275,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 4.592248457949609,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 9283,
               "completion_tokens": 151,
@@ -5183,6 +5293,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 2.773394374991767,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 9792,
               "completion_tokens": 119,
@@ -5200,6 +5311,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 4.659574416000396,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 10287,
               "completion_tokens": 209,
@@ -5217,6 +5329,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 1.9457573749823496,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 10506,
               "completion_tokens": 156,
@@ -5475,6 +5588,13 @@
         "skills": "sha256:e8951c32b0ea9a917ad78f7c9cc271aec830ba41768ae9d594ac3c05045f15b9"
       },
       "original_status": "api_error",
+      "failure_detail": {
+        "category": "timeout",
+        "title": "Request timeout",
+        "provider": "DeepInfra",
+        "code": "ReadTimeout",
+        "message": "ReadTimeout"
+      },
       "trace": [
         {
           "action": "protocol_error",
@@ -5564,6 +5684,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 29.79524266696535,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 2442,
               "completion_tokens": 324,
@@ -5580,6 +5701,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 20.041702083079144,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 2494,
               "completion_tokens": 258,
@@ -5597,6 +5719,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 28.82586916605942,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 2546,
               "completion_tokens": 434,
@@ -5614,6 +5737,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 10.10318608302623,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 2598,
               "completion_tokens": 236,
@@ -5631,6 +5755,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 5.754572791978717,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 2650,
               "completion_tokens": 121,
@@ -5648,6 +5773,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 4.282741875038482,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 2702,
               "completion_tokens": 121,
@@ -5665,6 +5791,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 5.4660800830461085,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 2754,
               "completion_tokens": 161,
@@ -5682,6 +5809,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 2.1005067500518635,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 2804,
               "completion_tokens": 42,
@@ -5699,6 +5827,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 3.652914582984522,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 3690,
               "completion_tokens": 74,
@@ -5816,6 +5945,7 @@
         "python": "sha256:fbbf5ced34f1cde42f832267039079e3e3331a2618a005af7142a45820cc6742"
       },
       "original_status": "submitted",
+      "failure_detail": null,
       "trace": [
         {
           "action": "protocol_error",
@@ -5858,6 +5988,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 29.641162000014447,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 748,
               "completion_tokens": 2436,
@@ -5874,6 +6005,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 4.151744000031613,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 3175,
               "completion_tokens": 257,
@@ -5891,6 +6023,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 6.248566208989359,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 3227,
               "completion_tokens": 455,
@@ -5908,6 +6041,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 3.689278707955964,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 3852,
               "completion_tokens": 307,
@@ -6052,6 +6186,7 @@
         "skills": "sha256:e8951c32b0ea9a917ad78f7c9cc271aec830ba41768ae9d594ac3c05045f15b9"
       },
       "original_status": "submitted",
+      "failure_detail": null,
       "trace": [
         {
           "action": "read_skill",
@@ -6218,6 +6353,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 2.5390404580393806,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 2577,
               "completion_tokens": 77,
@@ -6234,6 +6370,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 2.3971771250944585,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 9770,
               "completion_tokens": 59,
@@ -6251,6 +6388,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 5.387740332982503,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 10340,
               "completion_tokens": 240,
@@ -6268,6 +6406,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 2.585579124977812,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 11677,
               "completion_tokens": 69,
@@ -6540,6 +6679,13 @@
         "skills": "sha256:e8951c32b0ea9a917ad78f7c9cc271aec830ba41768ae9d594ac3c05045f15b9"
       },
       "original_status": "api_error",
+      "failure_detail": {
+        "category": "timeout",
+        "title": "Request timeout",
+        "provider": "DeepInfra",
+        "code": "ReadTimeout",
+        "message": "ReadTimeout"
+      },
       "trace": [
         {
           "action": "protocol_error",
@@ -6685,6 +6831,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 14.226010665996,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 2486,
               "completion_tokens": 497,
@@ -6701,6 +6848,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 24.471466458053328,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 2537,
               "completion_tokens": 762,
@@ -6718,6 +6866,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 7.892820416949689,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 2588,
               "completion_tokens": 189,
@@ -6735,6 +6884,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 2.6297353329136968,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 2637,
               "completion_tokens": 49,
@@ -6752,6 +6902,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 2.8652040000306442,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 3523,
               "completion_tokens": 68,
@@ -6769,6 +6920,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 65.07343691692222,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 4029,
               "completion_tokens": 1557,
@@ -6786,6 +6938,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 1.8861388330115005,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 4109,
               "completion_tokens": 29,
@@ -6803,6 +6956,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 43.82600504090078,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 5948,
               "completion_tokens": 958,
@@ -6820,6 +6974,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 15.775669790920801,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 6151,
               "completion_tokens": 301,
@@ -6837,6 +6992,7 @@
             "model": "qwen/qwen3.5-9b",
             "seconds": 7.6998263749992475,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 6425,
               "completion_tokens": 124,
@@ -7028,6 +7184,7 @@
         "python": "sha256:fbbf5ced34f1cde42f832267039079e3e3331a2618a005af7142a45820cc6742"
       },
       "original_status": "submitted",
+      "failure_detail": null,
       "trace": [
         {
           "action": "python",
@@ -7063,6 +7220,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 2.809243749943562,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 753,
               "completion_tokens": 28,
@@ -7079,6 +7237,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 4.6837007499998435,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 842,
               "completion_tokens": 149,
@@ -7096,6 +7255,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 3.0509352500084788,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 1021,
               "completion_tokens": 135,
@@ -7113,6 +7273,7 @@
             "model": "openai/gpt-6-astra",
             "seconds": 1.5041121249087155,
             "finish_reason": "stop",
+            "native_finish_reason": "completed",
             "usage": {
               "prompt_tokens": 1212,
               "completion_tokens": 9,
@@ -7189,6 +7350,13 @@
         "python": "sha256:fbbf5ced34f1cde42f832267039079e3e3331a2618a005af7142a45820cc6742"
       },
       "original_status": "api_error",
+      "failure_detail": {
+        "category": "provider",
+        "title": "Provider error",
+        "provider": null,
+        "code": "404",
+        "message": "404 \u00b7 No endpoints found that can handle the requested parameters. To learn more about provider routing, visit: https://openrouter.ai/docs/guides/routing/provider-selection"
+      },
       "trace": [
         {
           "action": "api_error",
@@ -7257,6 +7425,7 @@
         "python": "sha256:fbbf5ced34f1cde42f832267039079e3e3331a2618a005af7142a45820cc6742"
       },
       "original_status": "submitted",
+      "failure_detail": null,
       "trace": [
         {
           "action": "protocol_error",
@@ -7306,6 +7475,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 29.642317041987553,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 1013,
               "completion_tokens": 2296,
@@ -7322,6 +7492,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 17.524656916968524,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 3095,
               "completion_tokens": 1540,
@@ -7339,6 +7510,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 31.286802374990657,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 4403,
               "completion_tokens": 3220,
@@ -7356,6 +7528,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 18.5097088329494,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 4430,
               "completion_tokens": 1533,
@@ -7373,6 +7546,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 7.963504750048742,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 4484,
               "completion_tokens": 687,
@@ -7390,6 +7564,7 @@
             "model": "deepseek/deepseek-v4.1-flash",
             "seconds": 10.72715008398518,
             "finish_reason": "stop",
+            "native_finish_reason": "stop",
             "usage": {
               "prompt_tokens": 4781,
               "completion_tokens": 719,
@@ -7474,6 +7649,13 @@
         "python": "sha256:fbbf5ced34f1cde42f832267039079e3e3331a2618a005af7142a45820cc6742"
       },
       "original_status": "api_error",
+      "failure_detail": {
+        "category": "provider",
+        "title": "Provider error",
+        "provider": null,
+        "code": "404",
+        "message": "404 \u00b7 No endpoints found that can handle the requested parameters. To learn more about provider routing, visit: https://openrouter.ai/docs/guides/routing/provider-selection"
+      },
       "trace": [
         {
           "action": "api_error",
@@ -7534,6 +7716,7 @@
         "python": "sha256:fbbf5ced34f1cde42f832267039079e3e3331a2618a005af7142a45820cc6742"
       },
       "original_status": "interrupted",
+      "failure_detail": null,
       "trace": [
         {
           "action": "interrupted",

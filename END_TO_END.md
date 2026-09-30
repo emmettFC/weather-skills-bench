@@ -98,3 +98,23 @@ Dashboard comparisons default to task outcomes, excluding provider errors and
 unscored attempts. “All scored attempts” retains provider failures in operational
 success and resource averages. All costs, including failures, remain in reported
 spend and per-run traces. Neither view pools the synthetic and real-data cohorts.
+
+## Independent provider recovery cohort
+
+`configs/end-to-end-recovery-v2.json` registers 30 new attempts before execution. It retains the five model IDs, three tasks, both conditions, scientific answers and limits. Both conditions now receive explicit JSON output mode, the same bounded retry policy, and the rainfall daily-increment clipping rule. Results remain separate from the original pilot; this is not a controlled estimate of any single infrastructure change.
+
+Small live probes passed for the selected routes. Replaying two original Gemini failures reproduced `MALFORMED_FUNCTION_CALL` without JSON mode; both passed with JSON mode, including on the original provider. Reports are in `results/provider-recovery-probes.json`, `results/provider-confirmation-probes.json`, and `results/gemini-response-replays.json`. Direct DeepSeek was rejected by the account's existing privacy policy and is excluded; that policy was not changed.
+
+DeepSeek uses Wafer then Novita; Qwen uses Parasail then DeepInfra; Gemini uses AI Studio then Vertex global. Fable and Astra keep their tested original providers. Fallback stays within the same model and explicit provider allowlist, with route price caps. Actual returned provider and usage remain in each trace.
+
+Transient HTTP 429/500/502/503/504 responses can retry at most three times per attempt, at most twice consecutively, respecting Retry-After up to a 30-second wait and the task deadline. Authentication, validation errors and ambiguous transport timeouts are not retried. Retries consume the original 40-request allowance; earlier agent actions are never reexecuted automatically. Retry waits count in solve time and all reported charges count toward spend. Unconfirmed charges remain marked unknown and receive a conservative reserve under the $15 study stop threshold. Malformed model responses receive error feedback within the normal request budget without executing their visible action.
+
+## Ministral 3B model addition
+
+`configs/end-to-end-ministral-v2.json` registers six further attempts: Ministral 3 3B on all three real-forecast cases in both conditions. It queues after the recovery batch to avoid concurrent evaluation workloads affecting timing. All per-attempt limits, prompts, preprocessing, grading and retry rules match `end-to-end-v2`. The additional batch has a $1 reported-spend stop threshold. Ministral does not support the optional reasoning-effort parameter; the runner omits unsupported parameters consistently.
+
+The checked route is `mistral/zdr`, with input/output price caps of $0.10 per million tokens. `results/ministral-provider-probes.json` retains all compatibility responses. Both conditions returned valid JSON actions. The skills probe followed the exact requested actions; the No Skills response generated unrelated code instead of the requested arithmetic check. This is retained as an instruction-following mismatch, not silently treated as a passing probe or a service failure. No returned probe code was executed.
+
+The six-model dashboard comparison links the two batches explicitly and validates matching task definitions, per-attempt budgets, protocol settings and catalog revision. Existing models and attempts cannot be replaced or duplicated by an extension. Statistics are recomputed over the six-model panel, including multiple-comparison adjustment. Individual batches remain selectable, and each combined-view run identifies its source batch. Adding a model after seeing earlier results remains exploratory; neither small parameter count nor an endpoint check establishes how well it will perform on forecasting tasks.
+
+The extension has separate queue, summary, audit and findings files (`results/ministral-queue.json`, `results/ministral-summary.json`, `results/ministral-audit.json`, `MINISTRAL_FINDINGS.md`). The queue automatically refreshes the dashboard, builds the portable HTML and audits the recorded attempts.

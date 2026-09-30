@@ -15,6 +15,7 @@ from .cases import cases, write_inputs
 from .grading import grade, workflow
 from .sandbox import Sandbox, ENABLED
 from .health import heartbeat, atomic_json
+from .reliability import provider_preferences,retry_wait,task_payload
 
 ARMS=("skills_only","skills","python","python_one_shot","docs_only")
 SKILLS_ONLY_PROMPT='''You are a weather-analysis agent using a catalog of tested skills.
@@ -173,28 +174,41 @@ def run_one(case,model,arm,rep,config,client,ledger,catalog=DEFAULT_CATALOG):
         source_versions=check_sources(case)
     max_calls=1 if arm=="python_one_shot" else config["max_calls"]
     messages=[{"role":"system","content":prompt(arm,catalog,max_calls,config["max_executions"],config.get("allow_batch",False),network=network)},
-              {"role":"user","content":json.dumps(case.public())}]
+              {"role":"user","content":json.dumps(task_payload(case,config))}]
     usage=empty_usage(); events=[]; requests=[]; status="call_budget"; execution_count=0
     actual=None; start=time.monotonic(); llm_seconds=0.; sandbox_seconds=0.; image_ids={}
     guides_read=set(); produced=set()
+    retry_count=0;consecutive_errors=0;retry_wait_seconds=0.;http_attempts=0
     setup_start=time.monotonic()
     with sandbox_type(inputs,work,skills=arm in ("skills","skills_only"),catalog=catalog,skills_only=arm=="skills_only") as sandbox:
         setup_seconds=time.monotonic()-setup_start; image_ids=sandbox.image_ids
         solve_start=time.monotonic()
+        def schedule_retry(code,error,retry_after,turn):
+            nonlocal retry_count,consecutive_errors,retry_wait_seconds
+            if turn+1>=max_calls or ledger['uncertain_cost'] or ledger['spent']+ledger.get('budget_reserve_usd',0)>=config['max_cost_usd']:
+                return False
+            delay=retry_wait(config.get('provider_retry',{}),code,error,retry_after,retry_count,consecutive_errors,
+                             config['task_timeout_seconds']-(time.monotonic()-solve_start))
+            if delay is None:return False
+            retry_count+=1;consecutive_errors+=1
+            events.append({'action':'provider_retry','message':'Retry same model request without rerunning any agent action',
+                           'http_status':code,'retry_number':retry_count,'wait_seconds':delay,'turn':turn+1})
+            before=time.monotonic();time.sleep(delay);retry_wait_seconds+=time.monotonic()-before
+            return True
         for turn in range(max_calls):
             atomic_json(ROOT/"results/checkpoints"/f"{run_id}.json", {"run_id":run_id,"case_id":case.id,"model":model,"arm":arm,"rep":rep,"usage":usage,"events":events,"requests":requests,"ledger":ledger,"image_ids":image_ids,"solve_seconds":time.monotonic()-solve_start,"llm_seconds":llm_seconds,"execution_seconds":sandbox_seconds,"setup_seconds":setup_seconds})
             if time.monotonic()-solve_start>=config["task_timeout_seconds"]:
                 status="task_timeout"; break
             if ledger["spent"]+ledger.get("budget_reserve_usd",0)>=config["max_cost_usd"]:
                 status="study_budget"; break
-            if usage["total_tokens"]>=config["max_total_tokens"]:
+            if usage["total_tokens"]+usage.get('unconfirmed_token_reserve',0)>=config["max_total_tokens"]:
                 status="token_budget"; break
             if sum(len(m["content"].encode()) for m in messages)>config["max_context_bytes"]:
                 status="context_budget"; break
             body={"model":model,"messages":messages,"max_tokens":config["max_output_tokens"],
-                  "provider":{"allow_fallbacks":False,"require_parameters":True}}
-            if config.get("providers",{}).get(model):
-                body["provider"]["only"]=config["providers"][model]
+                  "provider":provider_preferences(config,model)}
+            if config.get('json_mode'):body['response_format']={'type':'json_object'}
+            if config.get('stream_responses'):body['stream']=True
             # Apply a common, explicit reasoning setting across the pilot models.
             # Only use temperature where supported (e.g. some reasoning models reject it).
             supported=config.get("endpoint_parameters",{}).get(model,
@@ -205,15 +219,18 @@ def run_one(case,model,arm,rep,config,client,ledger,catalog=DEFAULT_CATALOG):
                 body["reasoning"]={"effort":config.get("reasoning_effort","low")}
             if "seed" in supported and config.get("send_seed",False):
                 body["seed"]=config["seed"]+rep
-            t=time.monotonic()
+            t=time.monotonic();http_attempts+=1
             try:
                 remaining=max(1,config["task_timeout_seconds"]-(time.monotonic()-solve_start))
                 from .transport import request_deadline
                 duration=min(config["request_timeout_seconds"],remaining)
                 with request_deadline(duration) if config.get("hard_request_deadline") else nullcontext():
-                    response=client.post("https://openrouter.ai/api/v1/chat/completions",json=body,timeout=duration)
-                response.raise_for_status()
-                payload=response.json()
+                    if config.get('stream_responses'):
+                        from .transport import stream_completion
+                        response,payload=stream_completion(client,body,duration,ROOT/'results/raw'/run_id/f'partial-{turn:03d}.json')
+                    else:
+                        response=client.post("https://openrouter.ai/api/v1/chat/completions",json=body,timeout=duration)
+                        response.raise_for_status();payload=response.json()
             except KeyboardInterrupt:
                 llm_seconds+=time.monotonic()-t
                 ledger["uncertain_cost"]=True; usage["cost_complete"]=False
@@ -222,15 +239,44 @@ def run_one(case,model,arm,rep,config,client,ledger,catalog=DEFAULT_CATALOG):
                 break
             except (httpx.HTTPError,ValueError) as exc:
                 llm_seconds+=time.monotonic()-t
-                # No automatic retries: an ambiguous timeout may already be billable.
+                # A retry cannot execute a partial action. Unknown charges and
+                # token use receive conservative reserves before retrying.
                 definitive=isinstance(exc,httpx.HTTPStatusError) and exc.response.status_code in (400,401,402,403,404,422,429)
-                ledger["uncertain_cost"]=not definitive; usage["cost_complete"]=definitive
                 status="api_error"
                 detail=exc.response.text[:2000] if isinstance(exc,httpx.HTTPStatusError) else type(exc).__name__
                 events.append({"action":"api_error","message":detail,"seconds":time.monotonic()-t})
+                if not isinstance(exc,httpx.HTTPStatusError):
+                    atomic_json(ROOT/'results/raw'/run_id/f'transport-{turn:03d}.json',{'request':body,'transport_error':type(exc).__name__,'detail':str(exc)})
+                rejected={}
+                if isinstance(exc,httpx.HTTPStatusError):
+                    try:rejected=exc.response.json()
+                    except ValueError:pass
+                    if not isinstance(rejected,dict):rejected={}
+                else:
+                    partial=ROOT/'results/raw'/run_id/f'partial-{turn:03d}.json'
+                    if partial.exists():rejected=json.loads(partial.read_text()).get('response',{})
+                error_usage=rejected.get('usage')
+                if isinstance(error_usage,dict):
+                    add_usage(usage,error_usage)
+                    ledger['spent']+=float(error_usage.get('cost') or 0)
+                    definitive=error_usage.get('cost') is not None
+                    requests.append({'turn':turn+1,'generation_id':rejected.get('id'),'resolved_model':rejected.get('model'),
+                                     'provider':rejected.get('provider'),'usage':error_usage,'seconds':time.monotonic()-t,
+                                     'finish_reason':'error','http_status':exc.response.status_code if isinstance(exc,httpx.HTTPStatusError) else None})
+                    atomic_json(ROOT/'results/raw'/run_id/f'{len(requests)-1:03d}.json',{'request':body,'response':rejected})
                 if not definitive:
+                    usage['cost_complete']=False
                     from .transport import reserve_unconfirmed
                     reserve_unconfirmed(ledger,config,model,run_id,body)
+                    if config.get('provider_retry',{}).get('transport_errors'):
+                        usage['unconfirmed_token_reserve']=usage.get('unconfirmed_token_reserve',0)+sum(len(m['content'].encode()) for m in body['messages'])+4096+config['max_output_tokens']
+                if isinstance(exc,httpx.HTTPStatusError):
+                    raw=ROOT/'results/raw'/run_id
+                    atomic_json(raw/f'transport-{turn:03d}.json',{'request':body,'response':rejected,'http_status':exc.response.status_code})
+                    if schedule_retry(exc.response.status_code,rejected.get('error',{}),exc.response.headers.get('Retry-After'),turn):
+                        status='call_budget';continue
+                elif schedule_retry(type(exc).__name__,{},None,turn):
+                    status='call_budget';continue
                 break
             elapsed=time.monotonic()-t; llm_seconds+=elapsed
             call_usage=payload.get("usage") or {}
@@ -238,17 +284,32 @@ def run_one(case,model,arm,rep,config,client,ledger,catalog=DEFAULT_CATALOG):
             ledger["spent"]+=float(call_usage.get("cost") or 0)
             if call_usage.get("cost") is None:
                 ledger["uncertain_cost"]=True
-            request={"generation_id":payload.get("id"),"resolved_model":payload.get("model"),
+            request={"turn":turn+1,"generation_id":payload.get("id"),"resolved_model":payload.get("model"),
                      "provider":payload.get("provider"),"usage":call_usage,"seconds":elapsed,
-                     "finish_reason":(payload.get("choices") or [{}])[0].get("finish_reason")}
+                     "finish_reason":(payload.get("choices") or [{}])[0].get("finish_reason"),
+                     "native_finish_reason":(payload.get("choices") or [{}])[0].get("native_finish_reason")}
             requests.append(request)
             # Journal raw responses immediately; API key is never serialized.
             raw=ROOT/"results"/"raw"/run_id; raw.mkdir(parents=True,exist_ok=True)
-            (raw/f"{turn:03d}.json").write_text(json.dumps({"request":body,"response":payload},indent=2))
+            (raw/f"{len(requests)-1:03d}.json").write_text(json.dumps({"request":body,"response":payload},indent=2))
             error=completion_error(payload)
             if error or not payload.get("choices"):
-                events.append({"action":"api_error","message":str(error),"seconds":elapsed})
-                status="api_error"; break
+                if call_usage.get('cost') is None and config.get('provider_retry'):
+                    from .transport import reserve_unconfirmed
+                    reserve_unconfirmed(ledger,config,model,run_id,body)
+                native=request.get('native_finish_reason')
+                status='model_response_error' if native in ('MALFORMED_FUNCTION_CALL','UNEXPECTED_TOOL_CALL') else 'api_error'
+                events.append({'action':status,'message':str(error),'native_finish_reason':native,'seconds':elapsed})
+                error_code=(error.get('code') or 'completion_error') if isinstance(error,dict) else 'completion_error'
+                if status=='api_error' and schedule_retry(error_code,error,response.headers.get('Retry-After'),turn):
+                    status='call_budget';continue
+                if status=='model_response_error' and config.get('recover_model_response_errors') and not ledger['uncertain_cost']:
+                    visible=(payload.get('choices') or [{}])[0].get('message',{}).get('content') or ''
+                    if visible:messages.append({'role':'assistant','content':visible})
+                    messages.append({'role':'user','content':'Execution observation:\n'+json.dumps({'error':'Response could not be used: '+str(native)+'. No action was executed. Return one valid JSON action object.'})})
+                    status='call_budget';continue
+                break
+            consecutive_errors=0
             message=payload["choices"][0]["message"]
             content=message.get("content") or ""
             messages.append({"role":"assistant","content":content})
@@ -336,6 +397,7 @@ def run_one(case,model,arm,rep,config,client,ledger,catalog=DEFAULT_CATALOG):
             "workflow":workflow(case,events) if arm in ("skills","skills_only") else None,
             "usage":usage,"wall_seconds":time.monotonic()-start,"solve_seconds":solve_seconds,
             "setup_seconds":setup_seconds,"llm_seconds":llm_seconds,"execution_seconds":sandbox_seconds,
+            "http_attempts":http_attempts,"provider_retries":retry_count,"retry_wait_seconds":retry_wait_seconds,
             "events":events,"requests":requests,"image_ids":image_ids,
             "input_sha256":{name:tree_hash(inputs/f"{name}.zarr") for name in case.datasets}}
     if network:
@@ -370,11 +432,17 @@ def run_study(config_path,catalog=DEFAULT_CATALOG,resume=None):
     study_id=datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")+"-"+uuid.uuid4().hex[:6]
     dest=ROOT/"results/studies"; dest.mkdir(parents=True,exist_ok=True)
     path=dest/f"{study_id}.json"
-    with heartbeat(study_id) as health, httpx.Client(headers={"Authorization":f"Bearer {key}","X-Title":"Weather Skills Benchmark"},timeout=config["request_timeout_seconds"]) as client:
+    with heartbeat(study_id) as health, httpx.Client(headers={"Authorization":f"Bearer {key}","X-Title":"Weather Skills Benchmark"},timeout=config["request_timeout_seconds"],limits=httpx.Limits(max_keepalive_connections=0) if config.get('fresh_http_connections') else httpx.Limits()) as client:
         response=client.get("https://openrouter.ai/api/v1/models"); response.raise_for_status()
         metadata={m["id"]:m for m in response.json()["data"]}
         config["model_metadata"]={m:metadata[m] for m in config["models"]}
         order=[(case,model,arm,rep) for rep in range(config["repetitions"]) for case in chosen for model in config["models"] for arm in config["arms"]]
+        retry_origins={}
+        if config.get('retry_attempts'):
+            from .retry_study import validate_retry_manifest
+            retry_origins=validate_retry_manifest(config,ROOT,pin)
+            order=[x for x in order if (x[0].id,x[1],x[2],x[3]) in retry_origins]
+            if len(order)!=len(retry_origins):raise ValueError('Retry manifest does not match configured task/model/condition cells')
         random.Random(config["seed"]).shuffle(order)
         study={"study_id":study_id,"kind":"pilot" if config["repetitions"]<3 else "study",
                "started_at":datetime.now(timezone.utc).isoformat(),"config":config,"catalog_commit":pin["catalog_commit"],
@@ -384,6 +452,16 @@ def run_study(config_path,catalog=DEFAULT_CATALOG,resume=None):
         if resume:
             previous=json.loads(Path(resume).read_text())
             transport_keys=("hard_request_deadline","unknown_cost_policy","billing_prices")
+            if config.get('retry_attempts'):
+                # Explicit provider-repair batches may revise transport for
+                # untouched cells. Completed outcomes remain immutable.
+                transport_keys+=('request_timeout_seconds','study_note')
+                interrupted=[r for r in previous['runs'] if r['status']=='interrupted']
+                previous['runs']=[r for r in previous['runs'] if r['status']!='interrupted']
+                previous['infrastructure_runs']=previous.get('infrastructure_runs',[])+interrupted
+                if previous['ledger'].get('uncertain_cost'):
+                    from .transport import reserve_unconfirmed
+                    for r in interrupted:reserve_unconfirmed(previous['ledger'],config,r['model'],r['run_id'])
             ignored=("model_metadata","providers","models","model_subset_reason","endpoint_parameters",*transport_keys)
             old={k:v for k,v in previous["config"].items() if k not in ignored}
             new={k:v for k,v in config.items() if k not in ignored}
@@ -424,6 +502,8 @@ def run_study(config_path,catalog=DEFAULT_CATALOG,resume=None):
                 study["resume_note"]="Completed and interrupted attempts retained without reruns. Transport now enforces total request deadlines; unconfirmed charges remain unknown and receive a conservative spend reserve. Prompts, task data, model routes and scoring are unchanged."
             if changed or pre_action:
                 study["resume_note"]="Substantive attempts retained. Endpoint-parameter rejections and interruptions before any model response/action are archived as infrastructure; untouched tasks are scheduled again. Scientific prompts, fixtures and grading are unchanged."
+            if config.get('retry_attempts') and interrupted:
+                study['resume_note']='Completed retry outcomes retained without reruns. The operator-interrupted transport attempt remains in the preceding study and infrastructure history, with its charges reserved. Only unfinished cells resume with revised request timing/routing; scientific prompts, task limits and grading are unchanged.'
             # Diagnostic costs from an interrupted, incomplete run stay separate.
             diagnostic_path=ROOT/"results/interruption.json"
             if diagnostic_path.exists():
@@ -441,6 +521,7 @@ def run_study(config_path,catalog=DEFAULT_CATALOG,resume=None):
             print(f"{len(study['runs'])+1}/{study['planned_runs']} {model} / {arm} / {case.id}",flush=True)
             health(active={"case_id":case.id,"model":model,"arm":arm,"rep":rep})
             run=run_one(case,model,arm,rep,config,client,study["ledger"],catalog)
+            if retry_origins:run['retry_of']=retry_origins[(case.id,model,arm,rep)]
             study["runs"].append(run)
             atomic_json(path,study)
             print(f"  {'PASS' if run['correctness']['passed'] else 'FAIL'} | {run['status']} | {run['solve_seconds']:.1f}s | ${run['usage']['known_cost_usd']:.4f} | total ${study['ledger']['spent']:.4f}",flush=True)

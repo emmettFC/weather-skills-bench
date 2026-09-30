@@ -1,0 +1,75 @@
+{
+  "models": [
+    "mistralai/ministral-3b-2512"
+  ],
+  "arms": [
+    "skills_only",
+    "python"
+  ],
+  "providers": {
+    "mistralai/ministral-3b-2512": [
+      "mistral/zdr"
+    ]
+  },
+  "cases": [
+    "e2e-kenya-rainfall",
+    "e2e-kenya-revision",
+    "e2e-kenya-heat"
+  ],
+  "repetitions": 1,
+  "seed": 20260929,
+  "temperature": 0,
+  "reasoning_effort": "low",
+  "max_cost_usd": 1,
+  "max_calls": 40,
+  "max_executions": 40,
+  "max_total_tokens": 350000,
+  "max_output_tokens": 8192,
+  "max_context_bytes": 220000,
+  "task_timeout_seconds": 1200,
+  "execution_timeout_seconds": 240,
+  "request_timeout_seconds": 120,
+  "allow_batch": true,
+  "protocol_version": "end-to-end-v2",
+  "study_label": "Ministral 3B \u00b7 real forecasts",
+  "hard_request_deadline": true,
+  "unknown_cost_policy": "reserve",
+  "billing_prices": {
+    "mistralai/ministral-3b-2512": {
+      "prompt": 1e-07,
+      "completion": 1e-07
+    }
+  },
+  "endpoint_parameters": {},
+  "study_role": "end-to-end",
+  "json_mode": true,
+  "provider_allow_fallbacks": true,
+  "recover_model_response_errors": true,
+  "provider_retry": {
+    "max_retries_per_run": 3,
+    "max_consecutive_retries": 2,
+    "base_delay_seconds": 2,
+    "max_delay_seconds": 30,
+    "http_statuses": [
+      429,
+      500,
+      502,
+      503,
+      504
+    ]
+  },
+  "study_note": "Six additional attempts with Ministral 3 3B. Same cases, preprocessing, prompts, per-attempt budgets, grading and retry policy as the recovery cohort. The model does not support a reasoning-effort parameter. API compatibility probe returned valid actions in both conditions; the No Skills response did not follow the requested exact probe action and is retained.",
+  "provider_price_caps": {
+    "mistralai/ministral-3b-2512": {
+      "prompt": 0.1,
+      "completion": 0.1
+    }
+  },
+  "task_clarifications": {
+    "e2e-kenya-rainfall": "Precipitation preprocessing: the raw archive contains cumulative precipitation. Compute daily increments along forecast lead time and clip each negative daily increment to zero before summing the requested weeks. Use the same rule for each issue in the revision comparison. Preserve the task's stated units, date windows and weighting. Direct subtraction of cumulative weekly endpoints is not equivalent when negative increments occur.",
+    "e2e-kenya-revision": "Precipitation preprocessing: the raw archive contains cumulative precipitation. Compute daily increments along forecast lead time and clip each negative daily increment to zero before summing the requested weeks. Use the same rule for each issue in the revision comparison. Preserve the task's stated units, date windows and weighting. Direct subtraction of cumulative weekly endpoints is not equivalent when negative increments occur."
+  },
+  "output_stem": "ministral",
+  "extends_study": "20260930T013445Z-a569f5",
+  "preflight_report": "results/ministral-provider-probes.json"
+}

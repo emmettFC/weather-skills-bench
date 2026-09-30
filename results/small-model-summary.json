@@ -1,75 +1,128 @@
 {
   "study_id": "20260929T214800Z-fd1ee0",
-  "state": "Running",
-  "recorded_attempts": 10,
+  "state": "Complete",
+  "recorded_attempts": 40,
   "planned_attempts": 40,
   "condition_statistics": [
     {
       "model": "meta-llama/llama-3.2-1b-instruct",
-      "arm": "skills_only",
-      "recorded": 2,
-      "scored": 2,
+      "arm": "python",
+      "recorded": 10,
+      "scored": 10,
       "passed": 0,
       "success_rate": 0.0,
       "wilson_95": [
         0,
-        0.6576197724933469
+        0.2775327998628892
       ],
-      "median_seconds": 17.06980110448785,
-      "mean_tokens": 74436,
-      "known_cost_usd": 0.0042857991,
+      "median_seconds": 178.43024968804093,
+      "mean_tokens": 65795.7,
+      "known_cost_usd": 0.03621745413,
+      "cost_complete": false,
+      "cost_per_attempt_usd": null,
+      "cost_per_success_usd": null,
+      "provider_errors": 8,
+      "protocol_rejections": 52,
+      "runs_using_skills": 0,
+      "runs_reading_guides": 0
+    },
+    {
+      "model": "meta-llama/llama-3.2-1b-instruct",
+      "arm": "skills_only",
+      "recorded": 10,
+      "scored": 10,
+      "passed": 0,
+      "success_rate": 0.0,
+      "wilson_95": [
+        0,
+        0.2775327998628892
+      ],
+      "median_seconds": 17.90788593754405,
+      "mean_tokens": 77905.3,
+      "known_cost_usd": 0.02254720347,
       "cost_complete": true,
-      "cost_per_attempt_usd": 0.00214289955,
+      "cost_per_attempt_usd": 0.002254720347,
       "cost_per_success_usd": null,
       "provider_errors": 0,
-      "protocol_rejections": 48,
+      "protocol_rejections": 240,
       "runs_using_skills": 0,
       "runs_reading_guides": 0
     },
     {
       "model": "meta-llama/llama-3.2-3b-instruct",
       "arm": "python",
-      "recorded": 4,
-      "scored": 4,
+      "recorded": 10,
+      "scored": 10,
       "passed": 0,
       "success_rate": 0.0,
       "wilson_95": [
         0,
-        0.4898908364545973
+        0.2775327998628892
       ],
-      "median_seconds": 38.854852312477306,
-      "mean_tokens": 87208.75,
-      "known_cost_usd": 0.024731916758999998,
+      "median_seconds": 38.1495361039415,
+      "mean_tokens": 110112.3,
+      "known_cost_usd": 0.077432434695,
       "cost_complete": true,
-      "cost_per_attempt_usd": 0.0061829791897499995,
+      "cost_per_attempt_usd": 0.0077432434695,
       "cost_per_success_usd": null,
       "provider_errors": 1,
-      "protocol_rejections": 56,
+      "protocol_rejections": 159,
       "runs_using_skills": 0,
       "runs_reading_guides": 0
     },
     {
       "model": "meta-llama/llama-3.2-3b-instruct",
       "arm": "skills_only",
-      "recorded": 4,
-      "scored": 4,
+      "recorded": 10,
+      "scored": 10,
       "passed": 0,
       "success_rate": 0.0,
       "wilson_95": [
         0,
-        0.4898908364545973
+        0.2775327998628892
       ],
-      "median_seconds": 14.217833458562382,
-      "mean_tokens": 164351,
-      "known_cost_usd": 0.045301822038,
+      "median_seconds": 14.731014604505617,
+      "mean_tokens": 192854.8,
+      "known_cost_usd": 0.12287615947200001,
       "cost_complete": true,
-      "cost_per_attempt_usd": 0.0113254555095,
+      "cost_per_attempt_usd": 0.0122876159472,
       "cost_per_success_usd": null,
       "provider_errors": 0,
-      "protocol_rejections": 69,
-      "runs_using_skills": 2,
-      "runs_reading_guides": 2
+      "protocol_rejections": 138,
+      "runs_using_skills": 7,
+      "runs_reading_guides": 7
     }
   ],
-  "paired_statistics": []
+  "paired_statistics": [
+    {
+      "model": "meta-llama/llama-3.2-1b-instruct",
+      "pairs": 2,
+      "tasks": 2,
+      "excluded_provider_pairs": 8,
+      "skills_only_wins": 0,
+      "python_only_wins": 0,
+      "both_pass": 0,
+      "both_fail": 2,
+      "success_difference": 0.0,
+      "task_bootstrap_95": null,
+      "mcnemar_exact_p": 1.0,
+      "inference_note": "Exploratory; tasks are a fixed diagnostic set. Bootstrap resamples whole task effects and is omitted at degenerate boundaries. McNemar is omitted when fixtures repeat.",
+      "mcnemar_holm_p": 1
+    },
+    {
+      "model": "meta-llama/llama-3.2-3b-instruct",
+      "pairs": 9,
+      "tasks": 9,
+      "excluded_provider_pairs": 1,
+      "skills_only_wins": 0,
+      "python_only_wins": 0,
+      "both_pass": 0,
+      "both_fail": 9,
+      "success_difference": 0.0,
+      "task_bootstrap_95": null,
+      "mcnemar_exact_p": 1.0,
+      "inference_note": "Exploratory; tasks are a fixed diagnostic set. Bootstrap resamples whole task effects and is omitted at degenerate boundaries. McNemar is omitted when fixtures repeat.",
+      "mcnemar_holm_p": 1
+    }
+  ]
 }

@@ -1,0 +1,53 @@
+{
+  "study_id": "20260930T050605Z-3ebbaf",
+  "state": "Complete",
+  "recorded_attempts": 6,
+  "planned_attempts": 6,
+  "condition_statistics": [
+    {
+      "model": "mistralai/ministral-3b-2512",
+      "arm": "python",
+      "recorded": 3,
+      "scored": 3,
+      "passed": 0,
+      "success_rate": 0.0,
+      "wilson_95": [
+        5.551115123125783e-17,
+        0.5614970317550454
+      ],
+      "median_seconds": 29.88027120893821,
+      "mean_tokens": 23457.666666666668,
+      "known_cost_usd": 0.0025812468,
+      "cost_complete": false,
+      "cost_per_attempt_usd": null,
+      "cost_per_success_usd": null,
+      "provider_errors": 2,
+      "protocol_rejections": 0,
+      "runs_using_skills": 0,
+      "runs_reading_guides": 0
+    },
+    {
+      "model": "mistralai/ministral-3b-2512",
+      "arm": "skills_only",
+      "recorded": 3,
+      "scored": 3,
+      "passed": 0,
+      "success_rate": 0.0,
+      "wilson_95": [
+        5.551115123125783e-17,
+        0.5614970317550454
+      ],
+      "median_seconds": 36.125243333983235,
+      "mean_tokens": 297095,
+      "known_cost_usd": 0.014332329,
+      "cost_complete": false,
+      "cost_per_attempt_usd": null,
+      "cost_per_success_usd": null,
+      "provider_errors": 3,
+      "protocol_rejections": 22,
+      "runs_using_skills": 3,
+      "runs_reading_guides": 3
+    }
+  ],
+  "paired_statistics": []
+}

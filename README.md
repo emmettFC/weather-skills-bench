@@ -2,7 +2,7 @@
 
 The new [end-to-end suite](END_TO_END.md) starts agents with no weather data: they retrieve real archived ECMWF forecasts, produce outlooks and comparison figures, and cite sources. It is a separate experiment from the ten synthetic diagnostic cases. Three independent real-data answers are verified; two catalog reference workflows pass, and the heat workflow exposes a retained Celsius-weighting defect.
 
-The real-data pilot is documented in [E2E_FINDINGS.md](E2E_FINDINGS.md), with a rainfall-scoring ambiguity described in [END_TO_END.md](END_TO_END.md). Treat it as provisional. The completed six-model synthetic comparison is documented in [EXPANDED_FINDINGS.md](EXPANDED_FINDINGS.md). Its progress and per-condition summaries are regenerated from recorded attempts; the original pilot remains in [FINDINGS.md](FINDINGS.md).
+The latest real-data cohort is documented in [E2E_FINDINGS.md](E2E_FINDINGS.md). The independent recovery configuration adds tested provider routes, JSON output and bounded retries; [END_TO_END.md](END_TO_END.md) explains the original pilot’s rainfall ambiguity and the shared clarification in the new cohort. The completed six-model synthetic comparison is documented in [EXPANDED_FINDINGS.md](EXPANDED_FINDINGS.md). Its progress and per-condition summaries are regenerated from recorded attempts; the original pilot remains in [FINDINGS.md](FINDINGS.md).
 
 For a long-running study, a separate local monitor refreshes the static dashboard and findings after every saved attempt, then audits the completed dataset:
 
@@ -53,19 +53,24 @@ The landing page has clickable success/time/token/cost bars, Wilson intervals, c
 
 ## Run models
 
+For the provider failure diagnosis, live compatibility checks and recovery settings, see [PROVIDER_RECOVERY.md](PROVIDER_RECOVERY.md).
+
 Put `OPENROUTER_API_KEY=...` in `.env` (the existing lowercase `openrouter_api_key` is also accepted). The key stays in the host HTTP client and never enters an evaluation container, dashboard, or Git.
 
 ```bash
-.venv/bin/python -m weather_bench.cli study --config configs/expanded-v2.json
+# Real forecast tasks with tested routes and bounded transport recovery
+.venv/bin/python -m weather_bench.cli study --config configs/end-to-end-recovery-v2.json
+# Synthetic diagnostic comparison
+# .venv/bin/python -m weather_bench.cli study --config configs/expanded-v2.json
 .venv/bin/python -m weather_bench.cli export
 open docs/index.html
 ```
 
 An interrupted study can be resumed with `study --config configs/pilot.json --resume results/studies/<id>.json`. Completed runs are retained in a new auditable study record. Changing a provider on resume is allowed only if that model had no agent actions; all of its conditions are then rescheduled together, with rejected requests preserved separately. This is not a best-of-N retry mechanism.
 
-Edit the configuration to choose models, explicit providers, cases, repetitions, and resource limits. The completed 27-attempt pilot uses Sonnet 4.6 and Gemini 2.5 Flash (closed weights), plus Qwen3 30B A3B Instruct (open weights). DeepSeek V3.2 partial results are retained separately because of repeated provider failures. `configs/pilot.json` retains the original four-model matrix; `configs/pilot-available.json` runs the completed three-model design. Read [FINDINGS.md](FINDINGS.md) before interpreting the results and [MODEL_REVIEW.md](MODEL_REVIEW.md) for the researched model selection and deployment considerations. Provider availability and prices are resolved at study start. No automatic provider or model fallback is allowed.
+Edit the configuration to choose models, explicit providers, cases, repetitions, and resource limits. The completed 27-attempt pilot uses Sonnet 4.6 and Gemini 2.5 Flash (closed weights), plus Qwen3 30B A3B Instruct (open weights). DeepSeek V3.2 partial results are retained separately because of repeated provider failures. `configs/pilot.json` retains the original four-model matrix; `configs/pilot-available.json` runs the completed three-model design. Read [FINDINGS.md](FINDINGS.md) before interpreting the results and [MODEL_REVIEW.md](MODEL_REVIEW.md) for the researched model selection and deployment considerations. Provider availability and prices are resolved at study start. Historical configurations disable automatic fallback. The recovery configuration allows fallback within the same model and an explicit tested provider allowlist; model substitution is never automatic.
 
-`max_cost_usd` is a **stop threshold on reported spend**, checked before each request. One in-flight request can cross it. An ambiguous API failure or missing usage cost stops the study to avoid untracked spending. Definite request rejections are recorded as infrastructure errors. A provider-side account/key cap is needed for a strict monetary ceiling. Raw responses and full run records are local under ignored `results/raw/` and `results/studies/`; shareable records are preserved under `results/published/` and exported to `docs/data.json` and `docs/data.js`. Exporting from a fresh clone preserves those published records.
+`max_cost_usd` is a **stop threshold on reported spend**, checked before each request. One in-flight request can cross it. Without an explicit reserve policy, an ambiguous API failure or missing usage cost stops the study. Configurations using `unknown_cost_policy: reserve` retain incomplete billing and a conservative allowance against the spend threshold; they never count an unknown charge as zero. Definite request rejections are recorded as infrastructure errors. A provider-side account/key cap is needed for a strict monetary ceiling. Raw responses and full run records are local under ignored `results/raw/` and `results/studies/`; shareable records are preserved under `results/published/` and exported to `docs/data.json` and `docs/data.js`. Exporting from a fresh clone preserves those published records.
 
 `configs/full.json` includes all ten cases and three repetitions (360 planned runs). Add `docs_only` for a fourth condition. `configs/full-batched.json` enables sequential action batching for a separate experiment, reducing unnecessary model round trips while preserving individual invocation traces. The existing pilot did not use batching. Keep the one-shot arm separate from the matched-budget skills-versus-Python comparison. Do not merge experiments with different prompts, budgets, or provider routes into one ranking.
 
