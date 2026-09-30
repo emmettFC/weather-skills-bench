@@ -87,16 +87,17 @@
     "init": "2023-09-25",
     "units": "degree_Celsius",
     "archive": "real-source-s2s-iod.zip",
-    "archive_sha256": "33d40d95cd6ec3fe32f30741958e14b5fe5da8c78d9e340b875c41c1621c719c",
+    "archive_sha256": "d29ab2ce15969fc7f0b6fdb53dba51678b1deef9e64f01fd40544f73aa91b90a",
     "member": "s2s-iod.nc",
-    "member_sha256": "e37568454b219a57688bf32a071362ff0a153269bf5f3efb09bed3a625d6329a",
-    "bytes": 2118310,
+    "member_sha256": "66c679e1d0fcd946e9f91e2c5daf4f84a362fbe558f2ddfdf90ee0411dfebcd4",
+    "bytes": 2138110,
     "dimensions": {
-      "member": 100,
+      "member": 101,
       "lead_time": 14,
       "lat": 21,
       "lon": 47
     },
+    "members": "control (0) plus 100 perturbed",
     "note": "Credentialed source. The sandbox holds no ECDS key and does not allowlist ecmwf.int, so this case runs outside the container until that is resolved."
   }
 }
