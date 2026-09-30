@@ -24,7 +24,37 @@ def weeks(date):
     daily=np.maximum(a[:,1:]-a[:,:-1],0)
     return daily[:,:42].reshape(101,6,7,len(lat),len(lon)).sum(axis=2),lat,lon
 
-if CASE_ID=='iod-dmi-observed':
+if CASE_ID=='iod-persistence-skill':
+    import pandas as pd
+    OISST='https://psl.noaa.gov/thredds/dodsC/Datasets/noaa.oisst.v2.highres/sst.day.mean.{y}.nc'
+    def window(y):
+        f=xr.open_dataset(OISST.format(y=y))['sst'].sel(lat=slice(-10.5,10.5),lon=slice(49.5,110.5))
+        t=pd.DatetimeIndex(f['time'].values)
+        return f.isel(time=np.flatnonzero(((t.month==9)&(t.day>=24))|((t.month==10)&(t.day<=8)))).load()
+    def box(a,la0,la1,lo0,lo1):
+        s=a.sel(lat=slice(la0,la1),lon=slice(lo0,lo1))
+        return s.weighted(np.cos(np.radians(s['lat']))).mean(('lat','lon'))
+    clim=xr.concat([window(y) for y in range(2013,2023)],dim='time').mean('time')
+    anom=window(2023).sortby('time')-clim
+    dmi=box(anom,-10,10,50,70)-box(anom,-10,0,90,110)
+    verify=pd.date_range('2023-10-02','2023-10-08')
+    obs=dmi.sel(time=verify).values
+    early=float(dmi.sel(time='2023-09-24').values);late=float(dmi.sel(time='2023-10-01').values)
+    ee=(early-obs);el=(late-obs)
+    days=[str(d.date()) for d in verify]
+    answer={'dates':days,'observed_dmi_c':obs.tolist(),'forecast_early_c':early,'forecast_late_c':late,
+            'error_early_c':ee.tolist(),'error_late_c':el.tolist(),
+            'bias_early_c':float(ee.mean()),'bias_late_c':float(el.mean()),
+            'units':'degree_Celsius','source_url':OISST.format(y=2023),'figure':'/work/outlook.png'}
+    fig,ax=plt.subplots(figsize=(8,4.5))
+    ax.plot(days,obs,marker='o',label='Observed dipole index')
+    ax.plot(days,ee,marker='s',label='Error, issued 24 Sep')
+    ax.plot(days,el,marker='^',label='Error, issued 1 Oct')
+    ax.axhline(0,color='#444',lw=.8);ax.set_ylabel('degree_Celsius')
+    ax.set_title('Dipole persistence forecasts against observations, 2-8 October 2023')
+    ax.legend(frameon=False);ax.tick_params(axis='x',rotation=45);fig.tight_layout()
+    fig.savefig('/work/outlook.png',dpi=120)
+elif CASE_ID=='iod-dmi-observed':
     import pandas as pd
     OISST='https://psl.noaa.gov/thredds/dodsC/Datasets/noaa.oisst.v2.highres/sst.day.mean.{y}.nc'
     OCT=[(10,d) for d in range(1,8)]

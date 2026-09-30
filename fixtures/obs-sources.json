@@ -54,5 +54,32 @@
       "lat": 84,
       "lon": 244
     }
+  },
+  "oisst-iod-skill": {
+    "url": "https://psl.noaa.gov/thredds/dodsC/Datasets/noaa.oisst.v2.highres/sst.day.mean.{y}.nc",
+    "years": [
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023
+    ],
+    "window": "24 September to 8 October",
+    "archive": "real-source-oisst-iod-skill.zip",
+    "archive_sha256": "a28ea73d669ef90dc50ede6acd68f4349f1210ca0410b1a190e05d69611e0201",
+    "member": "oisst-iod-skill.nc",
+    "member_sha256": "c090912a85ba355c135f52aff591713505d9d0826e79ff46971ebeda35f19513",
+    "bytes": 5222711,
+    "dimensions": {
+      "time": 165,
+      "lat": 84,
+      "lon": 244
+    }
   }
 }
