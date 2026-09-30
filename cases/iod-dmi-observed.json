@@ -1,0 +1,55 @@
+{
+  "id": "iod-dmi-observed",
+  "title": "Observed Indian Ocean Dipole from OISST: build a climatology and index a real event",
+  "brief": "Compute the observed Indian Ocean Dipole Mode Index for each day from 2023-10-01 to 2023-10-07 inclusive, from NOAA OISST v2.1 daily sea-surface temperature. No weather data is preloaded. Build a per-grid-cell climatology as the arithmetic mean of sea-surface temperature over 1-7 October in each of the ten years 2013 to 2022, seventy daily fields in total. Subtract that climatology field from each target day's field to obtain anomalies. Average the anomalies over a western box 50-70E, 10S-10N and an eastern box 90-110E, 10S-0, using cosine-latitude weights and equal longitude weights. A grid cell belongs to a box when its centre lies inside the closed interval. The analysis is missing over land, so exclude missing cells and renormalise the weights over the valid cells of each box. Return dates (YYYY-MM-DD) in ascending order, west_c, east_c, dmi_c=west_c-east_c, units='degree_Celsius', and source_url citing the exact raw store(s) used.",
+  "inputs": [],
+  "answer_schema": {
+    "dates": {
+      "type": "array",
+      "length": 7,
+      "items": {
+        "type": "string"
+      }
+    },
+    "west_c": {
+      "type": "array",
+      "length": 7,
+      "items": {
+        "type": "number"
+      }
+    },
+    "east_c": {
+      "type": "array",
+      "length": 7,
+      "items": {
+        "type": "number"
+      }
+    },
+    "dmi_c": {
+      "type": "array",
+      "length": 7,
+      "items": {
+        "type": "number"
+      }
+    },
+    "units": {
+      "type": "string"
+    },
+    "source_url": {
+      "type": "string"
+    }
+  },
+  "fixture_kind": "real archived forecasts; live source retrieval",
+  "tolerance": {
+    "atol": 0.0001,
+    "rtol": 1e-06
+  },
+  "suite": "end-to-end-v1",
+  "source_notes": [
+    "NOAA PSL OPeNDAP: https://psl.noaa.gov/thredds/dodsC/Datasets/noaa.oisst.v2.highres/sst.day.mean.YYYY.nc, one file per calendar year.",
+    "OISST v2.1 is a 0.25 degree global analysis. Grid centres sit at 0.125 + 0.25k, so neither 10.0 degrees latitude nor 50.0 degrees longitude is a cell centre. Resolving the closed intervals to centres gives an 80 by 80 western box and a 40 by 80 eastern box.",
+    "The eastern box covers Sumatra and Java. 399 of its 3200 cells are land and carry no value.",
+    "2023 fields are final. OISST revises for about two weeks after real time, so these dates are stable.",
+    "October 2023 was a strong positive dipole event. An index near zero indicates the anomaly step was skipped."
+  ]
+}

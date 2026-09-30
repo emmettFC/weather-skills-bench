@@ -6,7 +6,9 @@ import socketserver
 import time
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
-ALLOWED={'storage.googleapis.com','naturalearth.s3.amazonaws.com'}
+# psl.noaa.gov serves NOAA OISST over OPeNDAP and is the only source for the
+# observational cases. Read-only public data, same standing as the others.
+ALLOWED={'storage.googleapis.com','naturalearth.s3.amazonaws.com','psl.noaa.gov'}
 
 class Handler(BaseHTTPRequestHandler):
     def log_message(self,*args):pass

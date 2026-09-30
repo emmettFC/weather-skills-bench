@@ -207,7 +207,8 @@ def cases():
         [step("weighted","aggregate-temporal","irregular","weekly","--period","weekly"),step("totals","convert-to-totals","weekly","answer","--variable","precip")],
         {"dates":("answer","@dates:time"),"totals_mm":("answer","precip"),"units":"mm"},[("weighted","totals")],("deaccumulate",)))
     from .e2e_cases import e2e_cases
-    return result + e2e_cases()
+    from .obs_cases import obs_cases
+    return result + e2e_cases() + obs_cases()
 
 
 def write_inputs(case, destination):

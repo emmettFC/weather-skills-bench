@@ -1,0 +1,58 @@
+{
+  "oisst-iod": {
+    "url": "https://psl.noaa.gov/thredds/dodsC/Datasets/noaa.oisst.v2.highres/sst.day.mean.{y}.nc",
+    "years": [
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023
+    ],
+    "days": [
+      [
+        10,
+        1
+      ],
+      [
+        10,
+        2
+      ],
+      [
+        10,
+        3
+      ],
+      [
+        10,
+        4
+      ],
+      [
+        10,
+        5
+      ],
+      [
+        10,
+        6
+      ],
+      [
+        10,
+        7
+      ]
+    ],
+    "archive": "real-source-oisst-iod.zip",
+    "archive_sha256": "5cbbd993283ff1e342b27eead035c9292d0241ea4664f5ccd6b49ba8ea4d15df",
+    "member": "oisst-iod.nc",
+    "member_sha256": "15cce5458c7a9aa58fe7574f3e0fa3c1db7e90fce5ac78dc5fc2edf16e7034bf",
+    "bytes": 2445682,
+    "dimensions": {
+      "time": 77,
+      "lat": 84,
+      "lon": 244
+    }
+  }
+}
