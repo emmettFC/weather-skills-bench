@@ -53,7 +53,8 @@ def answers():
     return {'dates':[str(d.date()) for d in stamps[target][order]],
             'west_c':west[order].tolist(),'east_c':east[order].tolist(),
             'dmi_c':(west-east)[order].tolist(),'units':'degree_Celsius',
-            'source_url':'https://psl.noaa.gov/thredds/dodsC/Datasets/noaa.oisst.v2.highres/sst.day.mean.2023.nc'}
+            'source_url':'https://psl.noaa.gov/thredds/dodsC/Datasets/noaa.oisst.v2.highres/sst.day.mean.2023.nc',
+            'figure':'/work/outlook.png'}
 
 
 if __name__=='__main__':

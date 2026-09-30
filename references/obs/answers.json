@@ -37,6 +37,7 @@
       1.1857897403877817
     ],
     "units": "degree_Celsius",
-    "source_url": "https://psl.noaa.gov/thredds/dodsC/Datasets/noaa.oisst.v2.highres/sst.day.mean.2023.nc"
+    "source_url": "https://psl.noaa.gov/thredds/dodsC/Datasets/noaa.oisst.v2.highres/sst.day.mean.2023.nc",
+    "figure": "/work/outlook.png"
   }
 }

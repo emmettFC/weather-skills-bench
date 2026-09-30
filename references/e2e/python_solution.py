@@ -24,7 +24,32 @@ def weeks(date):
     daily=np.maximum(a[:,1:]-a[:,:-1],0)
     return daily[:,:42].reshape(101,6,7,len(lat),len(lon)).sum(axis=2),lat,lon
 
-if CASE_ID=='e2e-kenya-heat':
+if CASE_ID=='iod-dmi-observed':
+    import pandas as pd
+    OISST='https://psl.noaa.gov/thredds/dodsC/Datasets/noaa.oisst.v2.highres/sst.day.mean.{y}.nc'
+    OCT=[(10,d) for d in range(1,8)]
+    def october(year):
+        f=xr.open_dataset(OISST.format(y=year))['sst'].sel(lat=slice(-10.5,10.5),lon=slice(49.5,110.5))
+        t=pd.DatetimeIndex(f['time'].values)
+        return f.isel(time=np.flatnonzero([(m,d) in OCT for m,d in zip(t.month,t.day)])).load()
+    def box(anom,lat0,lat1,lon0,lon1):
+        sub=anom.sel(lat=slice(lat0,lat1),lon=slice(lon0,lon1))
+        return sub.weighted(np.cos(np.radians(sub['lat']))).mean(('lat','lon'))
+    clim=xr.concat([october(y) for y in range(2013,2023)],dim='time').mean('time')
+    target=october(2023).sortby('time');anom=target-clim
+    west=box(anom,-10,10,50,70);east=box(anom,-10,0,90,110);dmi=west-east
+    days=[str(pd.Timestamp(t).date()) for t in target['time'].values]
+    answer={'dates':days,'west_c':[float(x) for x in west.values],'east_c':[float(x) for x in east.values],
+            'dmi_c':[float(x) for x in dmi.values],'units':'degree_Celsius',
+            'source_url':OISST.format(y=2023),'figure':'/work/outlook.png'}
+    fig,ax=plt.subplots(figsize=(8,4.5))
+    for series,label in ((west,'West 50-70E, 10S-10N'),(east,'East 90-110E, 10S-0'),(dmi,'Dipole index')):
+        ax.plot(days,series.values,marker='o',label=label)
+    ax.axhline(0,color='#444',lw=.8);ax.set_ylabel('SST anomaly (degree_Celsius)')
+    ax.set_title('Observed Indian Ocean Dipole, 1-7 October 2023')
+    ax.legend(frameon=False);ax.tick_params(axis='x',rotation=45);fig.tight_layout()
+    fig.savefig('/work/outlook.png',dpi=120)
+elif CASE_ID=='e2e-kenya-heat':
     a,lat,lon=read('2026-09-27','daily_vars','t2m')
     peak=regional(a[:,:14]-273.15,lat).reshape(101,2,7).max(axis=-1)
     answer={'period_end_lead_days':[7,14],'median_peak_c':np.median(peak,axis=0).tolist(),'peak_spread_c':np.std(peak,axis=0,ddof=1).tolist(),

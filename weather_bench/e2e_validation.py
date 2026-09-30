@@ -10,16 +10,37 @@ import urllib.parse
 import urllib.request
 from .catalog import ROOT,verify
 from .e2e_cases import e2e_cases
+from .obs_cases import obs_cases
 from .e2e_sandbox import E2ESandbox
 from .grading import grade,workflow
+
+
+def check_frozen_sources(case,urls):
+    """Sources that are not object stores are pinned by archive hash instead.
+
+    A GCS object carries a generation, so a Kenya source can be checked against
+    the live listing. OPeNDAP offers no equivalent, so the guard here is that the
+    frozen ground truth is intact. The dates those cases use are final, which is
+    what makes the weaker check acceptable."""
+    path=ROOT/'fixtures/obs-sources.json'
+    if not path.exists():return {}
+    import hashlib
+    checked={}
+    for name,entry in json.loads(path.read_text()).items():
+        if not any(u.startswith(entry['url'].split('{')[0]) for u in urls):continue
+        archive=ROOT/'fixtures'/entry['archive']
+        if hashlib.sha256(archive.read_bytes()).hexdigest()!=entry['archive_sha256']:
+            raise ValueError(f'Frozen source changed: {name}; do not score against stale ground truth')
+        checked[name]={'objects':1,'version_match':True,'pinned_by':'archive_sha256'}
+    return checked
 
 
 def check_sources(case):
     manifest=json.loads((ROOT/'fixtures/real-sources.json').read_text())
     urls={v for k,v in case.expected.items() if k.endswith('source_url')}
-    checked={}
+    checked=dict(check_frozen_sources(case,urls))
     for name,entry in manifest.items():
-        if entry['url'] not in urls:continue
+        if entry['url'] not in urls or name in checked:continue
         prefix=entry['url'].split('/kenya-forecasting-data/',1)[1]+'/'
         endpoint='https://storage.googleapis.com/storage/v1/b/kenya-forecasting-data/o?'+urllib.parse.urlencode({'prefix':prefix,'maxResults':1000})
         listing=json.load(urllib.request.urlopen(endpoint,timeout=60))
@@ -65,7 +86,7 @@ def fields(case):
 
 def run():
     pin=verify();reports=[]
-    for case in e2e_cases():
+    for case in e2e_cases()+obs_cases():
         check_sources(case)
         folder=ROOT/'.build/e2e-reference'/case.id
         if folder.exists():shutil.rmtree(folder)
@@ -111,7 +132,7 @@ def run():
     path=ROOT/'results/reference.json';old=json.loads(path.read_text());ids={r['case_id'] for r in reports}
     old['runs']=[r for r in old['runs'] if r['case_id'] not in ids]+reports
     path.write_text(json.dumps(old,indent=2,allow_nan=False)+'\n')
-    for case in e2e_cases():(ROOT/'cases'/f'{case.id}.json').write_text(json.dumps(case.public(),indent=2)+'\n')
+    for case in e2e_cases()+obs_cases():(ROOT/'cases'/f'{case.id}.json').write_text(json.dumps(case.public(),indent=2)+'\n')
     return output
 
 if __name__=='__main__':run()

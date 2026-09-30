@@ -38,7 +38,9 @@ def obs_cases():
       step('eastbox','clip-region','anomaly','eastbox','--bbox',EAST),
       step('west','summarize-dim','westbox','west','--dim','latitude','--dim','longitude','--method','mean','--lat-weighted'),
       step('east','summarize-dim','eastbox','east','--dim','latitude','--dim','longitude','--method','mean','--lat-weighted'),
-      step('dmi','difference','west east','dmi')]
+      step('dmi','difference','west east','dmi'),
+      step('figure','plot-timeseries','west east dmi','outlook.png','--variable','sst',
+           '--title','Observed Indian Ocean Dipole, 1-7 October 2023 (degree_Celsius)')]
     brief=("Compute the observed Indian Ocean Dipole Mode Index for each day from 2023-10-01 to 2023-10-07 inclusive, "
       "from NOAA OISST v2.1 daily sea-surface temperature. No weather data is preloaded. Build a per-grid-cell "
       "climatology as the arithmetic mean of sea-surface temperature over 1-7 October in each of the ten years 2013 "
@@ -47,13 +49,15 @@ def obs_cases():
       "cosine-latitude weights and equal longitude weights. A grid cell belongs to a box when its centre lies inside "
       "the closed interval. The analysis is missing over land, so exclude missing cells and renormalise the weights "
       "over the valid cells of each box. Return dates (YYYY-MM-DD) in ascending order, west_c, east_c, "
-      "dmi_c=west_c-east_c, units='degree_Celsius', and source_url citing the exact raw store(s) used.")
+      "dmi_c=west_c-east_c, units='degree_Celsius', source_url citing the exact raw store(s) used, and figure. "
+      "Write a labelled figure to /work/outlook.png showing the western anomaly, the eastern anomaly and the "
+      "dipole index across the seven days, and return figure='/work/outlook.png'.")
     challenge=('The two boxes have different latitude extents, the eastern box is an eighth land so a mean that does '
       'not skip missing cells returns nothing, the climatology spans ten separate October weeks rather than one '
       'contiguous range, and it is a spatial field that must broadcast across the target days.')
     exports={'dates':('target','@dates:time'),'west_c':('west','sst'),'east_c':('east','sst'),
              'dmi_c':('dmi','sst'),'units':'degree_Celsius',
-             'source_url':answers['iod-dmi-observed']['source_url']}
+             'source_url':answers['iod-dmi-observed']['source_url'],'figure':'/work/outlook.png'}
     producers={n['output']:n['id'] for n in recipe}
     edges=[(producers[p],n['id']) for n in recipe for p in n['inputs'] if p in producers]
     return [Case('iod-dmi-observed',

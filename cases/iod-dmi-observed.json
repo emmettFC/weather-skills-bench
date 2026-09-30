@@ -1,7 +1,7 @@
 {
   "id": "iod-dmi-observed",
   "title": "Observed Indian Ocean Dipole from OISST: build a climatology and index a real event",
-  "brief": "Compute the observed Indian Ocean Dipole Mode Index for each day from 2023-10-01 to 2023-10-07 inclusive, from NOAA OISST v2.1 daily sea-surface temperature. No weather data is preloaded. Build a per-grid-cell climatology as the arithmetic mean of sea-surface temperature over 1-7 October in each of the ten years 2013 to 2022, seventy daily fields in total. Subtract that climatology field from each target day's field to obtain anomalies. Average the anomalies over a western box 50-70E, 10S-10N and an eastern box 90-110E, 10S-0, using cosine-latitude weights and equal longitude weights. A grid cell belongs to a box when its centre lies inside the closed interval. The analysis is missing over land, so exclude missing cells and renormalise the weights over the valid cells of each box. Return dates (YYYY-MM-DD) in ascending order, west_c, east_c, dmi_c=west_c-east_c, units='degree_Celsius', and source_url citing the exact raw store(s) used.",
+  "brief": "Compute the observed Indian Ocean Dipole Mode Index for each day from 2023-10-01 to 2023-10-07 inclusive, from NOAA OISST v2.1 daily sea-surface temperature. No weather data is preloaded. Build a per-grid-cell climatology as the arithmetic mean of sea-surface temperature over 1-7 October in each of the ten years 2013 to 2022, seventy daily fields in total. Subtract that climatology field from each target day's field to obtain anomalies. Average the anomalies over a western box 50-70E, 10S-10N and an eastern box 90-110E, 10S-0, using cosine-latitude weights and equal longitude weights. A grid cell belongs to a box when its centre lies inside the closed interval. The analysis is missing over land, so exclude missing cells and renormalise the weights over the valid cells of each box. Return dates (YYYY-MM-DD) in ascending order, west_c, east_c, dmi_c=west_c-east_c, units='degree_Celsius', source_url citing the exact raw store(s) used, and figure. Write a labelled figure to /work/outlook.png showing the western anomaly, the eastern anomaly and the dipole index across the seven days, and return figure='/work/outlook.png'.",
   "inputs": [],
   "answer_schema": {
     "dates": {
@@ -36,6 +36,9 @@
       "type": "string"
     },
     "source_url": {
+      "type": "string"
+    },
+    "figure": {
       "type": "string"
     }
   },
