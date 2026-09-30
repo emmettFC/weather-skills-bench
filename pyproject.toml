@@ -7,7 +7,9 @@ name = "weather-skills-bench"
 version = "0.1.0"
 description = "Deterministic scientific workflow benchmarks for weather agents"
 requires-python = ">=3.12,<3.13"
-dependencies = ["httpx", "python-dotenv", "numpy", "xarray", "zarr", "cftime"]
+# netCDF4 reads the frozen OISST and S2S bytes the dipole oracles restore; the
+# Kenya archive is zarr, so nothing needed a netCDF engine before those cases.
+dependencies = ["httpx", "python-dotenv", "numpy", "xarray", "zarr", "cftime", "netCDF4"]
 
 [project.scripts]
 weather-bench = "weather_bench.cli:main"

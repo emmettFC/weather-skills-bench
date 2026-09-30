@@ -1,4 +1,4 @@
-"""Reference solution for iod-dmi-observed, the code arm.
+"""Reference solution for iod-dmi-observed-skill, the code arm.
 
 One program, public sources only, no skills and no ACCORD libraries. Mirrors
 what a competent agent should write. The oracle in oracle.py is deliberately a

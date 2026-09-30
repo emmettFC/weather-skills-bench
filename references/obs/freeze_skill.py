@@ -1,7 +1,7 @@
-"""Archive the OISST fields the persistence-skill oracle reads, with SHA256.
+"""Archive the OISST fields the S2S forecast-skill oracle reads, with SHA256.
 
 A wider window than the index case: 24 September to 8 October, so one frozen
-climatology covers both issue dates and the verification week.
+climatology covers both forecast periods and the days they verify against.
 """
 import hashlib, json, zipfile
 from pathlib import Path

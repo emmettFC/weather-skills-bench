@@ -59,7 +59,7 @@ def answers():
 
 if __name__=='__main__':
     result=answers()
-    (Path(__file__).parent/'answers.json').write_text(json.dumps({'iod-dmi-observed':result},indent=2)+'\n')
+    (Path(__file__).parent/'answers.json').write_text(json.dumps({'iod-dmi-observed-skill':result},indent=2)+'\n')
     print(f"{'date':12s} {'west_c':>10s} {'east_c':>10s} {'dmi_c':>10s}")
     for d,w,e,m in zip(result['dates'],result['west_c'],result['east_c'],result['dmi_c']):
         print(f'{d:12s} {w:10.6f} {e:10.6f} {m:10.6f}')

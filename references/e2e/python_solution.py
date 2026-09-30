@@ -24,37 +24,7 @@ def weeks(date):
     daily=np.maximum(a[:,1:]-a[:,:-1],0)
     return daily[:,:42].reshape(101,6,7,len(lat),len(lon)).sum(axis=2),lat,lon
 
-if CASE_ID=='iod-persistence-skill':
-    import pandas as pd
-    OISST='https://psl.noaa.gov/thredds/dodsC/Datasets/noaa.oisst.v2.highres/sst.day.mean.{y}.nc'
-    def window(y):
-        f=xr.open_dataset(OISST.format(y=y))['sst'].sel(lat=slice(-10.5,10.5),lon=slice(49.5,110.5))
-        t=pd.DatetimeIndex(f['time'].values)
-        return f.isel(time=np.flatnonzero(((t.month==9)&(t.day>=24))|((t.month==10)&(t.day<=8)))).load()
-    def box(a,la0,la1,lo0,lo1):
-        s=a.sel(lat=slice(la0,la1),lon=slice(lo0,lo1))
-        return s.weighted(np.cos(np.radians(s['lat']))).mean(('lat','lon'))
-    clim=xr.concat([window(y) for y in range(2013,2023)],dim='time').mean('time')
-    anom=window(2023).sortby('time')-clim
-    dmi=box(anom,-10,10,50,70)-box(anom,-10,0,90,110)
-    verify=pd.date_range('2023-10-02','2023-10-08')
-    obs=dmi.sel(time=verify).values
-    early=float(dmi.sel(time='2023-09-24').values);late=float(dmi.sel(time='2023-10-01').values)
-    ee=(early-obs);el=(late-obs)
-    days=[str(d.date()) for d in verify]
-    answer={'dates':days,'observed_dmi_c':obs.tolist(),'forecast_early_c':early,'forecast_late_c':late,
-            'error_early_c':ee.tolist(),'error_late_c':el.tolist(),
-            'bias_early_c':float(ee.mean()),'bias_late_c':float(el.mean()),
-            'units':'degree_Celsius','source_url':OISST.format(y=2023),'figure':'/work/outlook.png'}
-    fig,ax=plt.subplots(figsize=(8,4.5))
-    ax.plot(days,obs,marker='o',label='Observed dipole index')
-    ax.plot(days,ee,marker='s',label='Error, issued 24 Sep')
-    ax.plot(days,el,marker='^',label='Error, issued 1 Oct')
-    ax.axhline(0,color='#444',lw=.8);ax.set_ylabel('degree_Celsius')
-    ax.set_title('Dipole persistence forecasts against observations, 2-8 October 2023')
-    ax.legend(frameon=False);ax.tick_params(axis='x',rotation=45);fig.tight_layout()
-    fig.savefig('/work/outlook.png',dpi=120)
-elif CASE_ID=='iod-dmi-observed':
+if CASE_ID=='iod-dmi-observed-skill':
     import pandas as pd
     OISST='https://psl.noaa.gov/thredds/dodsC/Datasets/noaa.oisst.v2.highres/sst.day.mean.{y}.nc'
     OCT=[(10,d) for d in range(1,8)]
@@ -79,6 +49,83 @@ elif CASE_ID=='iod-dmi-observed':
     ax.set_title('Observed Indian Ocean Dipole, 1-7 October 2023')
     ax.legend(frameon=False);ax.tick_params(axis='x',rotation=45);fig.tight_layout()
     fig.savefig('/work/outlook.png',dpi=120)
+elif CASE_ID=='iod-s2s-forecast-skill':
+    # Credentialed source: needs an ECDS key and ecmwf.int reachable. See the
+    # case notes in weather_bench/obs_cases.py.
+    import cdsapi, pandas as pd
+    INIT='2023-09-25'
+    OISST='https://psl.noaa.gov/thredds/dodsC/Datasets/noaa.oisst.v2.highres/sst.day.mean.{y}.nc'
+    PERIODS=[('2023-09-25','2023-10-01'),('2023-10-02','2023-10-08')]
+    # Sea-surface temperature is filed as a 24 hour mean, so the field covering
+    # the initialisation day is the period 0-24 and each later day steps by 24.
+    # Requesting explicit periods matters: the MARS range shorthand silently
+    # returns a single step for this variable.
+    LEADS=[f'{24*d}_{24*(d+1)}' for d in range(14)]
+    DAYS=pd.date_range(INIT,periods=14)
+
+    def s2s(forecast_type):
+        target=f'/tmp/s2s-{forecast_type}.nc'
+        cdsapi.Client().retrieve('s2s-forecasts',{'origin':'ecmwf','forecast_type':forecast_type,
+          'level_type':'single_level','variable':['sea_surface_temperature'],
+          'year':'2023','month':'09','day':'25','time':'00:00','leadtime_hour':LEADS,
+          'area':[15,45,-15,115],'data_format':'netcdf'},target)
+        f=xr.open_dataset(target,decode_timedelta=False)['sst'].rename({'latitude':'lat','longitude':'lon'})
+        # The model grid runs north to south, the analysis south to north, so a
+        # latitude slice written for one selects nothing on the other.
+        f=f.sortby('lat').sortby('lon').sortby('step')-273.15
+        if 'number' not in f.dims:f=f.expand_dims('number')      # the control is one run
+        return f.transpose('number','step','lat','lon')
+
+    def window(y):
+        f=xr.open_dataset(OISST.format(y=y))['sst'].sel(lat=slice(-10.5,10.5),lon=slice(49.5,110.5))
+        t=pd.DatetimeIndex(f['time'].values)
+        return f.isel(time=np.flatnonzero(((t.month==9)&(t.day>=24))|((t.month==10)&(t.day<=8)))).load()
+
+    def box(a,la0,la1,lo0,lo1):
+        s=a.sel(lat=slice(la0,la1),lon=slice(lo0,lo1))
+        return s.weighted(np.cos(np.radians(s['lat']))).mean(('lat','lon'))
+
+    # One observed climatology sets the level on both sides, so it cancels in
+    # the error. Each box mean is taken on its own grid; the model is 1.5 degree
+    # and the analysis 0.25, and neither is regridded onto the other.
+    #
+    # The index differences two box means near 28.17 degrees to get about
+    # -0.014, so it is sensitive to how the 150-step climatology accumulates:
+    # float32 in a different summation order than the oracle's moves the index
+    # by ~8e-5, most of the case's 1e-4 tolerance. Accumulating in float64
+    # removes that as a variable.
+    clim=xr.concat([window(y) for y in range(2013,2023)],dim='time').astype('float64').mean('time')
+    cw=float(box(clim,-10,10,50,70));ce=float(box(clim,-10,0,90,110))
+    obs=window(2023).sortby('time')
+    model=xr.concat([s2s('control_forecast'),s2s('perturbed_forecast')],dim='number')
+    assert model.sizes['number']==101,model.sizes
+
+    fc,sp,ob,er=[],[],[],[]
+    for a,b in PERIODS:
+        take=np.flatnonzero((DAYS>=pd.Timestamp(a))&(DAYS<=pd.Timestamp(b)))
+        mean=model.isel(step=take).mean('step')
+        # Spread is taken across members of the index, not the index of the
+        # per-member spreads.
+        dmi=(box(mean,-10,10,50,70)-cw)-(box(mean,-10,0,90,110)-ce)
+        days=pd.date_range(a,b)
+        om=obs.sel(time=days).mean('time')
+        observed=float((box(om,-10,10,50,70)-cw)-(box(om,-10,0,90,110)-ce))
+        fc.append(float(dmi.mean()));sp.append(float(dmi.std(ddof=1)))
+        ob.append(observed);er.append(float(dmi.mean())-observed)
+    answer={'valid_from':[a for a,_ in PERIODS],'valid_to':[b for _,b in PERIODS],
+            'forecast_dmi_c':fc,'spread_dmi_c':sp,'observed_dmi_c':ob,'error_dmi_c':er,
+            'units':'degree_Celsius',
+            'source_url':'https://ecds.ecmwf.int/api c3s/ecmwf-s2s sst init 2023-09-25',
+            'figure':'/work/outlook.png'}
+    labels=[f'{a} to {b}' for a,b in PERIODS]
+    fig,ax=plt.subplots(figsize=(8,4.5));x=np.arange(len(labels));w=.27
+    ax.bar(x-w,fc,w,yerr=sp,capsize=4,label='Forecast index, ensemble mean')
+    ax.bar(x,ob,w,label='Observed index')
+    ax.bar(x+w,er,w,label='Error, forecast minus observed')
+    ax.axhline(0,color='#444',lw=.8);ax.set_xticks(x);ax.set_xticklabels(labels)
+    ax.set_ylabel('degree_Celsius')
+    ax.set_title('ECMWF S2S dipole forecast against observations, init 2023-09-25')
+    ax.legend(frameon=False);fig.tight_layout();fig.savefig('/work/outlook.png',dpi=120)
 elif CASE_ID=='e2e-kenya-heat':
     a,lat,lon=read('2026-09-27','daily_vars','t2m')
     peak=regional(a[:,:14]-273.15,lat).reshape(101,2,7).max(axis=-1)

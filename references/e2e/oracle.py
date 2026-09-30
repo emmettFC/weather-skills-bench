@@ -67,7 +67,25 @@ def calculate():
     heat={'period_end_lead_days':[7,14],'median_peak_c':np.median(peaks,axis=0).tolist(),'peak_spread_c':peaks.std(axis=0,ddof=1).tolist(),
           'minimum_member_peak_c':peaks.min(axis=0).tolist(),'maximum_member_peak_c':peaks.max(axis=0).tolist(),'units':'degree_Celsius',
           'source_url':base+'2026-09-27/data/ECMWF_s2s_daily_vars_2026-09-27.zarr','figure':'/work/outlook.png'}
-    return {'e2e-kenya-rainfall':rain,'e2e-kenya-revision':change,'e2e-kenya-heat':heat}
+    return {'e2e-kenya-rainfall':rain,'e2e-kenya-revision':change,'e2e-kenya-heat':heat,**dipole()}
+
+
+def dipole():
+    """The Indian Ocean Dipole answers, from the oracles that own them.
+
+    They live in references/obs because their sources are NOAA PSL and the
+    ECMWF Data Stores rather than the Kenya object archive, and each restores
+    and hash-checks its own frozen bytes. Delegating keeps one oracle per set
+    of ground truth while still presenting every end-to-end answer here.
+    """
+    import importlib.util
+    out={}
+    for module,case in (('oracle','iod-dmi-observed-skill'),
+                        ('oracle_s2s','iod-s2s-forecast-skill')):
+        spec=importlib.util.spec_from_file_location(f'obs_{module}',ROOT/'references/obs'/f'{module}.py')
+        loaded=importlib.util.module_from_spec(spec);spec.loader.exec_module(loaded)
+        out[case]=loaded.answers()
+    return out
 
 if __name__=='__main__':
     restore_sources()
