@@ -132,7 +132,7 @@ def s2s_case(answers):
     challenge=('The lead axis is labelled by the end of its averaging period, so taking the label at face value '
       'verifies against the wrong week. The spread must be taken across members of the index, not the index of the '
       'member spreads. Model and observations sit on different grids, so the box means cannot be differenced '
-      'cell-by-cell. The eastern box is an eighth land.')
+      'cell-by-cell. The eastern box is an eighth land. The source stores latitude as float32, so the idiomatic weighted mean carries the whole reduction in float32 and lands about 8e-5 out once the two boxes are differenced, which is most of the tolerance.')
     sources=[
       'ECMWF Data Stores, product c3s/ecmwf-s2s, variable sst, init 2023-09-25. This source is credentialed.',
       'NOAA PSL OPeNDAP: https://psl.noaa.gov/thredds/dodsC/Datasets/noaa.oisst.v2.highres/sst.day.mean.YYYY.nc, one file per calendar year.',

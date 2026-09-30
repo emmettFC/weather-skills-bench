@@ -34,7 +34,11 @@ if CASE_ID=='iod-dmi-observed-skill':
         return f.isel(time=np.flatnonzero([(m,d) in OCT for m,d in zip(t.month,t.day)])).load()
     def box(anom,lat0,lat1,lon0,lon1):
         sub=anom.sel(lat=slice(lat0,lat1),lon=slice(lon0,lon1))
-        return sub.weighted(np.cos(np.radians(sub['lat']))).mean(('lat','lon'))
+        # OISST stores lat as float32, so cos(lat) is float32 and xarray
+        # accumulates the whole weighted reduction in float32: about 5e-5 per
+        # box on this domain, and the two boxes are differenced. Casting the
+        # weights to float64 brings this to 2e-10 of the numpy reference.
+        return sub.weighted(np.cos(np.radians(sub['lat'].astype('float64')))).mean(('lat','lon'))
     clim=xr.concat([october(y) for y in range(2013,2023)],dim='time').mean('time')
     target=october(2023).sortby('time');anom=target-clim
     west=box(anom,-10,10,50,70);east=box(anom,-10,0,90,110);dmi=west-east
@@ -83,17 +87,19 @@ elif CASE_ID=='iod-s2s-forecast-skill':
 
     def box(a,la0,la1,lo0,lo1):
         s=a.sel(lat=slice(la0,la1),lon=slice(lo0,lo1))
-        return s.weighted(np.cos(np.radians(s['lat']))).mean(('lat','lon'))
+        # OISST stores lat as float32, so cos(lat) is float32 and xarray
+        # accumulates the whole weighted reduction in float32: about 5e-5 per
+        # box on this domain, and the two boxes are differenced. Casting the
+        # weights to float64 brings this to 2e-10 of the numpy reference.
+        return s.weighted(np.cos(np.radians(s['lat'].astype('float64')))).mean(('lat','lon'))
 
     # One observed climatology sets the level on both sides, so it cancels in
     # the error. Each box mean is taken on its own grid; the model is 1.5 degree
     # and the analysis 0.25, and neither is regridded onto the other.
     #
     # The index differences two box means near 28.17 degrees to get about
-    # -0.014, so it is sensitive to how the 150-step climatology accumulates:
-    # float32 in a different summation order than the oracle's moves the index
-    # by ~8e-5, most of the case's 1e-4 tolerance. Accumulating in float64
-    # removes that as a variable.
+    # -0.014, so small absolute errors in either box matter. Everything here
+    # accumulates in float64; see box() for the float32 trap that costs 8e-5.
     clim=xr.concat([window(y) for y in range(2013,2023)],dim='time').astype('float64').mean('time')
     cw=float(box(clim,-10,10,50,70));ce=float(box(clim,-10,0,90,110))
     obs=window(2023).sortby('time')

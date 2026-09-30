@@ -28,7 +28,9 @@ def box_mean(anomaly,box):
     interval. xarray's weighted mean skips missing cells and renormalises the
     weights over the rest, which is what the land in the eastern box requires."""
     sub=anomaly.sel(lat=slice(*box['lat']),lon=slice(*box['lon']))
-    return sub.weighted(np.cos(np.deg2rad(sub['lat']))).mean(('lat','lon'))
+    # lat is float32 in the source, which would pull the whole weighted
+    # reduction into float32 and cost about 5e-5 on this domain.
+    return sub.weighted(np.cos(np.deg2rad(sub['lat'].astype('float64')))).mean(('lat','lon'))
 
 
 def solve():
